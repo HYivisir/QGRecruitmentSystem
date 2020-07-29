@@ -114,5 +114,12 @@ a{
 #opt-content{
     background-color: #fff;
     height: 100%;
+
+}
+
+.opt-pane{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
