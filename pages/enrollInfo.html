@@ -48,7 +48,7 @@
             <!-- 标签 -->
             <ul id="opt-enroll-tabs" class="nav nav-tabs">
                 <li class="opt-active opt-tabs">报名信息</li>
-                <li class="opt-tabs detail-info">详细信息</li>
+                <li class="opt-tabs">详细信息</li>
             </ul>
             <div id="opt-content" class="tab-content">
                 <!-- 往这里写内容 -->
@@ -73,8 +73,65 @@
                     <div class="opt-list"></div>
                     <div class="opt-footer"></div>
                 </div>
-                <div class="opt-pane fade detail-info">
-                    <p>阿巴阿巴</p>
+                <div class="opt-pane fade" id="detail-info">
+                    <p>个人信息</p>
+                    <div id="opt-form">
+                        <div id="opt-form-base">
+                            <div class="opt-form-item"><a>姓名：</a><input type="text"></div>
+                            <div class="opt-form-item"><a>年龄：</a><input type="text"></div>
+                            <div class="opt-form-item"><a>C实验成绩：</a><input type="text"></div>
+                            <div class="opt-form-item"><a>性别：</a>
+                                <select>
+                                    <option value="male">男</option>
+                                    <option value="female">女</option>
+                                </select>
+                            </div>
+                            <div class="opt-form-item"><a>宿舍：</a><input type="text"></div>
+                            <div class="opt-form-item"><a>英语(1)成绩：</a><input type="text"></div>
+                            <div class="opt-form-item"><a>应征部门：</a>
+                                <select id="form-apartment">
+                                    <option value="网络组">网络组</option>
+                                    <option value="移动组">移动组</option>
+                                    <option value="数据挖掘组">数据挖掘组</option>
+                                    <option value="设计组">设计组</option>
+                                    <option value="嵌入式组">嵌入式组</option>
+                                    <option value="软件组">软件组</option>
+                                </select>
+                            </div>
+                            <div class="opt-form-item"><a>上学期期末排名：</a><input type="text"></div>
+                            <div class="opt-form-item"><a>大一上绩点：</a><input type="text"></div>
+                            <div class="opt-form-item"><a>年级：</a>
+                                <select>
+                                    <option value="freshman">大一</option>
+                                    <option value="sophomore">大二</option>
+                                </select>
+                            </div>
+                            <div class="opt-form-item"><a>班级职务：</a><input type="text"></div>
+                            <div class="opt-form-item"><a>邮箱：</a><input type="text"></div>
+                            <div class="opt-form-item"><a>专业班级：</a><input type="text"></div>
+                            <div class="opt-form-item"><a>是否挂科：</a>
+                                <select>
+                                    <option value="yes">是</option>
+                                    <option value="no">否</option>
+                                </select>
+                            </div>
+                            <div class="opt-form-item"><a>手机：</a><input type="text"></div>
+                            <div class="opt-form-item"><a>学号：</a><input type="text"></div>
+                            <div class="opt-form-item"><a>C理论成绩：</a><input type="text"></div>
+                            <div class="opt-form-item"><a>QQ：</a><input type="text"></div>
+                        </div>
+                        <div class="opt-form-item opt-form-other"><a>参加其他学生科技社团普通社团情况说明：</a><input type="text"></div>
+                        <div class="opt-form-mid">
+                            <div class="opt-form-item opt-form-mid-item"><a>爱好：</a><textarea type="text"></textarea></div>
+                            <div class="opt-form-item opt-form-mid-item"><a>座右铭：</a><textarea type="text"></textarea></div>
+                        </div>
+                        <div class="opt-form-btm">
+                            <div class="opt-form-item opt-form-btm-item"><a>奖惩情况和实践经历(社会实践或者计算机相关技术学习掌握情况)</a><textarea type="text"></textarea></div>
+                            <div class="opt-form-item opt-form-btm-item"><a>自我评价</a><textarea type="text"></textarea></div>
+                            <div class="opt-form-item opt-form-btm-item"><a>简述能体现你四个方面的一件事(1)善于协作(2)刻苦努力(3)甘于奉献(4)持之以恒</a><textarea type="text"></textarea></div>
+                            <div class="opt-form-item opt-form-btm-item"><a>请说一下大学四年的个人规划以及为什么希望加入QG工作室</a><textarea type="text"></textarea></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

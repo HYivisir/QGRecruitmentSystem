@@ -14,14 +14,21 @@ function tab(target){
         panes[i].classList.remove('in');
     }
     target.classList.add('opt-active');
-    panes[index].classList.add('in')
+    panes[index].classList.add('in');
 }
 
 window.onload = function(){
     var optTabs = document.getElementsByClassName('opt-tabs');
-    for(var i=0;i<optTabs.length;i++){
-        optTabs[i].onclick = function(event){
-            tab(this);
-        }
+    var optPanes = document.getElementsByClassName('opt-pane');
+    optTabs[0].onclick = function(){
+        tab(this);
+        optPanes[1].style.display = 'none';
+        optPanes[0].style.display = 'flex'
     }
+    optTabs[1].onclick = function(){
+        tab(this);
+        optPanes[0].style.display = 'none';
+        optPanes[1].style.display = 'flex'
+    }
+
 }
