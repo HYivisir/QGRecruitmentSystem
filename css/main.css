@@ -1,17 +1,25 @@
 /* 存放复用的样式 */
 
-html,body{
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
     background-color: rgb(240, 237, 241);
     height: 100%;
     width: 100%;
 }
-html{
-    padding: 5px;
-}
-a{
+
+a {
     text-decoration: none;
 }
-#header{
+
+h4 {
+    font-size: 16px;
+}
+
+#header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,38 +28,37 @@ a{
     background-color: #fff;
     padding-left: 30px;
 }
-#header-sign{
+
+#header-sign {
     display: flex;
     justify-content: start;
     align-items: center;
-    height: 80%;
-    width: 20%;
+    height: 60%;
+    width: auto;
     user-select: none;
 }
-#header-logo{
-    width: 60px;
-    height:60px;
-    background-image: url('../images/QG.png');
-    background-size: cover;
-    margin-right: 10px;
+
+#header-logo {
+    height: 100%;
+    margin-right: 16px;
 }
 
-#header-opt{
+#header-opt {
     padding-right: 30px;
     font-size: 16px;
     font-weight: 500;
     user-select: none;
 }
 
-#header-time a,#header-exit a{
+#header-time a, #header-exit a {
     color: rgb(162, 125, 210);
 }
 
-#header-exit a{
+#header-exit a {
     text-decoration: underline;
 }
 
-#content{
+#content {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -59,17 +66,20 @@ a{
     width: 100%;
 }
 
-#side-nav{
+#side-nav {
     flex: 2;
-    margin: 10px;
+    margin: 10px 0;
     background-color: #fff;
     border-radius: 10px;
 }
 
-#side-nav ul{
+#side-nav ul {
+    min-width: 160px;
     padding: 0;
+    margin-top: 10px;
 }
-.side-tabs{
+
+.side-tabs {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -81,20 +91,21 @@ a{
     user-select: none;
 }
 
-.side-tabs:hover{
+.side-tabs:hover {
     background-color: #ccc;
 }
 
-.side-active{
+.side-active {
     border-right: 5px rgb(162, 125, 210) solid;
 }
-#operation{
+
+#operation {
     margin: 10px;
     flex: 14;
     height: 100%;
 }
 
-.opt-tabs{
+.opt-tabs {
     background-color: #fff;
     width: 120px;
     height: 40px;
@@ -105,14 +116,17 @@ a{
     user-select: none;
 }
 
-.opt-active{
+.opt-active {
     background-color: rgb(165, 123, 212);
     color: #fff;
 }
 
-
-#opt-content{
+#opt-content {
     background-color: #fff;
     height: 100%;
+    border-radius: 10px;
 }
 
+#opt-enroll-tabs {
+    border-bottom: none;
+}
