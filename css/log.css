@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+
+body {
+    height: 100vh;
+    background: radial-gradient(ellipse at bottom, #d4bbc9 0%, #e0a0be 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#log-div {
+    position: absolute;
+    right: 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    width: 500px;
+    height: 70%;
+    min-height: 600px;
+    border-radius: 16px;
+    background-color: rgba(255, 255, 255, .2);
+    box-shadow: 0 0.7px 20px rgba(129, 129, 129, 0.3);
+}
+
+#log-div:hover {
+    box-shadow: 0 0.7px 20px rgba(129, 129, 129, 0.7);
+}
+
+#log-img {
+    margin-top: 8%;
+    width: 28%;
+}
+
+#log-div>p {
+    margin: 32px 0;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/* 账号密码 */
+
+.log-input {
+    border: solid rgba(163, 123, 233, .7) 2px;
+    border-radius: 4px;
+    background-color: white;
+    height: 36px;
+    width: 360px;
+    margin: 16px 0;
+}
+
+.log-svg {
+    float: left;
+    text-align: center;
+    height: 100%;
+    width: 60px;
+}
+
+svg {
+    fill: rgba(0, 0, 0, 0.3);
+    height: 100%;
+}
+
+.log-lock svg {
+    height: 80%;
+    margin-top: 5%;
+}
+
+.log-input input {
+    float: left;
+    height: 100%;
+    width: 80%;
+    font-style: 16px;
+}
+
+/* 记住我 */
+
+#log-rem {
+    align-self: flex-end;
+    height: 16px;
+    line-height: 16px;
+    vertical-align: middle;
+    position: relative;
+    right: 70px;
+}
+
+#log-rem span {
+    margin-left: 6px;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+#log-rem input {
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+#log-in {
+    height: 48px;
+    width: 240px;
+    margin: 32px;
+    border-radius: 5px;
+    background-color: rgba(163, 123, 233, .8);
+    color: white;
+    font-size: 16px;
+}
+
+#log-in:hover {
+    background-color: rgb(163, 123, 233);
+    cursor: pointer;
+}
