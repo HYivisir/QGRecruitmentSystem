@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QG工作室招新平台</title>
-    <link rel="stylesheet" href="./css/log.css" >
+    <link rel="stylesheet" href="./css/index.css" >
+    <script src="./js/index.js"></script>
 </head>
 
 <body>
@@ -25,7 +26,7 @@
                     </path>
                 </svg>
             </div>
-            <input type="text" placeholder="账号" onfocus="this.placeholder=''" onblur="this.placeholder='账号'">
+            <input id="username" type="text" placeholder="账号" onfocus="this.placeholder=''" onblur="this.placeholder='账号'">
         </div>
 
         <div class="log-input">
@@ -38,14 +39,14 @@
                     </path>
                 </svg>
             </div>
-            <input type="password" placeholder="密码" onfocus="this.placeholder=''" onblur="this.placeholder='密码'">
+            <input id="password" type="password" placeholder="密码" onfocus="this.placeholder=''" onblur="this.placeholder='密码'">
         </div>
 
         <div id="log-rem">
-            <input type="checkbox"><span>记住我</span>
+            <input type="checkbox" id="rem"><span>记住我(7天)</span>
         </div>
 
-        <input type="submit" id="log-in" value="登  录">
+        <input type="button" id="log-in" value="登  录">
 
     </div>
 </body>

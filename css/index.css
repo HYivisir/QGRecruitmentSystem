@@ -50,10 +50,10 @@ body {
 /* 账号密码 */
 
 .log-input {
-    border: solid rgba(163, 123, 233, .7) 2px;
+    border: solid rgba(163, 123, 233, .7) 3px;
     border-radius: 4px;
     background-color: white;
-    height: 36px;
+    height: 35px;
     width: 360px;
     margin: 16px 0;
 }
