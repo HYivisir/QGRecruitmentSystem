@@ -128,11 +128,9 @@ h4 {
 
 #opt-content {
     background-color: #fff;
-<<<<<<< HEAD
     min-height: 100%;
     border-radius: 10px;
 	border-top-left-radius: 0;
-=======
     height: 100%;
 
 }
@@ -141,7 +139,6 @@ h4 {
     padding: 20px;
     display: flex;
     flex-direction: column;
->>>>>>> yivi
 }
 
 #opt-enroll-tabs {
