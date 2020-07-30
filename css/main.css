@@ -22,10 +22,6 @@ h4 {
 .hide {
     display: none;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> yivi
 input,textarea,select{
     border: transparent;
     outline: none;
@@ -229,10 +225,7 @@ input,textarea,select{
 .de-sub:hover {
     background-color: rgb(163, 123, 233);
 }
-<<<<<<< HEAD
   
-=======
->>>>>>> yivi
 .opt-header{
     width: 100%;
     display: flex;
