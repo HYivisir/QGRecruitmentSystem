@@ -19,9 +19,10 @@ h4 {
     font-size: 16px;
 }
 
-input{
+input,textarea,select{
     border: transparent;
     outline: none;
+    padding-left: 5px;
 }
 
 #header {
@@ -153,4 +154,132 @@ input{
 
 #opt-enroll-tabs {
     border-bottom: none;
+}
+
+.opt-header{
+    width: 100%;
+    display: flex;
+
+}
+.opt-search{
+    display: flex;
+    justify-content: flex-start;
+    border: 1px rgb(165, 123, 212) solid;
+    border-right: transparent;
+    border-radius: 5px 0 0 5px;
+    padding: 2px;
+
+}
+
+#opt-svg{
+    width: 24px;
+    height: 24px;
+}
+
+#opt-input{
+    border: transparent;
+}
+
+.opt-btn{
+    margin-right: 25px;
+    border: transparent;
+    border-radius: 5px;
+    color: #fff;
+    background-color: rgb(165, 123, 212);
+    width: 80px;
+}
+
+.opt-s-btn{
+    border-radius: 0 5px 5px 0;
+    width: 80px;
+}
+
+.opt-btn:hover,.opt-s-btn:hover{
+    background-color: rgb(135, 68, 212);
+}
+
+#opt-select{
+    width: 150px;
+    border: 1px rgb(165, 123, 212) solid;
+    border-radius: 5px;
+    outline: none;
+}
+
+.opt-table{
+    margin-top: 20px;
+    text-align: center;
+    border: 0;
+}
+
+.opt-table thead {
+    color: #fff;
+    background-color: rgb(165,123,211);
+}
+
+.opt-table thead tr th{
+    border: 0;
+}
+
+.opt-table th{
+    text-align: center;
+}
+
+.opt-table tbody tr td{
+    border: 0;
+}
+
+.opt-table tbody tr:nth-child(even){
+    background-color: rgb(234,222,242);
+}
+
+.opt-table tbody tr:hover{
+    background-color: rgb(186, 140, 216);
+    color: #fff;
+}
+
+
+.opt-footer{
+    display: flex;
+    justify-content: center;
+}
+
+.opt-footer ul{
+    padding: 0 10px;
+}
+
+.opt-footer ul li{
+    padding: 0 2px;
+    list-style: none;
+    float: left;
+}
+
+.opt-footer-pre,.opt-footer-nxt{
+    color: rgb(135, 68, 212);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.opt-page-tab{
+    font-weight: 600;
+}
+
+.opt-switch{
+    display: flex;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+.opt-switch p{
+    color: rgb(135, 68, 212);
+}
+
+.opt-switch input{
+    width: 40px;
+    height: 20px;
+    border: 1px rgb(165, 123, 212) solid;
+    border-radius: 5px;
+    outline: none;
+    resize: none;
+    margin: 0 5px;
+    padding-left: 5px;
 }

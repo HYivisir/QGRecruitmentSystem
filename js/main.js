@@ -18,25 +18,21 @@ function tab(target){
 }
 
 window.onload = function(){
-    var optTabs = document.getElementsByClassName('opt-tabs');
-    var optPanes = document.getElementsByClassName('opt-pane');
-    optTabs[0].onclick = function(){
-        tab(this);
-        optPanes[1].style.display = 'none';
-        optPanes[2].style.display = 'none';
-        optPanes[0].style.display = 'flex'
+    
+    // 全选功能
+    var selectAll = document.getElementsByClassName('select-all');
+    var choose = document.getElementsByClassName('choose');
+    for(var i=0;i<selectAll.length;i++){
+        selectAll[i].onclick=function(){
+            if(!this.checked){
+                for(var i=0;i<choose.length;i++){
+                    choose[i].checked = false
+                }
+            }else{
+                for(var i=0;i<choose.length;i++){
+                    choose[i].checked = true
+                }
+            }
+        }
     }
-    optTabs[1].onclick = function(){
-        tab(this);
-        optPanes[0].style.display = 'none';
-        optPanes[2].style.display = 'none';
-        optPanes[1].style.display = 'flex'
-    }
-    optTabs[2].onclick = function(){
-        tab(this);
-        optPanes[0].style.display = 'none';
-        optPanes[1].style.display = 'none';
-        optPanes[2].style.display = 'flex'
-    }
-
 }
