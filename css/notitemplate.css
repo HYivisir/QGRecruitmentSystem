@@ -85,8 +85,7 @@
     border-radius: 5px;
     border: rgba(164, 123, 212, 0.8) dashed 1px;
     overflow: hidden;
-    /* display: flex;
-            flex-direction: column; */
+    cursor: pointer;
 }
 
 #noti-add svg {
