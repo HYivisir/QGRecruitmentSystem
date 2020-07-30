@@ -267,8 +267,8 @@ input,textarea,select{
     background-color: rgb(135, 68, 212);
 }
 
-#opt-select{
-    width: 150px;
+.opt-select{
+    width: 125px;
     border: 1px rgb(165, 123, 212) solid;
     border-radius: 5px;
     outline: none;
@@ -276,6 +276,7 @@ input,textarea,select{
 
 .opt-table{
     margin-top: 20px;
+    /* height: 425px; */
     text-align: center;
     border: 0;
 }
