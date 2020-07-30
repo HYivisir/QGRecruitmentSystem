@@ -101,3 +101,47 @@
     font-size: 14px;
     color: black;
 }
+
+.noti-sec-main {
+    outline: none;
+    width: auto;
+    height: 210px;
+    padding: 24px 12px 0 12px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: rgb(247, 244, 248);
+    overflow: scroll;
+}
+
+::-webkit-scrollbar {
+    /*隐藏滚轮*/
+    display: none;
+}
+
+.noti-div-sec {
+    position: relative;
+    margin: 15px;
+    width: 250px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 0.7px 10px rgba(129, 129, 129, 0.5);
+}
+
+
+.noti-bot {
+    height: 140px;
+    background-color: white;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.noti-new-name>input {
+    width: 120px;
+    padding: 3px;
+    border-radius: 5px;
+    border: rgb(164, 123, 212) 1px solid;
+}
