@@ -7,6 +7,7 @@
     <title>QG工作室招新平台</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/testResult.css">
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../js/main.js"></script>
@@ -28,10 +29,10 @@
         <!-- 侧边导航栏 -->
         <div id="side-nav">
             <ul>
-                <li class="side-tabs side-active">
+                <li class="side-tabs">
                     <a href="./enrollInfo.html"><h4>报名信息</h4></a>
                 </li>
-                <li class="side-tabs">
+                <li class="side-tabs side-active">
                     <a href="./testResult.html"><h4>考试结果</h4></a>
                 </li>
                 <li class="side-tabs">
@@ -46,7 +47,7 @@
         <div id="operation">
             <!-- 标签 -->
             <ul id="opt-enroll-tabs" class="nav nav-tabs">
-                <li class="opt-active opt-tabs">报名信息</li>
+                <li class="opt-active opt-tabs">考试结果</li>
             </ul>
             <div id="opt-content" class="tab-content">
                 <!-- 往这里写内容 -->
@@ -57,9 +58,11 @@
                             <input id="opt-input" type="text" placeholder="搜索姓名、班级或学号">
                         </div>
                         <input class="opt-btn opt-s-btn" type="button" value="搜索">
-                        <input class="opt-btn" type="button" value="导出">
-                        <input class="opt-btn" type="button" value="新增+">
-                        <select name="" id="opt-select">
+                        <input class="opt-btn opt-result-btn" type="button" value="批量录入">
+                        <input class="opt-btn opt-result-btn" type="button" value="修改">
+                        <input class="opt-btn opt-result-btn" type="button" value="删除">
+                        <input class="opt-btn opt-result-btn" type="button" value="批量通过">
+                        <select name="" class="opt-select">
                             <option value="网络组">网络组</option>
                             <option value="移动组">移动组</option>
                             <option value="数据挖掘组">数据挖掘组</option>
@@ -67,6 +70,8 @@
                             <option value="嵌入式组">嵌入式组</option>
                             <option value="软件组">软件组</option>
                         </select>
+                        <input class="opt-btn opt-send-btn" type="button" value="发送通知">
+                        
                     </div>
                     <div class="opt-list">
                         <table class="table table-bordered table-hover opt-table">
@@ -74,116 +79,126 @@
                                 <tr>
                                     <th><input type="checkbox" name="" class="select-all"></th>
                                     <th>姓名</th>
-                                    <th>学院</th>
-                                    <th>班级</th>
+                                    <th>性别</th>
                                     <th>学号</th>
-                                    <th>组别</th>
-                                    <th>电话</th>
-                                    <th>QQ</th>                    
+                                    <th>成绩</th>
+                                    <th>评价</th>
+                                    <th>类型</th>
+                                    <th>是否通过</th>                    
+                                    <th>组别</th>                    
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td><input type="checkbox" name="" class="choose"></td>
                                     <td>张三</td>
-                                    <td>计算机学院</td>
-                                    <td>计科1班</td>
+                                    <td>未知</td>
                                     <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
                                     <td>网络组</td>
-                                    <td>123456789</td>
-                                    <td>123456789</td>
                                 </tr>
                                 <tr>
                                     <td><input type="checkbox" name="" class="choose"></td>
                                     <td>张三</td>
-                                    <td>计算机学院</td>
-                                    <td>计科1班</td>
+                                    <td>未知</td>
                                     <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
                                     <td>网络组</td>
-                                    <td>123456789</td>
-                                    <td>123456789</td>
                                 </tr>
                                 <tr>
                                     <td><input type="checkbox" name="" class="choose"></td>
                                     <td>张三</td>
-                                    <td>计算机学院</td>
-                                    <td>计科1班</td>
+                                    <td>未知</td>
                                     <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
                                     <td>网络组</td>
-                                    <td>123456789</td>
-                                    <td>123456789</td>
                                 </tr>
                                 <tr>
                                     <td><input type="checkbox" name="" class="choose"></td>
                                     <td>张三</td>
-                                    <td>计算机学院</td>
-                                    <td>计科1班</td>
+                                    <td>未知</td>
                                     <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
                                     <td>网络组</td>
-                                    <td>123456789</td>
-                                    <td>123456789</td>
                                 </tr>
                                 <tr>
                                     <td><input type="checkbox" name="" class="choose"></td>
                                     <td>张三</td>
-                                    <td>计算机学院</td>
-                                    <td>计科1班</td>
+                                    <td>未知</td>
                                     <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
                                     <td>网络组</td>
-                                    <td>123456789</td>
-                                    <td>123456789</td>
                                 </tr>
                                 <tr>
                                     <td><input type="checkbox" name="" class="choose"></td>
                                     <td>张三</td>
-                                    <td>计算机学院</td>
-                                    <td>计科1班</td>
+                                    <td>未知</td>
                                     <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
                                     <td>网络组</td>
-                                    <td>123456789</td>
-                                    <td>123456789</td>
                                 </tr>
                                 <tr>
                                     <td><input type="checkbox" name="" class="choose"></td>
                                     <td>张三</td>
-                                    <td>计算机学院</td>
-                                    <td>计科1班</td>
+                                    <td>未知</td>
                                     <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
                                     <td>网络组</td>
-                                    <td>123456789</td>
-                                    <td>123456789</td>
                                 </tr>
                                 <tr>
                                     <td><input type="checkbox" name="" class="choose"></td>
                                     <td>张三</td>
-                                    <td>计算机学院</td>
-                                    <td>计科1班</td>
+                                    <td>未知</td>
                                     <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
                                     <td>网络组</td>
-                                    <td>123456789</td>
-                                    <td>123456789</td>
                                 </tr>
                                 <tr>
                                     <td><input type="checkbox" name="" class="choose"></td>
                                     <td>张三</td>
-                                    <td>计算机学院</td>
-                                    <td>计科1班</td>
+                                    <td>未知</td>
                                     <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
                                     <td>网络组</td>
-                                    <td>123456789</td>
-                                    <td>123456789</td>
                                 </tr>
                                 <tr>
                                     <td><input type="checkbox" name="" class="choose"></td>
                                     <td>张三</td>
-                                    <td>计算机学院</td>
-                                    <td>计科1班</td>
+                                    <td>未知</td>
                                     <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
                                     <td>网络组</td>
-                                    <td>123456789</td>
-                                    <td>123456789</td>
                                 </tr>
-                               
                             </tbody>
                         </table>
                     </div>
