@@ -3,27 +3,45 @@
 }
 
 .opt-send-btn{
-    margin-left: 400px;
+    margin-left: 200px;
 }
 
-.dele{
-    height: 400px;
-    width: 600px;
+.opt-select{
+    margin-left: 5px;
 }
-
 .sec-pane{
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 
 .sec-pane-item{
     flex: 0 0 50%;
+    text-align: center;
+}
+
+.sec-pane-item input,.sec-pane-item select{
+    margin-top: 5px;
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px rgb(165, 123, 212) solid;
 }
 
 .sec-pane-item input{
-    width: 100px;
-    border: 1px solid #000000;
+    margin-left: 14px;
+}
+.sec-pane-item select{
+    margin-left: 10px;
+}
+.notice-send{
+    height: 400px;
+}
+
+.sec-pane-item textarea{
+    border-radius: 5px;
+    border: 1px rgb(165, 123, 212) solid;
+    resize: none;
 }
