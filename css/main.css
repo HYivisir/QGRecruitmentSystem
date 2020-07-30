@@ -21,6 +21,7 @@ h4 {
 
 .hide {
     display: none;
+}
 
 input,textarea,select{
     border: transparent;
@@ -224,6 +225,7 @@ input,textarea,select{
 
 .de-sub:hover {
     background-color: rgb(163, 123, 233);
+}
   
 .opt-header{
     width: 100%;
