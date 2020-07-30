@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QG工作室招新平台</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/testResult.css">
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/testResult.js"></script>
+</head>
+
+<body>
+    <!-- 顶部 -->
+    <div id="header">
+        <div id="header-sign">
+            <img id="header-logo" src="../images/QG.png"></img>
+            <h3>QG工作室招新平台</h3>
+        </div>
+        <div id="header-opt">
+            <div id="header-time">登录时间: <a>2020-01-01 20:00:00</a></div>
+            <div id="header-exit"><a href="#">退出登录</a></div>
+        </div>
+    </div>
+    <div id="content">
+        <!-- 侧边导航栏 -->
+        <div id="side-nav">
+            <ul>
+                <li class="side-tabs">
+                    <a href="./enrollInfo.html"><h4>报名信息</h4></a>
+                </li>
+                <li class="side-tabs side-active">
+                    <a href="./testResult.html"><h4>考试结果</h4></a>
+                </li>
+                <li class="side-tabs">
+                    <a href="./noticeStatus.html"><h4>通知状态</h4></a>
+                </li>
+                <li class="side-tabs">
+                    <a href="./notitemplate.html"><h4>通知模板</h4></a>
+                </li>
+            </ul>
+        </div>
+        <!-- 右边操作平台 -->
+        <div id="operation">
+            <!-- 标签 -->
+            <ul id="opt-enroll-tabs" class="nav nav-tabs">
+                <li class="opt-active opt-tabs">考试结果</li>
+            </ul>
+            <div id="opt-content" class="tab-content">
+                <!-- 往这里写内容 -->
+                <div class="opt-pane fade in" id="enroll-info">
+                    <div class="opt-header">
+                        <div class="opt-search">
+                            <div id="opt-svg"><svg t="1596014097934" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2198"><path d="M863.38 825.09L714.17 675.88c48.01-57.12 74.18-128.58 74.18-204.08 0-84.89-33.06-164.7-93.08-224.72C635.24 187.05 555.44 154 470.55 154c-84.89 0-164.7 33.06-224.72 93.08s-93.08 139.83-93.08 224.72 33.06 164.7 93.08 224.72 139.83 93.08 224.72 93.08c76.22 0 148.33-26.67 205.72-75.56l149.08 149.08a26.805 26.805 0 0 0 19.01 7.88c6.88 0 13.76-2.63 19.01-7.88a26.805 26.805 0 0 0 7.88-19.01c0-6.89-2.62-13.77-7.87-19.02zM206.53 471.8c0-145.58 118.44-264.02 264.02-264.02 145.58 0 264.02 118.44 264.02 264.02S616.13 735.82 470.55 735.82c-145.58 0-264.02-118.44-264.02-264.02z" fill="#333333" p-id="2199"></path></svg></div>
+                            <input id="opt-input" type="text" placeholder="搜索姓名、班级或学号">
+                        </div>
+                        <input class="opt-btn opt-s-btn" type="button" value="搜索">
+                        <input class="opt-btn opt-result-btn" id="opt-change-score" type="button" value="批量成绩">
+                        <input class="opt-btn opt-result-btn" id="opt-change-pass" type="button" value="批量通过">
+                        <input class="opt-btn opt-result-btn" type="button" value="修改">
+                        <input class="opt-btn opt-result-btn" type="button" value="删除">
+                        <input class="opt-btn opt-result-btn" type="button" value="批量通过">
+                        <select name="" class="opt-select">
+                            <option value="1">一轮</option>
+                            <option value="2">二轮</option>
+                            <option value="3">笔试</option>
+                        </select>
+                        <select name="" class="opt-select">
+                            <option value="网络组">网络组</option>
+                            <option value="移动组">移动组</option>
+                            <option value="数据挖掘组">数据挖掘组</option>
+                            <option value="设计组">设计组</option>
+                            <option value="嵌入式组">嵌入式组</option>
+                            <option value="软件组">软件组</option>
+                        </select>
+                        <input class="opt-btn opt-send-btn" id="opt-send-msg" type="button" value="发送通知">
+                        
+                    </div>
+                    <div class="opt-list">
+                        <table class="table table-bordered table-hover opt-table">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" name="" class="select-all"></th>
+                                    <th>姓名</th>
+                                    <th>性别</th>
+                                    <th>学号</th>
+                                    <th>成绩</th>
+                                    <th>评价</th>
+                                    <th>类型</th>
+                                    <th>是否通过</th>                    
+                                    <th>组别</th>                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox" name="" class="choose"></td>
+                                    <td>张三</td>
+                                    <td>未知</td>
+                                    <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
+                                    <td>网络组</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="" class="choose"></td>
+                                    <td>张三</td>
+                                    <td>未知</td>
+                                    <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
+                                    <td>网络组</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="" class="choose"></td>
+                                    <td>张三</td>
+                                    <td>未知</td>
+                                    <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
+                                    <td>网络组</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="" class="choose"></td>
+                                    <td>张三</td>
+                                    <td>未知</td>
+                                    <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
+                                    <td>网络组</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="" class="choose"></td>
+                                    <td>张三</td>
+                                    <td>未知</td>
+                                    <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
+                                    <td>网络组</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="" class="choose"></td>
+                                    <td>张三</td>
+                                    <td>未知</td>
+                                    <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
+                                    <td>网络组</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="" class="choose"></td>
+                                    <td>张三</td>
+                                    <td>未知</td>
+                                    <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
+                                    <td>网络组</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="" class="choose"></td>
+                                    <td>张三</td>
+                                    <td>未知</td>
+                                    <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
+                                    <td>网络组</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="" class="choose"></td>
+                                    <td>张三</td>
+                                    <td>未知</td>
+                                    <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
+                                    <td>网络组</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="" class="choose"></td>
+                                    <td>张三</td>
+                                    <td>未知</td>
+                                    <td>123456789</td>
+                                    <td>100</td>
+                                    <td>法外狂徒</td>
+                                    <td>二轮</td>
+                                    <td>是</td>
+                                    <td>网络组</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="opt-footer">
+                        <div class="opt-footer-pre"><p href="">上一页</p></div>
+                        <ul>
+                            <li class="opt-page-tab" ><a href="#1">1</a></li>
+                            <li class="opt-page-tab"><a href="#2">2</a></li>
+                            <li class="opt-page-tab"><a href="#3">3</a></li>
+                            <li class="opt-page-tab"><a href="#4">4</a></li>
+                            <li class="opt-page-tab"><a href="#5">5</a></li>
+                        </ul>
+                        <div class="opt-footer-nxt"><p href="">下一页</p></div>
+                        <div class="opt-switch"><p>跳转第</p><input type="text"><p>页</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="secti hide" id="secti-score">
+        <div class="dele">
+            <div class="sec-de">
+                <svg viewBox="0 0 16 13">
+                    <g transform="translate(1.000000, 0.000000)" fill="white">
+                        <path
+                            d="M10.164,11.063 C9.982,11.063 9.845,10.991 9.776,10.922 L8.009,9.157 L6.314,10.852 C6.248,10.918 6.095,10.998 5.891,10.998 C5.738,10.998 5.507,10.952 5.288,10.733 C5.067,10.513 5.018,10.295 5.017,10.153 C5.013,9.965 5.086,9.823 5.157,9.753 L6.881,8.028 L5.201,6.35 C5.049,6.197 4.922,5.723 5.321,5.325 C5.546,5.1 5.767,5.053 5.914,5.053 C6.097,5.053 6.234,5.125 6.301,5.194 L8.009,6.9 L9.705,5.204 C9.773,5.137 9.925,5.058 10.129,5.058 C10.283,5.058 10.514,5.104 10.733,5.324 C11.111,5.703 11.035,6.134 10.864,6.304 L9.138,8.03 L10.875,9.766 C10.942,9.834 11.021,9.986 11.021,10.19 C11.021,10.344 10.976,10.573 10.756,10.792 C10.531,11.016 10.311,11.063 10.164,11.063 L10.164,11.063 L10.164,11.063 Z">
+                        </path>
+                    </g>
+                </svg>
+            </div>
+            <div sec-pane>
+                <div class="sec-pane-item">类型：
+                    <select name="" id="">
+                        <option value="1">一轮</option>
+                        <option value="2">一轮</option>
+                        <option value="3">笔试</option>
+                    </select>
+                </div>
+                <div class="sec-pane-item">成绩：<input type="text"></div>
+            </div>
+            <input type="submit" value="提交并保存" class="de-sub">
+        </div>
+    </section>
+    <section class="secti hide" id="secti-pass">
+        <div class="dele">
+            <div class="sec-de">
+                <svg viewBox="0 0 16 13">
+                    <g transform="translate(1.000000, 0.000000)" fill="white">
+                        <path
+                            d="M10.164,11.063 C9.982,11.063 9.845,10.991 9.776,10.922 L8.009,9.157 L6.314,10.852 C6.248,10.918 6.095,10.998 5.891,10.998 C5.738,10.998 5.507,10.952 5.288,10.733 C5.067,10.513 5.018,10.295 5.017,10.153 C5.013,9.965 5.086,9.823 5.157,9.753 L6.881,8.028 L5.201,6.35 C5.049,6.197 4.922,5.723 5.321,5.325 C5.546,5.1 5.767,5.053 5.914,5.053 C6.097,5.053 6.234,5.125 6.301,5.194 L8.009,6.9 L9.705,5.204 C9.773,5.137 9.925,5.058 10.129,5.058 C10.283,5.058 10.514,5.104 10.733,5.324 C11.111,5.703 11.035,6.134 10.864,6.304 L9.138,8.03 L10.875,9.766 C10.942,9.834 11.021,9.986 11.021,10.19 C11.021,10.344 10.976,10.573 10.756,10.792 C10.531,11.016 10.311,11.063 10.164,11.063 L10.164,11.063 L10.164,11.063 Z">
+                        </path>
+                    </g>
+                </svg>
+            </div>
+            <div sec-pane>
+                <div class="sec-pane-item">类型：
+                    <select name="" id="">
+                        <option value="1">一轮</option>
+                        <option value="2">一轮</option>
+                        <option value="3">笔试</option>
+                    </select>
+                </div>
+                <div class="sec-pane-item">状态：
+                    <select name="" id="">
+                        <option value="true">通过</option>
+                        <option value="false">未通过</option>
+                    </select>
+                </div>
+            </div>
+            <input type="submit" value="提交并保存" class="de-sub">
+        </div>
+    </section>
+    <section class="secti hide" id="secti-send-msg">
+        <div class="dele notice-send">
+            <div class="sec-de">
+                <svg viewBox="0 0 16 13">
+                    <g transform="translate(1.000000, 0.000000)" fill="white">
+                        <path
+                            d="M10.164,11.063 C9.982,11.063 9.845,10.991 9.776,10.922 L8.009,9.157 L6.314,10.852 C6.248,10.918 6.095,10.998 5.891,10.998 C5.738,10.998 5.507,10.952 5.288,10.733 C5.067,10.513 5.018,10.295 5.017,10.153 C5.013,9.965 5.086,9.823 5.157,9.753 L6.881,8.028 L5.201,6.35 C5.049,6.197 4.922,5.723 5.321,5.325 C5.546,5.1 5.767,5.053 5.914,5.053 C6.097,5.053 6.234,5.125 6.301,5.194 L8.009,6.9 L9.705,5.204 C9.773,5.137 9.925,5.058 10.129,5.058 C10.283,5.058 10.514,5.104 10.733,5.324 C11.111,5.703 11.035,6.134 10.864,6.304 L9.138,8.03 L10.875,9.766 C10.942,9.834 11.021,9.986 11.021,10.19 C11.021,10.344 10.976,10.573 10.756,10.792 C10.531,11.016 10.311,11.063 10.164,11.063 L10.164,11.063 L10.164,11.063 Z">
+                        </path>
+                    </g>
+                </svg>
+            </div>
+            <div sec-pane>
+                <div class="sec-pane-item">
+                    <textarea name="" id="" cols="40" rows="10"></textarea>
+                </div>
+                <div class="sec-pane-item">
+                    <select name="" id="">
+                        <option value="1">模板1</option>
+                        <option value="2">模板2</option>
+                    </select>
+                </div>
+            </div>
+            <input type="submit" value="提交并保存" class="de-sub">
+        </div>
+    </section>
+</body>
+
+</html>
