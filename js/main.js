@@ -14,14 +14,25 @@ function tab(target){
         panes[i].classList.remove('in');
     }
     target.classList.add('opt-active');
-    panes[index].classList.add('in')
+    panes[index].classList.add('in');
 }
 
 window.onload = function(){
-    var optTabs = document.getElementsByClassName('opt-tabs');
-    for(var i=0;i<optTabs.length;i++){
-        optTabs[i].onclick = function(event){
-            tab(this);
+    
+    // 全选功能
+    var selectAll = document.getElementsByClassName('select-all');
+    var choose = document.getElementsByClassName('choose');
+    for(var i=0;i<selectAll.length;i++){
+        selectAll[i].onclick=function(){
+            if(!this.checked){
+                for(var i=0;i<choose.length;i++){
+                    choose[i].checked = false
+                }
+            }else{
+                for(var i=0;i<choose.length;i++){
+                    choose[i].checked = true
+                }
+            }
         }
     }
 }
