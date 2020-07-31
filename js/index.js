@@ -51,7 +51,7 @@ window.onload = function () {
 
 window.onload = function () {
     $ajax({
-        method: "pust",
+        method: "post",
         url: "http://39.98.41.126:30008/login",
         data: {
             username: "QgStudio",
@@ -63,7 +63,7 @@ window.onload = function () {
             
         },
         error: function (msg) {
-            let obj = JSON.parse(result);
+            let obj = JSON.parse(msg);
             alert(obj);
         }
     })

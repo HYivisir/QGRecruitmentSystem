@@ -61,7 +61,6 @@
     height: 30px;
     line-height: 30px;
     border-radius: 50%;
-    cursor: pointer;
     text-align: center;
     box-shadow: 0 0.7px 10px rgba(126, 98, 121, 0.7);
 }
@@ -73,7 +72,12 @@
 .noti-change svg {
     width: 20px;
     vertical-align: middle;
+    cursor: pointer;
     fill: rgba(164, 123, 212, 0.9);
+}
+
+.noti-change svg path {
+    cursor: auto;
 }
 
 #noti-add {
