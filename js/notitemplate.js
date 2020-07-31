@@ -55,7 +55,8 @@ window.onload = function () {
             addDeleteClick();
         },
         error: function (msg) {
-            alert(msg);
+            let obj = JSON.parse(msg);
+            alert(obj.status);
         }
     })
 
