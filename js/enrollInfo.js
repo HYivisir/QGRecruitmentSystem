@@ -8,6 +8,8 @@ window.onload = function(){
     selectAll();
     //搜索
     searchStu();
+    //筛选
+    classifyGroup();
 }
 
 // 标签页切换
@@ -56,79 +58,7 @@ function getStuList(){
         })
     });
     listPromise.then(result=>{
-        result = JSON.parse(result);
-        let Tfragment = document.createDocumentFragment();
-        let table = document.getElementById('opt-table-info');
-        let stuArr = str2Arr(result.data);
-        for(let i=0;i<stuArr.length;i++){
-            let fragment = document.createDocumentFragment();
-            let tr = document.createElement('tr');
-            let tdInput = document.createElement('td');
-            let check = document.createElement('input');
-            check.type = 'checkbox';
-            check.classList.add('choose');
-            let tdName  = document.createElement('td'),
-                tdClass = document.createElement('td'),
-                tdNum   = document.createElement('td'),
-                tdGroup = document.createElement('td'),
-                tdPhone = document.createElement('td'),
-                tdQQ    = document.createElement('td'),
-                tdInfo  = document.createElement('td'),
-                tdDel   = document.createElement('td');
-            tdName .innerText = JSON.parse(stuArr[i]).name;
-            tdClass.innerText = JSON.parse(stuArr[i]).majorClass;
-            tdNum  .innerText = JSON.parse(stuArr[i]).studentNum;
-            tdGroup.innerText = JSON.parse(stuArr[i]).group;
-            tdPhone.innerText = JSON.parse(stuArr[i]).phoneNum;
-            tdQQ   .innerText = JSON.parse(stuArr[i]).qq;
-            tdInfo .innerHTML = `
-            <div class="detail-svg">
-                <svg t="1596162887434" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2093">
-                    <path d="M734.7 862H289.3c-49.6 0-90-40.4-90-90V252c0-49.6 40.4-90 90-90h445.4c49.6 0 90 40.4 90 90v520c0 49.6-40.4 90-90 90zM289.3 222c-16.5 0-30 13.5-30 30v520c0 16.5 13.5 30 30 30h445.4c16.5 0 30-13.5 30-30V252c0-16.5-13.5-30-30-30H289.3z" p-id="2094"></path>
-                    <path d="M706 373H314c-16.6 0-30-13.4-30-30s13.4-30 30-30h392c16.6 0 30 13.4 30 30s-13.4 30-30 30zM706 500H314c-16.6 0-30-13.4-30-30s13.4-30 30-30h392c16.6 0 30 13.4 30 30s-13.4 30-30 30zM547 629H314c-16.6 0-30-13.4-30-30s13.4-30 30-30h233c16.6 0 30 13.4 30 30s-13.4 30-30 30z" p-id="2095"></path>
-                </svg>
-            </div>
-            `;
-
-            tdDel  .innerHTML = `
-            <div class="detail-svg">
-            <svg t="1596164421670" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3143"><path d="M416 384c-19.2 0-32 12.8-32 32v320c0 19.2 12.8 32 32 32s32-12.8 32-32v-320c0-19.2-12.8-32-32-32z" p-id="3144"></path><path d="M928 192h-224v-32c0-54.4-41.6-96-96-96h-192c-54.4 0-96 41.6-96 96v32h-224c-19.2 0-32 12.8-32 32s12.8 32 32 32h64v608c0 54.4 41.6 96 96 96h512c54.4 0 96-41.6 96-96v-608h64c19.2 0 32-12.8 32-32s-12.8-32-32-32z m-544-32c0-19.2 12.8-32 32-32h192c19.2 0 32 12.8 32 32v32h-256v-32z m416 704c0 19.2-12.8 32-32 32h-512c-19.2 0-32-12.8-32-32v-608h576v608z" p-id="3145"></path><path d="M608 384c-19.2 0-32 12.8-32 32v320c0 19.2 12.8 32 32 32s32-12.8 32-32v-320c0-19.2-12.8-32-32-32z" p-id="3146"></path></svg>
-            </div>
-            `
-
-            // 把学号保存在tdInfo和tdDel的属性里
-            tdInfo.setAttribute('stunum',JSON.parse(stuArr[i]).studentNum);
-            tdDel.setAttribute('stunum',JSON.parse(stuArr[i]).studentNum);
-            tdInfo.classList.add('pointer');
-            tdDel.classList.add('pointer');
-            tdInfo.onclick = function(){
-                //获取详细信息
-                toDetail(this.getAttribute('stunum'));
-            }
-
-            tdDel.onclick = function(){
-                if(confirm("确定删除该学生吗？")){
-                    delStu(this.getAttribute('stunum'));
-                }
-            }
-            // 添加到tr
-            tdInput.appendChild(check);
-            fragment.appendChild(tdInput);
-            fragment.appendChild(tdName);
-            fragment.appendChild(tdClass);
-            fragment.appendChild(tdNum)
-            fragment.appendChild(tdGroup);
-            fragment.appendChild(tdPhone);
-            fragment.appendChild(tdQQ);
-            fragment.appendChild(tdInfo);
-            fragment.appendChild(tdDel);
-
-           
-            tr.appendChild(fragment);
-            tr.classList.add('opt-table-tr');
-            Tfragment.appendChild(tr);
-        }
-        table.appendChild(Tfragment)
+        AddToList(result);
     });
 }
 
@@ -300,100 +230,120 @@ function searchStu(){
             });
 
             getPromise.then(result=>{
-                result = JSON.parse(result);
-                // console.log(res);
-                if(result.status){
-                    let Tfragment = document.createDocumentFragment();
-                    let table = document.getElementById('opt-table-info');
-                    let stuArr = str2Arr(result.data);
-                    for(let i=0;i<stuArr.length;i++){
-                        let fragment = document.createDocumentFragment();
-                        let tr = document.createElement('tr');
-                        let tdInput = document.createElement('td');
-                        let check = document.createElement('input');
-                        check.type = 'checkbox';
-                        check.classList.add('choose');
-                        let tdName  = document.createElement('td'),
-                            tdClass = document.createElement('td'),
-                            tdNum   = document.createElement('td'),
-                            tdGroup = document.createElement('td'),
-                            tdPhone = document.createElement('td'),
-                            tdQQ    = document.createElement('td'),
-                            tdInfo  = document.createElement('td'),
-                            tdDel   = document.createElement('td');
-                        tdName .innerText = JSON.parse(stuArr[i]).name;
-                        tdClass.innerText = JSON.parse(stuArr[i]).majorClass;
-                        tdNum  .innerText = JSON.parse(stuArr[i]).studentNum;
-                        tdGroup.innerText = JSON.parse(stuArr[i]).group;
-                        tdPhone.innerText = JSON.parse(stuArr[i]).phoneNum;
-                        tdQQ   .innerText = JSON.parse(stuArr[i]).qq;
-                        tdInfo .innerHTML = `
-                        <div class="detail-svg">
-                            <svg t="1596162887434" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2093">
-                                <path d="M734.7 862H289.3c-49.6 0-90-40.4-90-90V252c0-49.6 40.4-90 90-90h445.4c49.6 0 90 40.4 90 90v520c0 49.6-40.4 90-90 90zM289.3 222c-16.5 0-30 13.5-30 30v520c0 16.5 13.5 30 30 30h445.4c16.5 0 30-13.5 30-30V252c0-16.5-13.5-30-30-30H289.3z" p-id="2094"></path>
-                                <path d="M706 373H314c-16.6 0-30-13.4-30-30s13.4-30 30-30h392c16.6 0 30 13.4 30 30s-13.4 30-30 30zM706 500H314c-16.6 0-30-13.4-30-30s13.4-30 30-30h392c16.6 0 30 13.4 30 30s-13.4 30-30 30zM547 629H314c-16.6 0-30-13.4-30-30s13.4-30 30-30h233c16.6 0 30 13.4 30 30s-13.4 30-30 30z" p-id="2095"></path>
-                            </svg>
-                        </div>
-                        `;
-
-                        tdDel  .innerHTML = `
-                        <div class="detail-svg">
-                        <svg t="1596164421670" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3143"><path d="M416 384c-19.2 0-32 12.8-32 32v320c0 19.2 12.8 32 32 32s32-12.8 32-32v-320c0-19.2-12.8-32-32-32z" p-id="3144"></path><path d="M928 192h-224v-32c0-54.4-41.6-96-96-96h-192c-54.4 0-96 41.6-96 96v32h-224c-19.2 0-32 12.8-32 32s12.8 32 32 32h64v608c0 54.4 41.6 96 96 96h512c54.4 0 96-41.6 96-96v-608h64c19.2 0 32-12.8 32-32s-12.8-32-32-32z m-544-32c0-19.2 12.8-32 32-32h192c19.2 0 32 12.8 32 32v32h-256v-32z m416 704c0 19.2-12.8 32-32 32h-512c-19.2 0-32-12.8-32-32v-608h576v608z" p-id="3145"></path><path d="M608 384c-19.2 0-32 12.8-32 32v320c0 19.2 12.8 32 32 32s32-12.8 32-32v-320c0-19.2-12.8-32-32-32z" p-id="3146"></path></svg>
-                        </div>
-                        `
-
-                        // 把学号保存在tdInfo和tdDel的属性里
-                        tdInfo.setAttribute('stunum',JSON.parse(stuArr[i]).studentNum);
-                        tdDel.setAttribute('stunum',JSON.parse(stuArr[i]).studentNum);
-                        tdInfo.classList.add('pointer');
-                        tdDel.classList.add('pointer');
-                        tdInfo.onclick = function(){
-                            //获取详细信息
-                            toDetail(this.getAttribute('stunum'));
-                        }
-
-                        tdDel.onclick = function(){
-                            if(confirm("确定删除该学生吗？")){
-                                delStu(this.getAttribute('stunum'));
-                            }
-                        }
-                        // 添加到tr
-                        tdInput.appendChild(check);
-                        fragment.appendChild(tdInput);
-                        fragment.appendChild(tdName);
-                        fragment.appendChild(tdClass);
-                        fragment.appendChild(tdNum)
-                        fragment.appendChild(tdGroup);
-                        fragment.appendChild(tdPhone);
-                        fragment.appendChild(tdQQ);
-                        fragment.appendChild(tdInfo);
-                        fragment.appendChild(tdDel);
-
-                    
-                        tr.appendChild(fragment);
-                        tr.classList.add('opt-table-tr');
-                        Tfragment.appendChild(tr);
-                    }
-                    table.appendChild(Tfragment)
-                    
-                }else{
-                    alert('无查询结果！');
-                    getStuList();
-                }
+                AddToList(result);
             })
         }
     }
 }
 
 //筛选组别
-// function classifyGroup(){
-//     let csfBtn = document.getElementById('opt-select-group');
-//     csfBtn.onchange = function(){
-//         let group = csfBtn.value;
-//         let groupPromise = new Promise(resolve=>{
-//             $.ajax({
-//                 url: domain + ''
-//             })
-//         })
-//     }
-// }
+function classifyGroup(){
+    let csfBtn = document.getElementById('opt-select-group');
+    csfBtn.onchange = function(){
+        let stus = document.getElementsByClassName('opt-table-tr');
+        let optTable = document.getElementById('opt-table-info')
+        while(stus.length != 0){
+            optTable.removeChild(stus[0]);
+        }
+        let group = csfBtn.value;
+        let groupPromise = new Promise(resolve=>{
+            $.ajax({
+                url: domain + '/stu/condition',
+                methods: 'POST',
+                data:{condition : group},
+                success:function(result){
+                    resolve(result);
+                }
+            })
+        });
+
+        groupPromise.then(result=>{
+            AddToList(result);
+        })
+    }
+}
+
+
+// 将获取的学生添加至列表
+function AddToList(result){
+    result = JSON.parse(result);
+    // console.log(res);
+    if(result.status){
+        let Tfragment = document.createDocumentFragment();
+        let table = document.getElementById('opt-table-info');
+        let stuArr = str2Arr(result.data);
+        for(let i=0;i<stuArr.length;i++){
+            let fragment = document.createDocumentFragment();
+            let tr = document.createElement('tr');
+            let tdInput = document.createElement('td');
+            let check = document.createElement('input');
+            check.type = 'checkbox';
+            check.classList.add('choose');
+            let tdName  = document.createElement('td'),
+                tdClass = document.createElement('td'),
+                tdNum   = document.createElement('td'),
+                tdGroup = document.createElement('td'),
+                tdPhone = document.createElement('td'),
+                tdQQ    = document.createElement('td'),
+                tdInfo  = document.createElement('td'),
+                tdDel   = document.createElement('td');
+            tdName .innerText = JSON.parse(stuArr[i]).name;
+            tdClass.innerText = JSON.parse(stuArr[i]).majorClass;
+            tdNum  .innerText = JSON.parse(stuArr[i]).studentNum;
+            tdGroup.innerText = JSON.parse(stuArr[i]).group;
+            tdPhone.innerText = JSON.parse(stuArr[i]).phoneNum;
+            tdQQ   .innerText = JSON.parse(stuArr[i]).qq;
+            tdInfo .innerHTML = `
+            <div class="detail-svg">
+                <svg t="1596162887434" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2093">
+                    <path d="M734.7 862H289.3c-49.6 0-90-40.4-90-90V252c0-49.6 40.4-90 90-90h445.4c49.6 0 90 40.4 90 90v520c0 49.6-40.4 90-90 90zM289.3 222c-16.5 0-30 13.5-30 30v520c0 16.5 13.5 30 30 30h445.4c16.5 0 30-13.5 30-30V252c0-16.5-13.5-30-30-30H289.3z" p-id="2094"></path>
+                    <path d="M706 373H314c-16.6 0-30-13.4-30-30s13.4-30 30-30h392c16.6 0 30 13.4 30 30s-13.4 30-30 30zM706 500H314c-16.6 0-30-13.4-30-30s13.4-30 30-30h392c16.6 0 30 13.4 30 30s-13.4 30-30 30zM547 629H314c-16.6 0-30-13.4-30-30s13.4-30 30-30h233c16.6 0 30 13.4 30 30s-13.4 30-30 30z" p-id="2095"></path>
+                </svg>
+            </div>
+            `;
+
+            tdDel  .innerHTML = `
+            <div class="detail-svg">
+            <svg t="1596164421670" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3143"><path d="M416 384c-19.2 0-32 12.8-32 32v320c0 19.2 12.8 32 32 32s32-12.8 32-32v-320c0-19.2-12.8-32-32-32z" p-id="3144"></path><path d="M928 192h-224v-32c0-54.4-41.6-96-96-96h-192c-54.4 0-96 41.6-96 96v32h-224c-19.2 0-32 12.8-32 32s12.8 32 32 32h64v608c0 54.4 41.6 96 96 96h512c54.4 0 96-41.6 96-96v-608h64c19.2 0 32-12.8 32-32s-12.8-32-32-32z m-544-32c0-19.2 12.8-32 32-32h192c19.2 0 32 12.8 32 32v32h-256v-32z m416 704c0 19.2-12.8 32-32 32h-512c-19.2 0-32-12.8-32-32v-608h576v608z" p-id="3145"></path><path d="M608 384c-19.2 0-32 12.8-32 32v320c0 19.2 12.8 32 32 32s32-12.8 32-32v-320c0-19.2-12.8-32-32-32z" p-id="3146"></path></svg>
+            </div>
+            `
+
+            // 把学号保存在tdInfo和tdDel的属性里
+            tdInfo.setAttribute('stunum',JSON.parse(stuArr[i]).studentNum);
+            tdDel.setAttribute('stunum',JSON.parse(stuArr[i]).studentNum);
+            tdInfo.classList.add('pointer');
+            tdDel.classList.add('pointer');
+            tdInfo.onclick = function(){
+                //获取详细信息
+                toDetail(this.getAttribute('stunum'));
+            }
+
+            tdDel.onclick = function(){
+                if(confirm("确定删除该学生吗？")){
+                    delStu(this.getAttribute('stunum'));
+                }
+            }
+            // 添加到tr
+            tdInput.appendChild(check);
+            fragment.appendChild(tdInput);
+            fragment.appendChild(tdName);
+            fragment.appendChild(tdClass);
+            fragment.appendChild(tdNum)
+            fragment.appendChild(tdGroup);
+            fragment.appendChild(tdPhone);
+            fragment.appendChild(tdQQ);
+            fragment.appendChild(tdInfo);
+            fragment.appendChild(tdDel);
+
+        
+            tr.appendChild(fragment);
+            tr.classList.add('opt-table-tr');
+            Tfragment.appendChild(tr);
+        }
+        table.appendChild(Tfragment)
+        
+    }else{
+        alert('无查询结果！');
+        getStuList();
+    }
+}
