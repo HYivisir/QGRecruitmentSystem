@@ -12,6 +12,7 @@
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/noticeStatus.js"></script>
 </head>
 
 <body>
@@ -48,31 +49,36 @@
         <div id="operation">
             <!-- 标签 -->
             <ul id="opt-enroll-tabs" class="nav nav-tabs">
-                <li class="opt-active opt-tabs">报名信息</li>
+                <li class="opt-active opt-tabs">通知状态</li>
             </ul>
             <div id="opt-content" class="tab-content">
                 <!-- 往这里写内容 -->
                 <div class="opt-pane fade in" id="enroll-info">
                     <div class="opt-header">
-                        <select name="" class="opt-select">
+                        <select name="isread" class="opt-select">
+                            <option value="全部">全部</option>
                             <option value="已读">已读</option>
                             <option value="未读">未读</option>
                         </select>
-                        <select name="" class="opt-select">
+                        <select name="rounds" class="opt-select">
+                            <option value="全部">全部</option>
+                            <option value="笔试">笔试</option>
                             <option value="一轮">一轮</option>
                             <option value="二轮">二轮</option>
                         </select>
-                        <select name="" class="opt-select">
+                        <select name="ispass" class="opt-select">
+                            <option value="全部">全部</option>
                             <option value="通过">通过</option>
                             <option value="未通过">未通过</option>
                         </select>
-                        <select name="" class="opt-select">
-                            <option value="网络组">网络组</option>
-                            <option value="移动组">移动组</option>
-                            <option value="数据挖掘组">数据挖掘组</option>
-                            <option value="设计组">设计组</option>
-                            <option value="嵌入式组">嵌入式组</option>
-                            <option value="软件组">软件组</option>
+                        <select name="group" class="opt-select">
+                            <option value="1">前端组</option>
+                            <option value="2">后台组</option>
+                            <option value="3">嵌入式组</option>
+                            <option value="4">数据挖掘组</option>
+                            <option value="5">设计组</option>
+                            <option value="6">图形组</option>
+                            <option value="7">移动组</option>
                         </select>
                         <input class="opt-btn" type="button" value="筛选">
                     </div>
@@ -93,7 +99,37 @@
                                     <th>修改</th>                   
                                 </tr>
                             </thead>
+<<<<<<< HEAD
                             <tbody>
+=======
+                            <tbody id="tbody">
+                                <div>
+                                    <tr>
+                                        <td><input type="checkbox" name="" class="choose"></td>
+                                        <td>张三</td>
+                                        <td>男</td>
+                                        <td>123456789</td>
+                                        <td>二轮</td>
+                                        <td>网络组</td>
+                                        <td>通过</td>
+                                        <td>通知通知通知通知通知通知通知通知通知通知通知</td>
+                                        <td>已阅</td>
+                                        <td>123456789</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" class="choose"></td>
+                                        <td>张三</td>
+                                        <td>男</td>
+                                        <td>123456789</td>
+                                        <td>二轮</td>
+                                        <td>网络组</td>
+                                        <td>通过</td>
+                                        <td>通知通知通知通知通知通知通知通知通知通知通知</td>
+                                        <td>已阅</td>
+                                        <td>123456789</td>
+                                    </tr>
+                                </div>
+                                
                                 <tr>
                                     <td><input type="checkbox" name="" class="choose"></td>
                                     <td>张三</td>
@@ -105,7 +141,107 @@
                                     <td>通知通知通知通知通知通知通知通知通知通知通知</td>
                                     <td>已阅</td>
                                     <td>123456789</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="" class="choose"></td>
+                                    <td>张三</td>
+                                    <td>男</td>
+                                    <td>123456789</td>
+                                    <td>二轮</td>
+                                    <td>网络组</td>
+                                    <td>通过</td>
+                                    <td>通知通知通知通知通知通知通知通知通知通知通知</td>
+                                    <td>已阅</td>
+                                    <td>123456789</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="" class="choose"></td>
+                                    <td>张三</td>
+                                    <td>男</td>
+                                    <td>123456789</td>
+                                    <td>二轮</td>
+                                    <td>网络组</td>
+                                    <td>通过</td>
+                                    <td>通知通知通知通知通知通知通知通知通知通知通知</td>
+                                    <td>已阅</td>
+                                    <td>123456789</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="" class="choose"></td>
+                                    <td>张三</td>
+                                    <td>男</td>
+                                    <td>123456789</td>
+                                    <td>二轮</td>
+                                    <td>网络组</td>
+                                    <td>通过</td>
+                                    <td>通知通知通知通知通知通知通知通知通知通知通知</td>
+                                    <td>已阅</td>
+                                    <td>123456789</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="" class="choose"></td>
+                                    <td>张三</td>
+                                    <td>男</td>
+                                    <td>123456789</td>
+                                    <td>二轮</td>
+                                    <td>网络组</td>
+                                    <td>通过</td>
+                                    <td>通知通知通知通知通知通知通知通知通知通知通知</td>
+                                    <td>已阅</td>
+                                    <td>123456789</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="" class="choose"></td>
+                                    <td>张三</td>
+                                    <td>男</td>
+                                    <td>123456789</td>
+                                    <td>二轮</td>
+                                    <td>网络组</td>
+                                    <td>通过</td>
+                                    <td>通知通知通知通知通知通知通知通知通知通知通知</td>
+                                    <td>已阅</td>
+                                    <td>123456789</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="" class="choose"></td>
+                                    <td>张三</td>
+                                    <td>男</td>
+                                    <td>123456789</td>
+                                    <td>二轮</td>
+                                    <td>网络组</td>
+                                    <td>通过</td>
+                                    <td>通知通知通知通知通知通知通知通知通知通知通知</td>
+                                    <td>已阅</td>
+                                    <td>123456789</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="" class="choose"></td>
+                                    <td>张三</td>
+                                    <td>男</td>
+                                    <td>123456789</td>
+                                    <td>二轮</td>
+                                    <td>网络组</td>
+                                    <td>通过</td>
+                                    <td>通知通知通知通知通知通知通知通知通知通知通知</td>
+                                    <td>已阅</td>
+                                    <td>123456789</td>
+                                </tr>
+>>>>>>> d0eb7ef79ac59021d936941e564489e04d17119a
+                                <tr>
+                                    <td><input type="checkbox" name="" class="choose"></td>
+                                    <td>张三</td>
+                                    <td>男</td>
+                                    <td>123456789</td>
+                                    <td>二轮</td>
+                                    <td>网络组</td>
+                                    <td>通过</td>
+                                    <td>通知通知通知通知通知通知通知通知通知通知通知</td>
+                                    <td>已阅</td>
+                                    <td>123456789</td>
+<<<<<<< HEAD
                                     <td class="pointer detail-svg"><svg t="1596182901537" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2032"><path d="M799.5 927.3H156.3c-32.3 0-58.5-26.3-58.5-58.5V225.7c0-32.3 26.3-58.5 58.5-58.5h517.4c11.4 0 20.7 9.3 20.7 20.7s-9.3 20.7-20.7 20.7H156.3c-9.4 0-17.1 7.7-17.1 17.1v643.1c0 9.4 7.7 17.1 17.1 17.1h643.1c9.4 0 17.1-7.7 17.1-17.1v-493c0-11.4 9.3-20.7 20.7-20.7s20.7 9.3 20.7 20.7v493c0.1 32.3-26.1 58.5-58.4 58.5z" fill="#333333" p-id="2033"></path><path d="M552 493.6c-5.3 0-10.6-2-14.6-6.1-8.1-8.1-8.1-21.2 0-29.3l355.3-355.3c8.1-8.1 21.2-8.1 29.3 0 8.1 8.1 8.1 21.2 0 29.3L566.6 487.5c-4.1 4.1-9.4 6.1-14.6 6.1z" fill="#333333" p-id="2034"></path></svg></td>
+=======
+>>>>>>> d0eb7ef79ac59021d936941e564489e04d17119a
                                 </tr>
                             </tbody>
                         </table>

@@ -55,7 +55,8 @@ window.onload = function () {
             addDeleteClick();
         },
         error: function (msg) {
-            alert(msg);
+            let obj = JSON.parse(msg);
+            alert(obj.status);
         }
     })
 
@@ -74,35 +75,42 @@ window.onload = function () {
                 let text = myNoti.querySelector(".noti-main").innerHTML;
                 addText.innerHTML = text;
                 let tit = myNoti.querySelector(".noti-name").innerHTML;
-                addTitle.setAttribute("value", tit);
+                addTitle.value = tit;
                 addSec.classList.remove("hide");
 
+                let isClick = true;
                 sendNoti.onclick = function () {
-                    //this.disabled = false;
-                    let txt = document.getElementById("sec-txt");
-                    txt.value = addText.innerHTML;
-                    console.log(txt.value);
-                    //事件
-                    $ajax({
-                        method: "post",
-                        url: domain + "/model/update",
-                        data: {
-                            "id": id,
-                            "title": addTitle.value,
-                            //"content": addText.innerText
-                            "content": txt.value
-                        },
-                        success: function (result) {
-                            let obj = JSON.parse(result);
-                            if (obj.status)
-                                location.reload();
-                        },
-                        error: function (msg) {
-                            let obj = JSON.parse(msg);
-                            alert(obj.message);
-                        }
-                    })
-                    //this.disabled = true
+                    if (isClick) {
+                        isClick = false;
+                        /* 放入input提交 */
+                        let txt = document.getElementById("sec-txt");
+                        txt.value = addText.innerHTML;
+                        console.log(txt.value);
+                        //事件
+                        $ajax({
+                            method: "post",
+                            url: domain + "/model/update",
+                            data: {
+                                "id": id,
+                                "title": addTitle.value,
+                                //"content": addText.innerText
+                                "content": txt.value
+                            },
+                            success: function (result) {
+                                let obj = JSON.parse(result);
+                                if (obj.status)
+                                    location.reload();
+                            },
+                            error: function (msg) {
+                                let obj = JSON.parse(msg);
+                                alert(obj.message);
+                            }
+                        });
+                        /* 定时器 */
+                        setTimeout(() => {
+                            isClick = true;
+                        }, 3000);
+                    }
                 }
 
             }
@@ -119,27 +127,36 @@ window.onload = function () {
             addSec.querySelector(".noti-input").setAttribute("value", "");
 
             /* 点击发送就ajax */
+            let isClick = true;
             sendNoti.onclick = function () {
-                console.log("我是第" + this + "，我发送了！");
-                let text = addSec.querySelector(".noti-sec-main").innerHTML;
-                let tit = addSec.querySelector(".noti-input").value;
-                $ajax({
-                    method: "post",
-                    url: domain + "/model/save",
-                    data: {
-                        "title": tit,
-                        "content": text
-                    },
-                    success: function (result) {
-                        let obj = JSON.parse(result);
-                        if (obj.status)
-                            location.reload();
-                    },
-                    error: function (msg) {
-                        let obj = JSON.parse(msg);
-                        alert(obj.message);
-                    }
-                })
+                if (isClick) {
+                    isClick = false;
+                    /* 放入input提交 */
+                    let tit = addSec.querySelector(".noti-input").value;
+                    let txt = document.getElementById("sec-txt");
+                    txt.value = addText.innerHTML;
+                    $ajax({
+                        method: "post",
+                        url: domain + "/model/save",
+                        data: {
+                            "title": tit,
+                            "content": txt.value
+                        },
+                        success: function (result) {
+                            let obj = JSON.parse(result);
+                            if (obj.status)
+                                location.reload();
+                        },
+                        error: function (msg) {
+                            let obj = JSON.parse(msg);
+                            alert(obj.message);
+                        }
+                    });
+                    /* 定时器 */
+                    setTimeout(() => {
+                        isClick = true;
+                    }, 3000);
+                }
             }
         }
 
