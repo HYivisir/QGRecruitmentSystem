@@ -12,6 +12,7 @@
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/noticeStatus.js"></script>
 </head>
 
 <body>
@@ -48,31 +49,36 @@
         <div id="operation">
             <!-- 标签 -->
             <ul id="opt-enroll-tabs" class="nav nav-tabs">
-                <li class="opt-active opt-tabs">报名信息</li>
+                <li class="opt-active opt-tabs">通知状态</li>
             </ul>
             <div id="opt-content" class="tab-content">
                 <!-- 往这里写内容 -->
                 <div class="opt-pane fade in" id="enroll-info">
                     <div class="opt-header">
-                        <select name="" class="opt-select">
+                        <select name="isread" class="opt-select">
+                            <option value="全部">全部</option>
                             <option value="已读">已读</option>
                             <option value="未读">未读</option>
                         </select>
-                        <select name="" class="opt-select">
+                        <select name="rounds" class="opt-select">
+                            <option value="全部">全部</option>
+                            <option value="笔试">笔试</option>
                             <option value="一轮">一轮</option>
                             <option value="二轮">二轮</option>
                         </select>
-                        <select name="" class="opt-select">
+                        <select name="ispass" class="opt-select">
+                            <option value="全部">全部</option>
                             <option value="通过">通过</option>
                             <option value="未通过">未通过</option>
                         </select>
-                        <select name="" class="opt-select">
-                            <option value="网络组">网络组</option>
-                            <option value="移动组">移动组</option>
-                            <option value="数据挖掘组">数据挖掘组</option>
-                            <option value="设计组">设计组</option>
-                            <option value="嵌入式组">嵌入式组</option>
-                            <option value="软件组">软件组</option>
+                        <select name="group" class="opt-select">
+                            <option value="1">前端组</option>
+                            <option value="2">后台组</option>
+                            <option value="3">嵌入式组</option>
+                            <option value="4">数据挖掘组</option>
+                            <option value="5">设计组</option>
+                            <option value="6">图形组</option>
+                            <option value="7">移动组</option>
                         </select>
                         <input class="opt-btn" type="button" value="筛选">
                     </div>
@@ -92,31 +98,34 @@
                                     <th>QQ</th>                    
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input type="checkbox" name="" class="choose"></td>
-                                    <td>张三</td>
-                                    <td>男</td>
-                                    <td>123456789</td>
-                                    <td>二轮</td>
-                                    <td>网络组</td>
-                                    <td>通过</td>
-                                    <td>通知通知通知通知通知通知通知通知通知通知通知</td>
-                                    <td>已阅</td>
-                                    <td>123456789</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name="" class="choose"></td>
-                                    <td>张三</td>
-                                    <td>男</td>
-                                    <td>123456789</td>
-                                    <td>二轮</td>
-                                    <td>网络组</td>
-                                    <td>通过</td>
-                                    <td>通知通知通知通知通知通知通知通知通知通知通知</td>
-                                    <td>已阅</td>
-                                    <td>123456789</td>
-                                </tr>
+                            <tbody id="tbody">
+                                <div>
+                                    <tr>
+                                        <td><input type="checkbox" name="" class="choose"></td>
+                                        <td>张三</td>
+                                        <td>男</td>
+                                        <td>123456789</td>
+                                        <td>二轮</td>
+                                        <td>网络组</td>
+                                        <td>通过</td>
+                                        <td>通知通知通知通知通知通知通知通知通知通知通知</td>
+                                        <td>已阅</td>
+                                        <td>123456789</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" name="" class="choose"></td>
+                                        <td>张三</td>
+                                        <td>男</td>
+                                        <td>123456789</td>
+                                        <td>二轮</td>
+                                        <td>网络组</td>
+                                        <td>通过</td>
+                                        <td>通知通知通知通知通知通知通知通知通知通知通知</td>
+                                        <td>已阅</td>
+                                        <td>123456789</td>
+                                    </tr>
+                                </div>
+                                
                                 <tr>
                                     <td><input type="checkbox" name="" class="choose"></td>
                                     <td>张三</td>
