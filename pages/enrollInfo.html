@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QG工作室招新平台</title>
+    <link rel="shortcut icon" href="../images/QG.png" type="image/x-icon">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/enrollInfo.css">
@@ -82,11 +83,12 @@
                                     <th>学号</th>
                                     <th>组别</th>
                                     <th>电话</th>
-                                    <th>QQ</th>                    
+                                    <th>QQ</th>
+                                    <th>详细信息</th>                    
                                 </tr>
                             </thead>
                             <tbody id="opt-table-info">
-                                <tr>
+                                <!-- <tr>
                                     <td><input type="checkbox" name="" class="choose"></td>
                                     <td>张三</td>
                                     <td>计科1班</td>
@@ -94,7 +96,8 @@
                                     <td>网络组</td>
                                     <td>123456789</td>
                                     <td>123456789</td>
-                                </tr>
+                                    <td class="pointer">>>></td>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -115,36 +118,36 @@
                     <p>个人信息</p>
                     <div class="opt-form">
                         <div class="opt-form-base">
-                            <div class="opt-form-item"><a>姓名：</a></div>
-                            <div class="opt-form-item"><a>年龄：</a></div>
-                            <div class="opt-form-item"><a>C实验成绩：</a></div>
-                            <div class="opt-form-item"><a>性别：</a></div>
-                            <div class="opt-form-item"><a>宿舍：</a></div>
-                            <div class="opt-form-item"><a>英语(1)成绩：</a></div>
-                            <div class="opt-form-item"><a>应征部门：</a></div>
-                            <div class="opt-form-item"><a>上学期期末排名：</a></div>
-                            <div class="opt-form-item"><a>大一上绩点：</a></div>
-                            <div class="opt-form-item"><a>年级：</a></div>
-                            <div class="opt-form-item"><a>班级职务：</a></div>
-                            <div class="opt-form-item"><a>邮箱：</a></div>
-                            <div class="opt-form-item"><a>专业班级：</a></div>
-                            <div class="opt-form-item"><a>是否挂科：</a></div>
-                            <div class="opt-form-item"><a>手机：</a></div>
-                            <div class="opt-form-item"><a>学号：</a></div>
-                            <div class="opt-form-item"><a>C理论成绩：</a></div>
-                            <div class="opt-form-item"><a>QQ：</a></div>
+                            <div class="opt-form-item"><a>姓名：          <a class="opt-form-detail"></a> </a></div>
+                            <div class="opt-form-item"><a>年龄：          <a class="opt-form-detail"></a> </a></div>
+                            <div class="opt-form-item"><a>C实验成绩：     <a class="opt-form-detail"></a> </a></div>
+                            <div class="opt-form-item"><a>性别：          <a class="opt-form-detail"></a> </a></div>
+                            <div class="opt-form-item"><a>宿舍：          <a class="opt-form-detail"></a> </a></div>
+                            <div class="opt-form-item"><a>英语(1)成绩：   <a class="opt-form-detail"></a> </a></div>
+                            <div class="opt-form-item"><a>应征部门：      <a class="opt-form-detail"></a> </a></div>
+                            <div class="opt-form-item"><a>上学期期末排名：<a class="opt-form-detail"></a> </a></div>
+                            <div class="opt-form-item"><a>大一上绩点：    <a class="opt-form-detail"></a> </a></div>
+                            <div class="opt-form-item"><a>年级：          <a class="opt-form-detail"></a></a></div>
+                            <div class="opt-form-item"><a>班级职务：      <a class="opt-form-detail"></a></a></div>
+                            <div class="opt-form-item"><a>邮箱：          <a class="opt-form-detail"></a></a></div>
+                            <div class="opt-form-item"><a>专业班级：      <a class="opt-form-detail"></a></a></div>
+                            <div class="opt-form-item"><a>是否挂科：      <a class="opt-form-detail"></a></a></div>
+                            <div class="opt-form-item"><a>手机：          <a class="opt-form-detail"></a></a></div>
+                            <div class="opt-form-item"><a>学号：          <a class="opt-form-detail"></a></a></div>
+                            <div class="opt-form-item"><a>C理论成绩：     <a class="opt-form-detail"></a></a></div>
+                            <div class="opt-form-item"><a>QQ：            <a class="opt-form-detail"></a></a></div>
                         </div>
-                        <div class="opt-form-item opt-form-other"><a>参加其他学生科技社团普通社团情况说明：</a><input type="text" readonly></div>
-                        <div class="opt-form-item opt-form-other"><a>是否组队报名，填写同组同学姓名(限3人)</a><input type="text" readonly></div>
+                        <div class="opt-form-item opt-form-other"><a>参加其他学生科技社团普通社团情况说明：</a><input type="text" class="opt-form-detail" readonly></div>
+                        <div class="opt-form-item opt-form-other"><a>是否组队报名，填写同组同学姓名(限3人)</a><input type="text" class="opt-form-detail" readonly></div>
                         <div class="opt-form-mid">
-                            <div class="opt-form-item opt-form-mid-item"><a>爱好：</a><textarea type="text" readonly></textarea></div>
-                            <div class="opt-form-item opt-form-mid-item"><a>座右铭：</a><textarea type="text" readonly></textarea></div>
+                            <div class="opt-form-item opt-form-mid-item"><a>爱好：</a><textarea type="text" class="opt-form-detail" readonly></textarea></div>
+                            <div class="opt-form-item opt-form-mid-item"><a>座右铭：</a><textarea type="text" class="opt-form-detail" readonly></textarea></div>
                         </div>
                         <div class="opt-form-btm">
-                            <div class="opt-form-item opt-form-btm-item"><a>奖惩情况和实践经历(社会实践或者计算机相关技术学习掌握情况)</a><textarea type="text" readonly></textarea></div>
-                            <div class="opt-form-item opt-form-btm-item"><a>自我评价</a><textarea type="text" readonly></textarea></div>
-                            <div class="opt-form-item opt-form-btm-item"><a>简述能体现你四个方面的一件事(1)善于协作(2)刻苦努力(3)甘于奉献(4)持之以恒</a><textarea type="text" readonly></textarea></div>
-                            <div class="opt-form-item opt-form-btm-item"><a>请说一下大学四年的个人规划以及为什么希望加入QG工作室</a><textarea type="text" readonly></textarea></div>
+                            <div class="opt-form-item opt-form-btm-item"><a>奖惩情况和实践经历(社会实践或者计算机相关技术学习掌握情况)</a><textarea type="text" class="opt-form-detail" readonly></textarea></div>
+                            <div class="opt-form-item opt-form-btm-item"><a>自我评价</a><textarea type="text" class="opt-form-detail" readonly></textarea></div>
+                            <div class="opt-form-item opt-form-btm-item"><a>简述能体现你四个方面的一件事(1)善于协作(2)刻苦努力(3)甘于奉献(4)持之以恒</a><textarea  type="text" class="opt-form-detail" readonly></textarea></div>
+                            <div class="opt-form-item opt-form-btm-item"><a>请说一下大学四年的个人规划以及为什么希望加入QG工作室</a><textarea type="text" class="opt-form-detail" readonly></textarea></div>
                         </div>
                     </div>
                 </div>

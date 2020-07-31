@@ -63,7 +63,7 @@ window.onload = function(){
             "exampleThing" : addItems[24].value,
             "reasonForQg" : addItems[25].value,
             "groupId" : addItems[6].value,
-            "isTeamed": addItems[19].value,
+            "isTeam": addItems[19].value,
             "studentNum" : addItems[15].value,
             "hobby" : addItems[20].value,
             "motto" : addItems[21].value
@@ -120,22 +120,33 @@ window.onload = function(){
                 tdGroup = document.createElement('td'),
                 tdPhone = document.createElement('td'),
                 tdQQ    = document.createElement('td');
-            tdName .innerText = stuArr[i].name;
-            tdClass.innerText = stuArr[i].majorClass;
-            tdNum  .innerText = stuArr[i].studentNum;
-            tdGroup.innerText = stuArr[i].group;
-            tdPhone.innerText = stuArr[i].phoneNum;
-            tdQQ   .innerText = stuArr[i].qq;
-
+                tdInfo    = document.createElement('td');
+            tdName .innerText = JSON.parse(stuArr[i]).name;
+            tdClass.innerText = JSON.parse(stuArr[i]).majorClass;
+            tdNum  .innerText = JSON.parse(stuArr[i]).studentNum;
+            tdGroup.innerText = JSON.parse(stuArr[i]).group;
+            tdPhone.innerText = JSON.parse(stuArr[i]).phoneNum;
+            tdQQ   .innerText = JSON.parse(stuArr[i]).qq;
+            tdInfo .innerText = '>>>';
+             // 把学号保存在tdInfo的属性里
+             tdInfo.setAttribute('stunum',JSON.parse(stuArr[i]).studentNum);
+             tdInfo.classList.add('pointer')
+             tdInfo.onclick = function(){
+                //获取详细信息
+                toDetail(this.getAttribute('stunum'));
+             }
             // 添加到tr
             tdInput.appendChild(check);
             fragment.appendChild(tdInput);
             fragment.appendChild(tdName);
             fragment.appendChild(tdClass);
+            fragment.appendChild(tdNum)
             fragment.appendChild(tdGroup);
             fragment.appendChild(tdPhone);
             fragment.appendChild(tdQQ);
+            fragment.appendChild(tdInfo);
 
+           
             tr.appendChild(fragment);
             Tfragment.appendChild(tr);
         }
@@ -147,3 +158,64 @@ window.onload = function(){
     selectAll();
 }
 
+// 请求详细信息
+function toDetail(stunum){
+    let detailPromise = new Promise(resolve=>{
+        $.ajax({
+            url: domain + '/stu/select',
+            data: {studentNum : stunum},
+            methods: 'POST',
+            success: function(result){
+                resolve(result);
+            }
+        })
+    });
+
+    detailPromise.then(result=>{
+        result = JSON.parse(result)
+        if(result.status == true){
+            // 跳转到详细页面
+            var optTabs = document.getElementsByClassName('opt-tabs');
+            var optPanes = document.getElementsByClassName('opt-pane');
+            tab(optTabs[1]);
+            optPanes[0].style.display = 'none';
+            optPanes[2].style.display = 'none';
+            optPanes[1].style.display = 'flex';
+
+            let details = document.getElementsByClassName('opt-form-detail');
+            let stuobj = JSON.parse(result.data);
+
+            details[0].innerText = stuobj.name;
+            details[1].innerText = stuobj.age;
+            details[2].innerText = stuobj.cexperiment;
+            details[3].innerText = stuobj.gender;
+            details[4].innerText = stuobj.dormitory;
+            details[5].innerText = stuobj.english;
+            details[6].innerText = stuobj.group;
+            details[7].innerText = stuobj.classRank;
+            details[8].innerText = stuobj.gradePoint;
+            details[9].innerText = stuobj.grade;
+            details[10].innerText = stuobj.duty;
+            details[11].innerText = stuobj.email;
+            details[12].innerText = stuobj.majorClass;
+            details[13].innerText = stuobj.isFailed;
+            details[14].innerText = stuobj.phoneNum;
+            details[15].innerText = stuobj.studentNum;
+            details[16].innerText = stuobj.ctheory;
+            details[17].innerText = stuobj.qq;
+            details[18].value = stuobj.explanation;
+            details[19].value = stuobj.isTeam;
+            details[20].value = stuobj.hobby;
+            details[21].value = stuobj.motto;
+            details[22].value = stuobj.experience;
+            details[23].value = stuobj.selfEvaluation;
+            details[24].value = stuobj.exampleThing;
+            details[25].value = stuobj.reasonForQg;
+
+        }else{
+            alert('请求详细信息失败！')
+        }
+    })
+
+    
+}

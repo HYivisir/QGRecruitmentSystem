@@ -30,8 +30,15 @@ function str2Arr(stringObj) {
     var arr = stringObj.split("},");  
     var newArray = [];
     for ( var i = 0; i < arr.length; i++) {  
-        var arrOne = arr[i]+'}';  
-        newArray.push(arrOne);  
+          
+        if(i != arr.length-1){
+            var arrOne = arr[i]+'}';
+            newArray.push(arrOne); 
+        }else{
+            var arrOne = arr[i];
+            newArray.push(arrOne); 
+        }
+         
     }  
     return newArray;  
 };  
