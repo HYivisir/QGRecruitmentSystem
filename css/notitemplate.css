@@ -21,6 +21,7 @@
     height: 80%;
     padding: 24px 12px 0 12px;
     background-color: rgb(247, 244, 248);
+    overflow: scroll;
 }
 
 .noti-name {

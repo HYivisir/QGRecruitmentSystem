@@ -77,15 +77,20 @@ window.onload = function () {
                 addTitle.setAttribute("value", tit);
                 addSec.classList.remove("hide");
 
-                /* 点击发送就ajax */
                 sendNoti.onclick = function () {
+                    //this.disabled = false;
+                    let txt = document.getElementById("sec-txt");
+                    txt.value = addText.innerHTML;
+                    console.log(txt.value);
+                    //事件
                     $ajax({
                         method: "post",
                         url: domain + "/model/update",
                         data: {
                             "id": id,
                             "title": addTitle.value,
-                            "content": addText.innerHTML
+                            //"content": addText.innerText
+                            "content": txt.value
                         },
                         success: function (result) {
                             let obj = JSON.parse(result);
@@ -97,7 +102,9 @@ window.onload = function () {
                             alert(obj.message);
                         }
                     })
+                    //this.disabled = true
                 }
+
             }
         }
     }
