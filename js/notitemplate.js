@@ -22,8 +22,12 @@ window.onload = function () {
 
             let newNoti = "";
             for (let i in noti) {
+                /* 修复最后一个输入空格而出现的bug */
+                let zz = /(<div>)$/;
+                if (zz.test(noti[i].content))
+                    noti[i].content = noti[i].content.substring(0, noti[i].content.length - 5);
                 newNoti = newNoti + `
-                <div class="noti-div">
+                    <div class="noti-div">
                         <div class="hide id-here">${noti[i].id}</div> 
                         <div class="noti-de">
                             <svg viewBox="0 0 16 13">
@@ -51,7 +55,24 @@ window.onload = function () {
                 `;
             }
             /* 插入页面 */
-            notiMain.innerHTML = newNoti + notiMain.innerHTML;
+            newNoti += `
+                    <div id="noti-add">
+                        <svg t="1596026190951" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" p-id="1303">
+                            <path
+                                d="M511.3 736.2c-20.7 0-37.3-16.7-37.3-37.3V325.5c0-20.6 16.7-37.3 37.3-37.3 20.6 0 37.3 16.7 37.3 37.3v373.3c0.1 20.7-16.6 37.4-37.3 37.4"
+                                p-id="1304"></path>
+                            <path
+                                d="M698 549.5H324.7c-20.7 0-37.3-16.7-37.3-37.3 0-20.6 16.7-37.3 37.3-37.3H698c20.6 0 37.3 16.7 37.3 37.3 0 20.6-16.7 37.3-37.3 37.3"
+                                p-id="1305"></path>
+                            <path
+                                d="M510.8 960.2c-118.7 0-231-45.9-316.3-131.2C91.1 725.6 45.6 582.5 69.6 436.5 101 244.4 258.4 92.8 452.3 67.9c154.5-19.7 305.5 39.5 404.2 158.6 13.2 15.9 10.9 39.4-5 52.6-15.9 13.2-39.4 10.9-52.6-5-82.2-99.2-208-148.8-337.2-132.1-161.4 20.7-292.3 146.8-318.5 306.6-20 122 17.9 241.3 104.1 327.5 86.2 86.2 205.6 124.1 327.5 104.1C735 854 864.3 717.2 882.3 555c4.2-37.3 2.8-74.6-3.7-110.8-2.6-14.1-6-28.2-10.3-41.7-6-19.8 5.1-40.6 24.8-46.6 19.8-6.2 40.6 5 46.6 24.7 5 16.3 9.2 33.2 12.2 50.2 8 43.4 9.5 88 4.6 132.4C934.6 761.2 782.6 921.9 587 954c-25.6 4.1-51 6.2-76.2 6.2"
+                                p-id="1306"></path>
+                        </svg>
+                        <div>点击新增</div>
+                    </div>
+            `;
+            notiMain.innerHTML += newNoti;
 
             /* 增加点击事件 */
             addMubanClick();
@@ -137,6 +158,7 @@ window.onload = function () {
                     let tit = addSec.querySelector(".noti-input").value;
                     let txt = document.getElementById("sec-txt");
                     txt.value = addText.innerHTML;
+                    //console.log(txt.value);
                     $ajax({
                         method: "post",
                         url: domain + "/model/save",

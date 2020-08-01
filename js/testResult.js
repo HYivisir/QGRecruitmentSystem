@@ -116,8 +116,10 @@ window.onload = function () {
             },
             success: function (result) {
                 let obj = JSON.parse(result);
-                if (obj.status)
+                if (obj.status) {
+                    scoreSection.classList.add("hide");
                     searchTandG.click();
+                }
             },
             error: function (msg) {
                 let obj = JSON.parse(msg);
@@ -143,8 +145,10 @@ window.onload = function () {
             },
             success: function (result) {
                 let obj = JSON.parse(result);
-                if (obj.status)
+                if (obj.status) {
+                    passSection.classList.add("hide");
                     searchTandG.click();
+                }
             },
             error: function (msg) {
                 let obj = JSON.parse(msg);
@@ -208,7 +212,7 @@ window.onload = function () {
                 }
 
                 input[2].onclick = function () {
-                    noti.classList.add("hide");
+
                     $ajax({
                         method: "post",
                         url: domain + "/test/update",
@@ -221,8 +225,10 @@ window.onload = function () {
                         },
                         success: function (result) {
                             let obj = JSON.parse(result);
-                            if (obj.status)
+                            if (obj.status) {
+                                noti.classList.add("hide");
                                 searchTandG.click();
+                            }
                         },
                         error: function (msg) {
                             let obj = JSON.parse(msg);
@@ -424,17 +430,17 @@ window.onload = function () {
     // 页面跳转
     function toPage() {
         let thepage = document.getElementById('opt-topage');
-        setTimeout(function(){
+        setTimeout(function () {
             let pages = document.getElementsByClassName('opt-page-tab');
-            let maxpage = pages[pages.length-1].innerHTML;
-            thepage.onkeypress = function(event){
-                if(thepage.value>0 && thepage.value<=maxpage &&event.keyCode == 13){
+            let maxpage = pages[pages.length - 1].innerHTML;
+            thepage.onkeypress = function (event) {
+                if (thepage.value > 0 && thepage.value <= maxpage && event.keyCode == 13) {
                     appearNowPage(thepage.value);
-                }else{
+                } else {
                     alert('请输入正确页码');
                 }
             }
-        },4000)
+        }, 4000)
     }
     toPage();
 
