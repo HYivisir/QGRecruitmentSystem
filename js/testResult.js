@@ -474,7 +474,6 @@ window.onload = function () {
         /* 修改当前页面 */
         nowPage = page;
     }
-<<<<<<< HEAD
 
     // 页面跳转
     function toPage(){
@@ -486,9 +485,6 @@ window.onload = function () {
         }
     }
     toPage();
-}
-=======
->>>>>>> 17bd1f14e2ab1ed82a410169849537a4d660e903
 
     /* 获取所有的选中框对应的人的学号，返回xxx-xxx字符串 */
     function getSelect() {
