@@ -21,6 +21,7 @@ h4 {
 
 .pointer{
     cursor: pointer;
+    text-align: center;
 }
 
 .hide {
@@ -367,7 +368,13 @@ input, textarea, select {
     padding-left: 5px;
 }
 
-.pointer{
-    text-align: center;
+
+
+.detail-svg{
+    margin: 0 auto;
+    width: 24px;
 }
 
+.page-chose {
+    color: rgb(165, 123, 212);
+}
