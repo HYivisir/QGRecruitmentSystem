@@ -3,6 +3,7 @@ window.onload = function () {
     getAllNoti();
     getClasInfo();
     toPage();
+    catchLi();
 
     let submit = document.getElementById('sec-submit');
 
@@ -320,9 +321,15 @@ function addPageChange() {
 // 页面跳转
 function toPage(){
     let thepage = document.getElementById('opt-topage');
-    thepage.onkeypress = function(event){
-        if(event.keyCode == 13){
-            appearPage(thepage.value);
+    setTimeout(function(){
+        let pages = document.getElementsByClassName('opt-page-tab');
+        let maxpage = pages[pages.length-1].innerHTML;
+        thepage.onkeypress = function(event){
+            if(thepage.value>0 && thepage.value<=maxpage &&event.keyCode == 13){
+                appearNowPage(thepage.value);
+            }else{
+                alert('请输入正确页码');
+            }
         }
-    }
+    },4000)
 }

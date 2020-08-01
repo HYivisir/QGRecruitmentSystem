@@ -1,4 +1,7 @@
 window.onload = function () {
+
+    catchLi();
+
     /* 当前页面页码 */
     let nowPage = 1;
     /* 当前页面轮次id，通过搜索按钮修改 */
@@ -472,21 +475,24 @@ window.onload = function () {
         /* 修改当前页面 */
         nowPage = page;
     }
-<<<<<<< HEAD
 
     // 页面跳转
     function toPage(){
         let thepage = document.getElementById('opt-topage');
-        thepage.onkeypress = function(event){
-            if(event.keyCode == 13){
-                appearNowPage(thepage.value);
+        setTimeout(function(){
+            let pages = document.getElementsByClassName('opt-page-tab');
+            let maxpage = pages[pages.length-1].innerHTML;
+            thepage.onkeypress = function(event){
+                if(thepage.value>0 && thepage.value<=maxpage &&event.keyCode == 13){
+                    appearNowPage(thepage.value);
+                }else{
+                    alert('请输入正确页码');
+                }
             }
-        }
+        },4000)
     }
     toPage();
-}
-=======
->>>>>>> 17bd1f14e2ab1ed82a410169849537a4d660e903
+
 
     /* 获取所有的选中框对应的人的学号，返回xxx-xxx字符串 */
     function getSelect() {

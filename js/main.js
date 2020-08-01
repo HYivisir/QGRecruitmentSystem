@@ -3,11 +3,23 @@
 // 域名
 var domain = "http://39.98.41.126:30008";
 
-
-
-window.onload = function () {
-    selectAll();
+function catchLi(){
+    let oli = document.getElementsByClassName('side-tabs');
+    oli[0].addEventListener('click',()=>{
+        location.assign('enrollInfo.html')
+    },true)
+    oli[1].addEventListener('click',()=>{
+        location.assign('testResult.html')
+    },true)
+    oli[2].addEventListener('click',()=>{
+        location.assign('noticeStatus.html')
+    },true)
+    oli[3].addEventListener('click',()=>{
+        location.assign('notitemplate.html')
+    },true)
 }
+
+
 
 /*
     method : get 或者 post 方法
@@ -92,24 +104,24 @@ function str2Arr(stringObj) {
     return newArray;
 };
 
-// 全选功能 放到各自的js文档最后，保证页面渲染完成后再执行
-function selectAll() {
-    var selectAll = document.getElementsByClassName('select-all');
-    var choose = document.getElementsByClassName('choose');
-    for (var i = 0; i < selectAll.length; i++) {
-        selectAll[i].onclick = function () {
-            if (!this.checked) {
-                for (var i = 0; i < choose.length; i++) {
-                    choose[i].checked = false
-                }
-            } else {
-                for (var i = 0; i < choose.length; i++) {
-                    choose[i].checked = true
-                }
-            }
-        }
-    }
-}
+// // 全选功能 放到各自的js文档最后，保证页面渲染完成后再执行
+// function selectAll() {
+//     var selectAll = document.getElementsByClassName('select-all');
+//     var choose = document.getElementsByClassName('choose');
+//     for (var i = 0; i < selectAll.length; i++) {
+//         selectAll[i].onclick = function () {
+//             if (!this.checked) {
+//                 for (var i = 0; i < choose.length; i++) {
+//                     choose[i].checked = false
+//                 }
+//             } else {
+//                 for (var i = 0; i < choose.length; i++) {
+//                     choose[i].checked = true
+//                 }
+//             }
+//         }
+//     }
+// }
 
 
 /* 当前页面全选 */
@@ -131,5 +143,4 @@ function selectAllByPage(page, one) {
         }
     }
 }
-
 

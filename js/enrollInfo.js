@@ -4,12 +4,15 @@ window.onload = function(){
     addStu();
     // 获取学生列表
     getStuList();
-    // 全选功能
-    selectAll();
     //搜索
     searchStu();
     //筛选
     classifyGroup();
+    // 页面跳转
+    toPage()
+    // 批量导出
+    outputStu()
+    catchLi();
 }
 // 标签切换
 function tab(target) {
@@ -490,8 +493,9 @@ function AddToList(result){
                 <svg t="1596164421670" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3143"><path d="M416 384c-19.2 0-32 12.8-32 32v320c0 19.2 12.8 32 32 32s32-12.8 32-32v-320c0-19.2-12.8-32-32-32z" p-id="3144"></path><path d="M928 192h-224v-32c0-54.4-41.6-96-96-96h-192c-54.4 0-96 41.6-96 96v32h-224c-19.2 0-32 12.8-32 32s12.8 32 32 32h64v608c0 54.4 41.6 96 96 96h512c54.4 0 96-41.6 96-96v-608h64c19.2 0 32-12.8 32-32s-12.8-32-32-32z m-544-32c0-19.2 12.8-32 32-32h192c19.2 0 32 12.8 32 32v32h-256v-32z m416 704c0 19.2-12.8 32-32 32h-512c-19.2 0-32-12.8-32-32v-608h576v608z" p-id="3145"></path><path d="M608 384c-19.2 0-32 12.8-32 32v320c0 19.2 12.8 32 32 32s32-12.8 32-32v-320c0-19.2-12.8-32-32-32z" p-id="3146"></path></svg>
             </div>
             `
+            tdNum.classList.add('ch-num')
 
-            // 把学号保存在tdInfo和tdDel的属性里
+            // 把学号保存在属性里
             tdInfo.setAttribute('stunum',JSON.parse(stuArr[i]).studentNum);
             tdEdit.setAttribute('stunum',JSON.parse(stuArr[i]).studentNum);
             tdDel.setAttribute('stunum',JSON.parse(stuArr[i]).studentNum);
@@ -532,9 +536,143 @@ function AddToList(result){
             Tfragment.appendChild(tr);
         }
         table.appendChild(Tfragment)
+
+        // 分页渲染
+        diviPage(stuArr);
+        addPageChange()
+
+        // 全选事件
+        selectAllByPage();
         
     }else{
         alert('无查询结果！');
         getStuList();
     }
+
+    
+}
+
+
+
+// 当前页面
+var nowPage = 1;
+
+// 分页显示
+function diviPage(stuArr){
+    // 页数
+    let totalPage = Math.ceil(stuArr.length/15);
+    // 往ul中添加页码
+    let ul = document.getElementById('opt-page-ul');
+    let pages = '';
+    for(let i=1;i<=totalPage;i++){
+        pages += `<li class="opt-page-tab pointer" >${i}</li>`;
+    }
+    ul.innerHTML = pages;
+    appearPage(nowPage);
+}
+
+// 根据页码显示
+function appearPage(page){
+    let tbody = document.getElementById("opt-table-info");
+    let pages = document.getElementById("opt-page-ul");
+    let myTr = tbody.getElementsByTagName("tr");
+    for (let i in myTr) {
+        if (i >= (page - 1) * 15 && i < myTr.length && i < (page - 1) * 15 + 15) {
+            myTr[i].classList.remove("hide");
+        } else {
+            if (myTr[i].classList)
+                myTr[i].classList.add("hide")
+        }
+    }
+    /* 修改当前页面的页码颜色 */
+    let pageLi = pages.getElementsByTagName("li");
+    pageLi[nowPage - 1].classList.remove("page-chose");
+    pageLi[page - 1].classList.add("page-chose");
+    /* 修改当前页面 */
+    nowPage = page;
+}
+
+function addPageChange() {
+    /* 点击123 */
+    let pages = document.getElementById("opt-page-ul");
+    let pageLi = pages.getElementsByTagName("li");
+    for (let i = 0; i < pageLi.length; i++) {
+        pageLi[i].onclick = function () {
+            appearPage(this.innerHTML)
+        }
+    }
+    /* 上一页 */
+    document.querySelector(".opt-footer-pre").onclick = function () {
+        if (nowPage != 1) {
+            appearPage(nowPage - 1);
+        }
+    }
+    /* 下一页 */
+    document.querySelector(".opt-footer-nxt").onclick = function () {
+        if (nowPage != pageLi.length) {
+            appearPage(nowPage + 1);
+        }
+    }
+}
+
+
+// 页面跳转
+function toPage(){
+    let thepage = document.getElementById('opt-topage');
+    setTimeout(function(){
+        let pages = document.getElementsByClassName('opt-page-tab');
+        let maxpage = pages[pages.length-1].innerHTML;
+        thepage.onkeypress = function(event){
+            if(thepage.value>0 && thepage.value<=maxpage &&event.keyCode == 13){
+                appearNowPage(thepage.value);
+            }else{
+                alert('请输入正确页码');
+            }
+        }
+    },4000)
+}
+
+
+/* 当前页面全选 */
+function selectAllByPage() {
+    let selectAll = document.querySelector('.select-all');
+    let choose = document.getElementsByClassName('choose');
+
+    selectAll.onclick = function () {
+        if (!this.checked) {
+            for (let i = (nowPage - 1) * 14; i < choose.length && i < (nowPage - 1) * 14 + 14; i++) {
+                choose[i].checked = false;
+            }
+        } else {
+            for (let i = (nowPage - 1) * 14; i < choose.length && i < (nowPage - 1) * 14 + 14; i++) {
+                choose[i].checked = true;
+            }
+        }
+    }
+}
+
+// 导出学生信息
+function outputStu(){
+    let outBtn = document.getElementById('opt-output');
+    outBtn.onclick = function(){
+        if(getSelect()){
+            window.open(domain + '/stu/export?studentNumSerial=' +  getSelect() );
+        }else{
+            alert('请选择需要导出的学生');
+        }
+       
+    }
+}
+
+/* 获取所有的选中框对应的人的学号，返回xxx-xxx字符串 */
+function getSelect() {
+    let all = document.querySelectorAll(".choose");
+    let allStudentNum = document.querySelectorAll(".ch-num");
+    let str = "";
+    for (let i = 0; i < all.length; i++) {
+        if (all[i].checked) {
+            str += (allStudentNum[i].innerHTML + "-");
+        }
+    }
+    return str.substring(0, str.length - 1);
 }
