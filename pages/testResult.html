@@ -71,7 +71,7 @@
                                         d="M863.38 825.09L714.17 675.88c48.01-57.12 74.18-128.58 74.18-204.08 0-84.89-33.06-164.7-93.08-224.72C635.24 187.05 555.44 154 470.55 154c-84.89 0-164.7 33.06-224.72 93.08s-93.08 139.83-93.08 224.72 33.06 164.7 93.08 224.72 139.83 93.08 224.72 93.08c76.22 0 148.33-26.67 205.72-75.56l149.08 149.08a26.805 26.805 0 0 0 19.01 7.88c6.88 0 13.76-2.63 19.01-7.88a26.805 26.805 0 0 0 7.88-19.01c0-6.89-2.62-13.77-7.87-19.02zM206.53 471.8c0-145.58 118.44-264.02 264.02-264.02 145.58 0 264.02 118.44 264.02 264.02S616.13 735.82 470.55 735.82c-145.58 0-264.02-118.44-264.02-264.02z"
                                         fill="#333333" p-id="2199"></path>
                                 </svg></div>
-                            <input id="opt-input" type="text" placeholder="搜索姓名、班级或学号">
+                            <input id="opt-input" type="text" placeholder="姓名、班级、学号或组别">
                         </div>
                         <input class="opt-btn opt-s-btn" type="button" value="搜索" id="search-input">
                         <input class="opt-btn opt-result-btn" id="opt-change-score" type="button" value="批量录入">
@@ -108,7 +108,7 @@
                                     <th>考试轮次</th>
                                     <th>成绩</th>
                                     <th>是否通过</th>
-                                    <!-- <th>修改</th> -->
+                                    <th>修改</th>
                                     <th>删除</th>
                                 </tr>
                             </thead>
@@ -185,13 +185,14 @@
             </div>
             <div class="sec-pane">
                 <div class="sec-pane-item">类型：
-                    <select name="" id="addScr">
-                        <option value="3">笔试</option>
+                    <select name="" class="passScr" disabled="disabled">
+                        <option>笔试</option>
+                        <!-- <option value="3">笔试</option>
                         <option value="1">一轮面试</option>
-                        <option value="2">二轮面试</option>
+                        <option value="2">二轮面试</option> -->
                     </select>
                 </div>
-                <div class="sec-pane-item">成绩：<input type="text"></div>
+                <div class="sec-pane-item">成绩：<input type="number" max="100" min="0" id="score-num"></div>
             </div>
             <input type="submit" value="提交并保存" class="de-sub" id="all-add-score">
         </div>
@@ -209,20 +210,18 @@
             </div>
             <div class="sec-pane">
                 <div class="sec-pane-item">类型：
-                    <select name="" id="">
-                        <option value="3">笔试</option>
-                        <option value="1">一轮</option>
-                        <option value="2">二轮</option>
+                    <select name="" class="passScr" disabled="disabled">
+                        <option>笔试</option>
                     </select>
                 </div>
                 <div class="sec-pane-item">状态：
-                    <select name="" id="">
-                        <option value="true">通过</option>
-                        <option value="false">未通过</option>
+                    <select name="" id="is-pass-select">
+                        <option value="是">通过</option>
+                        <option value="否">未通过</option>
                     </select>
                 </div>
             </div>
-            <input type="submit" value="提交并保存" class="de-sub">
+            <input type="submit" value="提交并保存" class="de-sub" id="all-change-pass">
         </div>
     </section>
     <section class="secti hide" id="secti-send-msg">
@@ -236,7 +235,7 @@
                     </g>
                 </svg>
             </div>
-            <div class="sec-pane" >
+            <div class="sec-pane">
                 <div class="sec-pane-item">
                     <textarea name="" id="" cols="40" rows="10"></textarea>
                 </div>
@@ -248,6 +247,40 @@
                 </div>
                 <div class="sec-pane-item">时间：<input type="text" class="sec-send-input"></div>
                 <div class="sec-pane-item">地点：<input type="text" class="sec-send-input"></div>
+            </div>
+            <input type="submit" value="提交并保存" class="de-sub">
+        </div>
+    </section>
+    <section class="secti hide" id="section-change">
+        <div class="dele notice-change">
+            <div class="sec-de">
+                <svg viewBox="0 0 16 13">
+                    <g transform="translate(1.000000, 0.000000)" fill="white">
+                        <path
+                            d="M10.164,11.063 C9.982,11.063 9.845,10.991 9.776,10.922 L8.009,9.157 L6.314,10.852 C6.248,10.918 6.095,10.998 5.891,10.998 C5.738,10.998 5.507,10.952 5.288,10.733 C5.067,10.513 5.018,10.295 5.017,10.153 C5.013,9.965 5.086,9.823 5.157,9.753 L6.881,8.028 L5.201,6.35 C5.049,6.197 4.922,5.723 5.321,5.325 C5.546,5.1 5.767,5.053 5.914,5.053 C6.097,5.053 6.234,5.125 6.301,5.194 L8.009,6.9 L9.705,5.204 C9.773,5.137 9.925,5.058 10.129,5.058 C10.283,5.058 10.514,5.104 10.733,5.324 C11.111,5.703 11.035,6.134 10.864,6.304 L9.138,8.03 L10.875,9.766 C10.942,9.834 11.021,9.986 11.021,10.19 C11.021,10.344 10.976,10.573 10.756,10.792 C10.531,11.016 10.311,11.063 10.164,11.063 L10.164,11.063 L10.164,11.063 Z">
+                        </path>
+                    </g>
+                </svg>
+            </div>
+            <div class="sec-pane" id="change-one-person">
+                <div class="sec-pane-item">姓名：<input type="text" disabled="disabled"></div>
+                <div class="sec-pane-item">类型：
+                    <select name="" class="addScr passScr" disabled="disabled">
+                        <option>笔试</option>
+                    </select>
+                </div>
+                <div class="sec-pane-item margin-t">评价：</div>
+                <div class="sec-pane-item">
+                    <textarea name="" id="" cols="30" rows="3"></textarea>
+                </div>
+                <div class="sec-pane-item">成绩：<input type="number" max="100" min="0"></div>
+                <div class="sec-pane-item">状态：
+                    <select name="">
+                        <option value="null"> </option>
+                        <option value="是">通过</option>
+                        <option value="否">未通过</option>
+                    </select>
+                </div>
             </div>
             <input type="submit" value="提交并保存" class="de-sub">
         </div>
