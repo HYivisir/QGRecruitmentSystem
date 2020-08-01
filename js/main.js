@@ -53,6 +53,7 @@ function $ajax({ method = "get", url, data, success, error }) {
         xhr.send();
     } else {
         xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded;charset=utf-8");
+        xhr.setRequestHeader("QGer", "I am a Qger");
         xhr.send(data);
     }
 

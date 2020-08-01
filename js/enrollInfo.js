@@ -97,6 +97,10 @@ function getStuList(){
     let listPromise = new Promise(resolve=>{
         $.ajax({
             url: domain + '/stu/list',
+            headers:{
+                'QGer': 'I am a QGer',
+                // 'Cookies' : document.cookie
+            },
             methods: 'POST',
             success:(result)=>{
                 resolve(result);
@@ -147,6 +151,9 @@ function addStu(){
             $.ajax({
                 url: domain + '/stu/save',
                 data: addData,
+                headers:{
+                    'QGer': 'I am a QGer'
+                },
                 methods: 'POST',
                 contentType: 'application/json',
                 success: (result)=>{
@@ -176,6 +183,9 @@ function toDetail(stunum){
         $.ajax({
             url: domain + '/stu/select',
             data: {studentNum : stunum},
+            headers:{
+                'QGer': 'I am a QGer'
+            },
             methods: 'POST',
             success: function(result){
                 resolve(result);
@@ -244,6 +254,9 @@ function toEdit(stunum){
         $.ajax({
             url: domain + '/stu/select',
             data: {studentNum : stunum},
+            headers:{
+                'QGer': 'I am a QGer'
+            },
             methods: 'POST',
             success: function(result){
                 resolve(result);
@@ -344,6 +357,9 @@ function editStu(){
             $.ajax({
                 url: domain + '/stu/update',
                 data: addData,
+                headers:{
+                    'QGer': 'I am a QGer'
+                },
                 methods: 'POST',
                 contentType: 'application/json',
                 success: (result)=>{
@@ -372,6 +388,9 @@ function delStu(stuNum){
     $.ajax({
         url: domain + '/stu/remove',
         methods: 'POST',
+        headers:{
+            'QGer': 'I am a QGer'
+        },
         data: {studentNum : stuNum},
         success: function(res){
             res = JSON.parse(res);
@@ -430,6 +449,9 @@ function classifyGroup(){
             $.ajax({
                 url: domain + '/stu/condition',
                 methods: 'POST',
+                headers:{
+                    'QGer': 'I am a QGer'
+                },
                 data:{condition : group},
                 success:function(result){
                     resolve(result);
@@ -626,7 +648,7 @@ function toPage(){
             if(thepage.value>0 && thepage.value<=maxpage &&event.keyCode == 13){
                 appearNowPage(thepage.value);
             }else{
-                alert('请输入正确页码');
+                appearPage(pages.length-1);
             }
         }
     },4000)

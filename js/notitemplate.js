@@ -15,6 +15,9 @@ window.onload = function () {
     /* 数据回写 */
     $.ajax({
         method: "POST",
+        headers:{
+            'QGer': 'I am a QGer'
+        },
         url: domain + "/model/list",
         success: function (result) {
             let obj = JSON.parse(result);
