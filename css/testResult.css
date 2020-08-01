@@ -61,3 +61,7 @@
 .page-chose {
     color: rgb(165, 123, 212);
 }
+
+.sec-send-input {
+    width: 120px !important;
+}

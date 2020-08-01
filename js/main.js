@@ -128,18 +128,18 @@ window.onload = function () {
 
 /* 当前页面全选 */
 /* page： 页数 */
-/* 一页是个框 */
-function selectAllByPage(page) {
+/* one: 一页几个信息 */
+function selectAllByPage(page, one) {
     let selectAll = document.querySelector('.select-all');
     let choose = document.getElementsByClassName('choose');
 
     selectAll.onclick = function () {
         if (!this.checked) {
-            for (let i = (page - 1) * 10; i < choose.length && i < (page - 1) * 10 + 10; i++) {
+            for (let i = (page - 1) * one; i < choose.length && i < (page - 1) * one + one; i++) {
                 choose[i].checked = false
             }
         } else {
-            for (let i = (page - 1) * 10; i < choose.length && i < (page - 1) * 10 + 10; i++) {
+            for (let i = (page - 1) * one; i < choose.length && i < (page - 1) * one + one; i++) {
                 choose[i].checked = true
             }
         }
