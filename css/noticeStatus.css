@@ -2,3 +2,36 @@
     height: 30px;
     margin-right: 10px;
 }
+.sec-pane {
+    width: 100%;
+    margin-top: -30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.sec-pane-item {
+    width: 50%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ .sec-pane-item select {
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px rgb(165, 123, 212) solid;
+}
+
+.sec-pane-item a{
+    width: 100px;
+    color: rgb(165, 123, 212);
+}
+
+.dele{
+    height: 250px;
+}

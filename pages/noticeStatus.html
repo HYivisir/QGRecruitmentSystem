@@ -19,7 +19,7 @@
     <!-- 顶部 -->
     <div id="header">
         <div id="header-sign">
-            <img id="header-logo" src="../images/QG.png"></img>
+            <img id="header-logo" src="../images/QG.png"/>
             <h3>QG工作室招新平台</h3>
         </div>
         <div id="header-opt">
@@ -63,23 +63,23 @@
                         <select id="rounds" class="opt-select">
                             <option value="0">轮数</option>
                             <option value="笔试">笔试</option>
-                            <option value="一轮">一轮</option>
-                            <option value="二轮">二轮</option>
+                            <option value="一轮面试">一轮</option>
+                            <option value="二轮面试">二轮</option>
                         </select>
                         <select id="ispass" class="opt-select">
                             <option value="0">通过状态</option>
-                            <option value="通过">通过</option>
-                            <option value="未通过">未通过</option>
+                            <option value="是">通过</option>
+                            <option value="否">未通过</option>
                         </select>
                         <select id="group" class="opt-select">
-                            <option value="0">组别</option>
-                            <option value="1">前端组</option>
-                            <option value="2">后台组</option>
-                            <option value="3">嵌入式组</option>
-                            <option value="4">数据挖掘组</option>
-                            <option value="5">设计组</option>
-                            <option value="6">图形组</option>
-                            <option value="7">移动组</option>
+                            <option value="">组别</option>
+                            <option value="前端">前端组</option>
+                            <option value="后台">后台组</option>
+                            <option value="嵌入式">嵌入式组</option>
+                            <option value="数据挖掘">数据挖掘组</option>
+                            <option value="设计">设计组</option>
+                            <option value="图形">图形组</option>
+                            <option value="移动">移动组</option>
                         </select>
                         <input class="opt-btn" id="opt-classify" type="button" value="筛选">
                     </div>
@@ -110,27 +110,59 @@
                                     <td>通知通知通知通知通知通知通知通知通知通知通知</td>
                                     <td>已阅</td>
                                     <td>123456789</td>
-                                    <td class="pointer"><svg t="1596182901537" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2032"><path d="M799.5 927.3H156.3c-32.3 0-58.5-26.3-58.5-58.5V225.7c0-32.3 26.3-58.5 58.5-58.5h517.4c11.4 0 20.7 9.3 20.7 20.7s-9.3 20.7-20.7 20.7H156.3c-9.4 0-17.1 7.7-17.1 17.1v643.1c0 9.4 7.7 17.1 17.1 17.1h643.1c9.4 0 17.1-7.7 17.1-17.1v-493c0-11.4 9.3-20.7 20.7-20.7s20.7 9.3 20.7 20.7v493c0.1 32.3-26.1 58.5-58.4 58.5z" fill="#333333" p-id="2033"></path><path d="M552 493.6c-5.3 0-10.6-2-14.6-6.1-8.1-8.1-8.1-21.2 0-29.3l355.3-355.3c8.1-8.1 21.2-8.1 29.3 0 8.1 8.1 8.1 21.2 0 29.3L566.6 487.5c-4.1 4.1-9.4 6.1-14.6 6.1z" fill="#333333" p-id="2034"></path></svg></td>
+                                    <td class="pointer">
+                                        <div class="detail-svg">
+                                            <svg t="1596182901537" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2032"><path d="M799.5 927.3H156.3c-32.3 0-58.5-26.3-58.5-58.5V225.7c0-32.3 26.3-58.5 58.5-58.5h517.4c11.4 0 20.7 9.3 20.7 20.7s-9.3 20.7-20.7 20.7H156.3c-9.4 0-17.1 7.7-17.1 17.1v643.1c0 9.4 7.7 17.1 17.1 17.1h643.1c9.4 0 17.1-7.7 17.1-17.1v-493c0-11.4 9.3-20.7 20.7-20.7s20.7 9.3 20.7 20.7v493c0.1 32.3-26.1 58.5-58.4 58.5z" fill="#333333" p-id="2033"></path><path d="M552 493.6c-5.3 0-10.6-2-14.6-6.1-8.1-8.1-8.1-21.2 0-29.3l355.3-355.3c8.1-8.1 21.2-8.1 29.3 0 8.1 8.1 8.1 21.2 0 29.3L566.6 487.5c-4.1 4.1-9.4 6.1-14.6 6.1z" fill="#333333" p-id="2034"></path></svg>
+                                        </div>
+                                    </td>
                                 </tr> -->
                             </tbody>
                         </table>
                     </div>
                     <div class="opt-footer">
                         <div class="opt-footer-pre"><p href="">上一页</p></div>
-                        <ul>
-                            <li class="opt-page-tab" ><a href="#1">1</a></li>
+                        <ul id="opt-page-ul">
+                            <!-- <li class="opt-page-tab" ><a href="#1">1</a></li>
                             <li class="opt-page-tab"><a href="#2">2</a></li>
                             <li class="opt-page-tab"><a href="#3">3</a></li>
                             <li class="opt-page-tab"><a href="#4">4</a></li>
-                            <li class="opt-page-tab"><a href="#5">5</a></li>
+                            <li class="opt-page-tab"><a href="#5">5</a></li> -->
                         </ul>
                         <div class="opt-footer-nxt"><p href="">下一页</p></div>
-                        <div class="opt-switch"><p>跳转第</p><input type="text"><p>页</p></div>
+                        <div class="opt-switch"><p>跳转第</p><input type="text" id="opt-topage"><p>页</p></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <section class="secti hide" id="secti-edit" >
+        <div class="dele">
+            <div class="sec-de" id="sec-close">
+                <svg viewBox="0 0 16 13">
+                    <g transform="translate(1.000000, 0.000000)" fill="white">
+                        <path
+                            d="M10.164,11.063 C9.982,11.063 9.845,10.991 9.776,10.922 L8.009,9.157 L6.314,10.852 C6.248,10.918 6.095,10.998 5.891,10.998 C5.738,10.998 5.507,10.952 5.288,10.733 C5.067,10.513 5.018,10.295 5.017,10.153 C5.013,9.965 5.086,9.823 5.157,9.753 L6.881,8.028 L5.201,6.35 C5.049,6.197 4.922,5.723 5.321,5.325 C5.546,5.1 5.767,5.053 5.914,5.053 C6.097,5.053 6.234,5.125 6.301,5.194 L8.009,6.9 L9.705,5.204 C9.773,5.137 9.925,5.058 10.129,5.058 C10.283,5.058 10.514,5.104 10.733,5.324 C11.111,5.703 11.035,6.134 10.864,6.304 L9.138,8.03 L10.875,9.766 C10.942,9.834 11.021,9.986 11.021,10.19 C11.021,10.344 10.976,10.573 10.756,10.792 C10.531,11.016 10.311,11.063 10.164,11.063 L10.164,11.063 L10.164,11.063 Z">
+                        </path>
+                    </g>
+                </svg>
+            </div>
+            <div class="sec-pane">
+                <div class="sec-pane-item">学号：
+                    <a id="sec-stunum"></a>
+                </div>
+                <div class="sec-pane-item">类型：
+                    <a id="sec-type"></a>
+                </div>
+                <div class="sec-pane-item">状态：
+                    <select name="" id="sec-status">
+                        <option value="是">通过</option>
+                        <option value="否">未通过</option>
+                    </select>
+                </div>
+            </div>
+            <input type="submit" value="提交并保存" class="de-sub" id="sec-submit">
+        </div>
+    </section>
 </body>
 
 </html>
