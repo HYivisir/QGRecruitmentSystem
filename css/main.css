@@ -374,3 +374,7 @@ input, textarea, select {
     margin: 0 auto;
     width: 24px;
 }
+
+.page-chose {
+    color: rgb(165, 123, 212);
+}
