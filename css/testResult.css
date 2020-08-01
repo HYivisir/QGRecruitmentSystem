@@ -3,7 +3,9 @@
 }
 
 .opt-send-btn {
-    margin-left: 300px;
+    position: absolute;
+    right: 10px;
+    height: 30px;
 }
 
 .opt-select {
