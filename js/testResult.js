@@ -1,4 +1,9 @@
 window.onload = function () {
+    /* 当前页面页码 */
+    let nowPage = 1;
+    /* 当前页面轮次id，通过搜索按钮修改 */
+    let nowType = "笔试";
+
     var changeScoreBtn = document.getElementById('opt-change-score');
     var changePassBtn = document.getElementById('opt-change-pass');
     var sendMsgBtn = document.getElementById('opt-send-msg');
@@ -11,12 +16,22 @@ window.onload = function () {
     // 弹窗事件
     changeScoreBtn.onclick = function () {
         scoreSection.classList.remove('hide');
+        /* document.querySelectorAll("addScr").getElementsByTagName("option")[0].innerHTML = nowType; */
     }
     changePassBtn.onclick = function () {
         passSection.classList.remove('hide');
+        /* document.getElementById("passScr").getElementsByTagName("option")[0].innerHTML = nowType; */
     }
     sendMsgBtn.onclick = function () {
         msgSection.classList.remove('hide');
+    }
+
+    function changeAllTypeInSec() {
+        let passS = document.querySelectorAll(".passScr");
+        for (let i = 0; i < passS.length; i++) {
+            passS[i].getElementsByTagName("option")[0].innerHTML = nowType;
+        }
+
     }
 
     // 关窗事件
@@ -33,13 +48,6 @@ window.onload = function () {
             sections[index].classList.add('hide');
         }
     }
-
-
-
-    /* 当前页面页码 */
-    let nowPage = 1;
-
-
 
     /* 数据回写 */
     let tbody = document.getElementById("tbody");
@@ -58,12 +66,20 @@ window.onload = function () {
                                     <tr class="">
                                         <td><input type="checkbox" name="" class="choose"></td>
                                         <td>${res[i].name}</td>
-                                        <td>${res[i].studentNum}</td>
+                                        <td class="ch-num">${res[i].studentNum}</td>
                                         <td>${res[i].group}</td>
                                         <td>${res[i].evaluation}</td>
                                         <td>${res[i].type}</td>
                                         <td>${res[i].score}</td>
                                         <td>${res[i].isPassed}</td>
+                                        <td>
+                                            <svg class="tr-change" t="1596188186738" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                                xmlns="http://www.w3.org/2000/svg" p-id="2935" fill="" height="17.5px">
+                                                <path
+                                                    d="M768.928 334.016l-94.208-94.208L300.544 614.016l-4.416 98.592 98.592-4.416 374.208-374.176zM862.048 777.472H246.048a44.16 44.16 0 0 0-44 44 44.16 44.16 0 0 0 44 44h616a44.16 44.16 0 0 0 44-44c0-24.192-19.776-44-44-44zM787.712 315.2l-94.208-94.208 26.4-26.4a39.488 39.488 0 0 1 55.648 0l38.56 38.56a39.488 39.488 0 0 1 0 55.648l-26.4 26.4z"
+                                                    p-id="2936"></path>
+                                            </svg>
+                                        </td>
                                         <td>
                                             <svg class="tr-de" t="1596187499364" class="icon" viewBox="0 0 1024 1024" version="1.1"
                                                 xmlns="http://www.w3.org/2000/svg" p-id="2161" fill="" height="17.5px">
@@ -94,6 +110,7 @@ window.onload = function () {
 
             /* 添加事件 */
             addDele();//删除按钮
+            addChange();//修改按钮
             addPageChange();//页面切换
             selectAllByPage();//当前页面全选
 
@@ -105,10 +122,57 @@ window.onload = function () {
     });
 
     /* 批量录入成绩 */
-    document.getElementById("all-add-score").onclick = function() {
-        /* 获取页面所有选中的人的学号 */
+    document.getElementById("all-add-score").onclick = function () {
+        /* 获取信息 */
+        let str = getSelect();
+        let score = document.getElementById("score-num").value;
+
+        $ajax({
+            method: "post",
+            url: domain + "/test/batchUpdateScore",
+            data: {
+                studentNumSerial: str,
+                typeId: getTypeId(nowType),
+                score: score
+            },
+            success: function (result) {
+                let obj = JSON.parse(result);
+                if (obj.status)
+                    location.reload();
+            },
+            error: function (msg) {
+                let obj = JSON.parse(msg);
+                alert(obj.message);
+            }
+        });
     }
 
+    /* 批量通过 */
+    document.getElementById("all-change-pass").onclick = function () {
+        /* 获取信息 */
+        let str = getSelect();
+        let pass = document.getElementById("is-pass-select");
+        pass = pass.options[pass.selectedIndex].value;
+
+        $ajax({
+            method: "post",
+            url: domain + "/test/batchUpdatePs",
+            data: {
+                studentNumSerial: str,
+                typeId: getTypeId(nowType),
+                isPassed: pass
+            },
+            success: function (result) {
+                let obj = JSON.parse(result);
+                if (obj.status)
+                    location.reload();
+            },
+            error: function (msg) {
+                let obj = JSON.parse(msg);
+                alert(obj.message);
+            }
+        });
+    }
 
     /* 添加删除 */
     function addDele() {
@@ -129,7 +193,57 @@ window.onload = function () {
                         success: function (result) {
                             let obj = JSON.parse(result);
                             if (obj.status)
-                                location.reload();
+                                searchTandG.click();
+                        },
+                        error: function (msg) {
+                            let obj = JSON.parse(msg);
+                            alert(obj.message);
+                        }
+                    })
+                }
+            }
+        }
+    }
+
+    /* 添加修改 */
+    function addChange() {
+        let btn = document.querySelectorAll(".tr-change");
+        for (let i in btn) {
+            btn[i].onclick = function () {
+                let noti = document.getElementById("section-change")
+                noti.classList.remove("hide");
+                /* 获取页面数据 */
+                let td = this.parentElement.parentElement.getElementsByTagName("td");
+
+                /* 数据回写 */
+                let input = noti.getElementsByTagName("input");//姓名、成绩、提交
+                let select = noti.getElementsByTagName("select");//类型、状态
+                let myTextarea = noti.getElementsByTagName("textarea")[0];//评价
+                input[0].value = td[1].innerHTML;
+                input[1].value = td[6].innerHTML;
+                myTextarea.value = td[4].innerHTML;
+                for (let j = 0; j < select[1].options.length; j++) {
+                    if (td[7].innerHTML == select[1].options[j].value) {
+                        select[1].options[j].selected = true;
+                    }
+                }
+
+                input[2].onclick = function () {
+                    noti.classList.add("hide");
+                    $ajax({
+                        method: "post",
+                        url: domain + "/test/update",
+                        data: {
+                            "studentNum": td[2].innerHTML,
+                            "typeId": getTypeId(td[5].innerHTML),
+                            "score": input[1].value,
+                            "isPassed": select[1].options[select[1].selectedIndex].value,
+                            "evaluation": myTextarea.value
+                        },
+                        success: function (result) {
+                            let obj = JSON.parse(result);
+                            if (obj.status)
+                                searchTandG.click();
                         },
                         error: function (msg) {
                             let obj = JSON.parse(msg);
@@ -238,9 +352,10 @@ window.onload = function () {
         if (str == "笔试") return 3;
     }
 
+    let searchTandG = document.getElementById("search-TandG");
     /* 按组别和轮次搜索 */
     function searchByTypeAndGroup() {
-        document.getElementById("search-TandG").onclick = function () {
+        searchTandG.onclick = function () {
             /* 获取选项框信息 */
             let tbody = document.getElementById("tbody");
             let tName = document.getElementById("search-type");
@@ -256,19 +371,29 @@ window.onload = function () {
                     let res = JSON.parse(obj.data);
 
                     let newTr = ``;
+                    let count = 0;
                     for (let i in res) {
                         /* 判断 */
-                        if (tName == res[i].type && gName == res[i].group)
+                        if (tName == res[i].type && gName == res[i].group) {
+                            count++;
                             newTr += `
                                     <tr>
                                         <td><input type="checkbox" name="" class="choose"></td>
                                         <td>${res[i].name}</td>
-                                        <td>${res[i].studentNum}</td>
+                                        <td class="ch-num">${res[i].studentNum}</td>
                                         <td>${res[i].group}</td>
                                         <td>${res[i].evaluation}</td>
                                         <td>${res[i].type}</td>
                                         <td>${res[i].score}</td>
                                         <td>${res[i].isPassed}</td>
+                                        <td>
+                                            <svg class="tr-change" t="1596188186738" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                                xmlns="http://www.w3.org/2000/svg" p-id="2935" fill="" height="17.5px">
+                                                <path
+                                                    d="M768.928 334.016l-94.208-94.208L300.544 614.016l-4.416 98.592 98.592-4.416 374.208-374.176zM862.048 777.472H246.048a44.16 44.16 0 0 0-44 44 44.16 44.16 0 0 0 44 44h616a44.16 44.16 0 0 0 44-44c0-24.192-19.776-44-44-44zM787.712 315.2l-94.208-94.208 26.4-26.4a39.488 39.488 0 0 1 55.648 0l38.56 38.56a39.488 39.488 0 0 1 0 55.648l-26.4 26.4z"
+                                                    p-id="2936"></path>
+                                            </svg>
+                                        </td>
                                         <td>
                                             <svg class="tr-de" t="1596187499364" class="icon" viewBox="0 0 1024 1024" version="1.1"
                                                 xmlns="http://www.w3.org/2000/svg" p-id="2161" fill="" height="17.5px">
@@ -282,11 +407,24 @@ window.onload = function () {
                                         </td>
                                     </tr>
                 `;
+                        }
                     }
                     tbody.innerHTML = newTr;
+                    nowType = tName;
+                    changeAllTypeInSec();
+
+                    /* 回写页码 */
+                    let pageInner = ``;
+                    for (let i = 1; i <= Math.ceil(count / 15); i++) {
+                        pageInner += `
+                <li class="opt-page-tab">${i}</li>
+                `;
+                    }
+                    pages.innerHTML = pageInner;
+
                     /* 添加点击事件 */
                     addDele();
-                    //add
+                    addChange();
                 },
                 error: function (msg) {
                     let obj = JSON.parse(msg);
@@ -334,6 +472,7 @@ window.onload = function () {
         /* 修改当前页面 */
         nowPage = page;
     }
+<<<<<<< HEAD
 
     // 页面跳转
     function toPage(){
@@ -346,4 +485,19 @@ window.onload = function () {
     }
     toPage();
 }
+=======
+>>>>>>> 17bd1f14e2ab1ed82a410169849537a4d660e903
 
+    /* 获取所有的选中框对应的人的学号，返回xxx-xxx字符串 */
+    function getSelect() {
+        let all = document.querySelectorAll(".choose");
+        let allStudentNum = document.querySelectorAll(".ch-num");
+        let str = "";
+        for (let i = 0; i < all.length; i++) {
+            if (all[i].checked) {
+                str += (allStudentNum[i].innerHTML + "-");
+            }
+        }
+        return str.substring(0, str.length - 1);
+    }
+}
