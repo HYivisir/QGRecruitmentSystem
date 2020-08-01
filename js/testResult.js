@@ -334,5 +334,16 @@ window.onload = function () {
         /* 修改当前页面 */
         nowPage = page;
     }
+
+    // 页面跳转
+    function toPage(){
+        let thepage = document.getElementById('opt-topage');
+        thepage.onkeypress = function(event){
+            if(event.keyCode == 13){
+                appearNowPage(thepage.value);
+            }
+        }
+    }
+    toPage();
 }
 
