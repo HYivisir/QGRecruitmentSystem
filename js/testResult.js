@@ -139,7 +139,7 @@ window.onload = function () {
             success: function (result) {
                 let obj = JSON.parse(result);
                 if (obj.status)
-                    location.reload();
+                    searchTandG.click();
             },
             error: function (msg) {
                 let obj = JSON.parse(msg);
@@ -166,7 +166,7 @@ window.onload = function () {
             success: function (result) {
                 let obj = JSON.parse(result);
                 if (obj.status)
-                    location.reload();
+                    searchTandG.click();
             },
             error: function (msg) {
                 let obj = JSON.parse(msg);
@@ -306,6 +306,14 @@ window.onload = function () {
                                             <td>${res[i].score}</td>
                                             <td>${res[i].isPassed}</td>
                                             <td>
+                                                <svg class="tr-change" t="1596188186738" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                                    xmlns="http://www.w3.org/2000/svg" p-id="2935" fill="" height="17.5px">
+                                                    <path
+                                                        d="M768.928 334.016l-94.208-94.208L300.544 614.016l-4.416 98.592 98.592-4.416 374.208-374.176zM862.048 777.472H246.048a44.16 44.16 0 0 0-44 44 44.16 44.16 0 0 0 44 44h616a44.16 44.16 0 0 0 44-44c0-24.192-19.776-44-44-44zM787.712 315.2l-94.208-94.208 26.4-26.4a39.488 39.488 0 0 1 55.648 0l38.56 38.56a39.488 39.488 0 0 1 0 55.648l-26.4 26.4z"
+                                                        p-id="2936"></path>
+                                                </svg>
+                                            </td>
+                                            <td>
                                                 <svg class="tr-de" t="1596187499364" class="icon" viewBox="0 0 1024 1024" version="1.1"
                                                     xmlns="http://www.w3.org/2000/svg" p-id="2161" fill="" height="17.5px">
                                                     <path
@@ -319,6 +327,7 @@ window.onload = function () {
                                         </tr>
                     `;
                 }
+                newTr = newTr.replace(/null/g, "");
                 tbody.innerHTML = newTr;
 
                 /* 回写页码 */
@@ -338,6 +347,9 @@ window.onload = function () {
                 addPageChange();
                 selectAllByPage();
 
+                /* 隐藏批量操作的按钮 */
+                document.getElementById("opt-change-score").classList.add("hide");
+                document.getElementById("opt-change-pass").classList.add("hide");
             },
             error: function (msg) {
                 let obj = JSON.parse(msg);
@@ -410,7 +422,7 @@ window.onload = function () {
                 `;
                         }
                     }
-                    newTr = newTr.replace(/null/g, "");F
+                    newTr = newTr.replace(/null/g, "");
                     tbody.innerHTML = newTr;
                     nowType = tName;
                     changeAllTypeInSec();
@@ -427,6 +439,10 @@ window.onload = function () {
                     /* 添加点击事件 */
                     addDele();
                     addChange();
+
+                    /* 显示批量操作的按钮 */
+                    document.getElementById("opt-change-score").classList.remove("hide");
+                    document.getElementById("opt-change-pass").classList.remove("hide");
                 },
                 error: function (msg) {
                     let obj = JSON.parse(msg);
@@ -476,10 +492,10 @@ window.onload = function () {
     }
 
     // 页面跳转
-    function toPage(){
+    function toPage() {
         let thepage = document.getElementById('opt-topage');
-        thepage.onkeypress = function(event){
-            if(event.keyCode == 13){
+        thepage.onkeypress = function (event) {
+            if (event.keyCode == 13) {
                 appearNowPage(thepage.value);
             }
         }
