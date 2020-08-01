@@ -1,6 +1,9 @@
 /* 提交修改或删除模板的时候刷新页面 */
 
 window.onload = function () {
+
+    catchLi();
+
     /* 获取需要多次使用的id */
     let addSec = document.getElementById("noti-sec");
     let addClose = document.getElementById("noti-add-close");
