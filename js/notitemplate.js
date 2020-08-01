@@ -85,7 +85,6 @@ window.onload = function () {
                         /* 放入input提交 */
                         let txt = document.getElementById("sec-txt");
                         txt.value = addText.innerHTML;
-                        console.log(txt.value);
                         //事件
                         $ajax({
                             method: "post",

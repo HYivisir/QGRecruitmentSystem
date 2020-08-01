@@ -41,7 +41,7 @@
 }
 
 .notice-send {
-    height: 400px;
+    height: 450px;
 }
 
 .sec-pane-item textarea {
@@ -64,4 +64,12 @@
 
 .sec-send-input {
     width: 120px !important;
+}
+
+.margin-t {
+    margin: 10px 95px 3px 0;
+}
+
+.notice-change {
+    height: 370px;
 }
