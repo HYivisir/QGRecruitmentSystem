@@ -94,6 +94,7 @@ window.onload = function () {
                                     </tr>
                 `;
             }
+            newTr = newTr.replace(/null/g, "");
             tbody.innerHTML = newTr;
 
             /* 回写页码 */
@@ -409,6 +410,7 @@ window.onload = function () {
                 `;
                         }
                     }
+                    newTr = newTr.replace(/null/g, "");F
                     tbody.innerHTML = newTr;
                     nowType = tName;
                     changeAllTypeInSec();
