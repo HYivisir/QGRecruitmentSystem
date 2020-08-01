@@ -3,6 +3,12 @@
 // 域名
 var domain = "http://39.98.41.126:30008";
 
+
+
+window.onload = function () {
+    selectAll();
+}
+
 /*
     method : get 或者 post 方法
     url    ：上传地址
@@ -63,23 +69,6 @@ function querystring(obj) {
 
 
 
-// 标签切换
-function tab(target) {
-    var tabs = document.getElementsByClassName('opt-tabs');
-    var panes = document.getElementsByClassName('opt-pane');
-    var tabsArr = [];
-    for (var i = 0; i < tabs.length; i++) {
-        tabsArr.push(tabs[i]);
-    }
-
-    var index = tabsArr.indexOf(target);
-    for (var i = 0; i < tabs.length; i++) {
-        tabs[i].classList.remove('opt-active');
-        panes[i].classList.remove('in');
-    }
-    target.classList.add('opt-active');
-    panes[index].classList.add('in');
-}
 
 // 将字符串转化为数组
 function str2Arr(stringObj) {
@@ -122,9 +111,6 @@ function selectAll() {
     }
 }
 
-window.onload = function () {
-    selectAll()
-}
 
 /* 当前页面全选 */
 /* page： 页数 */
@@ -145,3 +131,5 @@ function selectAllByPage(page, one) {
         }
     }
 }
+
+
