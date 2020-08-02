@@ -39,6 +39,13 @@ window.onload = function () {
             success: function(result){
                 result = JSON.parse(result);
                 location.reload();
+            },
+            error: (xhr,status,thrown)=>{
+                if(xhr.status == 404){
+                    location.assign('../error/404.html');
+                }else{
+                    location.assign('../error/500.html');
+                }
             }
         })
     }
@@ -63,6 +70,13 @@ function getAllNoti(){
             methods: 'POST',
             success:(result)=>{
                 resolve(result);
+            },
+            error: (xhr,status,thrown)=>{
+                if(xhr.status == 404){
+                    location.assign('../error/404.html');
+                }else{
+                    location.assign('../error/500.html');
+                }
             }
         })
     });
@@ -179,6 +193,13 @@ function getClasInfo(){
                 methods: 'POST',
                 success:(result)=>{
                     resolve(result);
+                },
+                error: (xhr,status,thrown)=>{
+                    if(xhr.status == 404){
+                        location.assign('../error/404.html');
+                    }else{
+                        location.assign('../error/500.html');
+                    }
                 }
             })
         });

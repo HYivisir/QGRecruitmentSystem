@@ -81,9 +81,12 @@ window.onload = function () {
             addMubanClick();
             addDeleteClick();
         },
-        error: function (msg) {
-            let obj = JSON.parse(msg);
-            alert(obj.status);
+        error: (xhr,status,thrown)=>{
+            if(xhr.status == 404){
+                location.assign('../error/404.html');
+            }else{
+                location.assign('../error/500.html');
+            }
         }
     })
 
@@ -128,8 +131,7 @@ window.onload = function () {
                                     location.reload();
                             },
                             error: function (msg) {
-                                let obj = JSON.parse(msg);
-                                alert(obj.message);
+                                location.assign('../error/404.html');
                             }
                         });
                         /* 定时器 */
@@ -175,8 +177,7 @@ window.onload = function () {
                                 location.reload();
                         },
                         error: function (msg) {
-                            let obj = JSON.parse(msg);
-                            alert(obj.message);
+                            location.assign('../error/404.html');
                         }
                     });
                     /* 定时器 */
@@ -218,8 +219,7 @@ window.onload = function () {
                                 location.reload();
                         },
                         error: function (msg) {
-                            let obj = JSON.parse(msg);
-                            alert(obj.message);
+                            location.assign('../error/404.html');
                         }
                     })
                 }

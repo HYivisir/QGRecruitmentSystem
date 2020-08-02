@@ -6,15 +6,18 @@ var domain = "http://39.98.41.126:30008";
 function catchLi(){
     let oli = document.getElementsByClassName('side-tabs');
     oli[0].addEventListener('click',()=>{
-        location.assign('enrollInfo.html')
+        location.assign('statistic.html')
     },true)
     oli[1].addEventListener('click',()=>{
-        location.assign('testResult.html')
+        location.assign('enrollInfo.html')
     },true)
     oli[2].addEventListener('click',()=>{
-        location.assign('noticeStatus.html')
+        location.assign('testResult.html')
     },true)
     oli[3].addEventListener('click',()=>{
+        location.assign('noticeStatus.html')
+    },true)
+    oli[4].addEventListener('click',()=>{
         location.assign('notitemplate.html')
     },true)
 }
@@ -105,24 +108,6 @@ function str2Arr(stringObj) {
     return newArray;
 };
 
-// // 全选功能 放到各自的js文档最后，保证页面渲染完成后再执行
-// function selectAll() {
-//     var selectAll = document.getElementsByClassName('select-all');
-//     var choose = document.getElementsByClassName('choose');
-//     for (var i = 0; i < selectAll.length; i++) {
-//         selectAll[i].onclick = function () {
-//             if (!this.checked) {
-//                 for (var i = 0; i < choose.length; i++) {
-//                     choose[i].checked = false
-//                 }
-//             } else {
-//                 for (var i = 0; i < choose.length; i++) {
-//                     choose[i].checked = true
-//                 }
-//             }
-//         }
-//     }
-// }
 
 
 /* 当前页面全选 */
@@ -157,4 +142,60 @@ function clickTrClicked() {
             cho[i - 1].checked = (cho[i - 1].checked ? false : true);
         }
     }
+}
+
+// 获取cookie
+function getCookie(name) {
+    var reg = RegExp(name + '=([^;]+)');
+    var arr = document.cookie.match(reg);
+    if (arr) {
+        return arr[1];
+    } else {
+        return '';
+    }
+}
+
+// 设置cookie
+function setCookie(name, value, day) {
+    var date = new Date();
+    date.setDate(date.getDate() + day);
+    document.cookie = name + '=' + value + ';expires=' + date;
+};
+
+// 删除cookie
+function delCookie(name) {
+    setCookie(name, null, -1);
+}
+
+
+function isLogined(){
+    let user = localStorage.getItem('user');
+    let pwd = localStorage.getItem('token');
+
+    $.ajax({
+        url: domain + '/login',
+        methods: 'POST',
+        data:{
+            username : user,
+            password : pwd
+        },
+        headers:{
+            'QGer': 'I am a QGer'
+        },
+        success:(res)=>{
+            res = JSON.parse(res);
+            if(!res.status){
+                delCookie('username');
+                delCookie('password');
+                location.assign('../error/unLog.html')
+            }
+        },
+        error: (xhr,status,thrown)=>{
+            if(xhr.status == 404){
+                location.assign('../error/404.html');
+            }else{
+                location.assign('../error/500.html');
+            }
+        }
+    })
 }

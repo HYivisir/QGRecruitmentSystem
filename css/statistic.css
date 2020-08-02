@@ -1,0 +1,29 @@
+#opt-panes{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#opt-up{
+    flex: 6;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+#opt-down{
+    margin-top: 10px;
+    flex: 4;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    border: transparent;
+    box-shadow: 0 0.7px 10px rgba(126, 98, 121, 0.7);
+}
+
+
+.opt-up-pane{
+    border: transparent;
+    box-shadow: 0 0.7px 10px rgba(126, 98, 121, 0.7);
+}

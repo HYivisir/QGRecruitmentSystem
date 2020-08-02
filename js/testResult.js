@@ -89,9 +89,12 @@ window.onload = function () {
 
             addAllFunc()
         },
-        error: function (msg) {
-            let obj = JSON.parse(msg);
-            alert(obj.status);
+        error: (xhr,status,thrown)=>{
+            if(xhr.status == 404){
+                location.assign('../error/404.html');
+            }else{
+                location.assign('../error/500.html');
+            }
         }
     });
 
@@ -117,8 +120,7 @@ window.onload = function () {
                 }
             },
             error: function (msg) {
-                let obj = JSON.parse(msg);
-                alert(obj.message);
+                location.assign('../error/404.html');
             }
         });
     }
@@ -146,8 +148,7 @@ window.onload = function () {
                 }
             },
             error: function (msg) {
-                let obj = JSON.parse(msg);
-                alert(obj.message);
+                location.assign('../error/404.html');
             }
         });
     }
@@ -175,8 +176,7 @@ window.onload = function () {
                                 searchTandG.click();
                         },
                         error: function (msg) {
-                            let obj = JSON.parse(msg);
-                            alert(obj.message);
+                            location.assign('../error/404.html');
                         }
                     })
                 }
@@ -239,9 +239,7 @@ window.onload = function () {
                             }
                         },
                         error: function (msg) {
-                            console.log(msg);
-                            let obj = JSON.parse(msg);
-                            alert(obj.message);
+                            location.assign('../error/404.html');
                         }
                     })
                 }
@@ -316,8 +314,7 @@ window.onload = function () {
                 document.getElementById("opt-change-pass").classList.add("hide");
             },
             error: function (msg) {
-                let obj = JSON.parse(msg);
-                alert(obj.status);
+                location.assign('../error/404.html');
             }
         });
     }
@@ -390,9 +387,12 @@ window.onload = function () {
                 document.getElementById("opt-change-score").classList.remove("hide");
                 document.getElementById("opt-change-pass").classList.remove("hide");
             },
-            error: function (msg) {
-                let obj = JSON.parse(msg);
-                alert(obj.status);
+            error: (xhr,status,thrown)=>{
+                if(xhr.status == 404){
+                    location.assign('../error/404.html');
+                }else{
+                    location.assign('../error/500.html');
+                }
             }
         });
     }
