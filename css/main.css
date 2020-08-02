@@ -19,7 +19,7 @@ h4 {
     font-size: 16px;
 }
 
-.pointer{
+.pointer {
     cursor: pointer;
     text-align: center;
 }
@@ -28,7 +28,7 @@ h4 {
     display: none;
 }
 
-.not-allowed{
+.not-allowed {
     cursor: not-allowed;
 }
 
@@ -235,8 +235,8 @@ input, textarea, select {
 .de-sub:hover {
     background-color: rgb(163, 123, 233);
 }
-  
-.opt-header{
+
+.opt-header {
     width: 100%;
     display: flex;
 }
@@ -277,12 +277,11 @@ input, textarea, select {
     background-color: rgb(135, 68, 212);
 }
 
-
 #opt-select {
     width: 150px;
 }
 
-.opt-select{
+.opt-select {
     width: 125px;
     border: 1px rgb(165, 123, 212) solid;
     border-radius: 5px;
@@ -368,9 +367,7 @@ input, textarea, select {
     padding-left: 5px;
 }
 
-
-
-.detail-svg{
+.detail-svg {
     margin: 0 auto;
     width: 24px;
 }
