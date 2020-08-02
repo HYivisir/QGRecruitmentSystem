@@ -5,8 +5,9 @@ window.onload = function () {
     toPage();
     catchLi();
 
-    let submit = document.getElementById('sec-submit');
 
+    // 修改状态
+    let submit = document.getElementById('sec-submit');
     submit.onclick = function(){
         // 修改状态
         let stunum = document.getElementById('sec-stunum');
@@ -30,11 +31,13 @@ window.onload = function () {
         console.log(data)
         $.ajax({
             url: domain + '/test/batchUpdatePs',
+            headers:{
+                'QGer': 'I am a QGer'
+            },
             methods: 'POST',
             data: data,
             success: function(result){
                 result = JSON.parse(result);
-                alert(result.message);
                 location.reload();
             }
         })
@@ -54,6 +57,9 @@ function getAllNoti(){
     let listPromise = new Promise(resolve=>{
         $.ajax({
             url: domain + '/test/list',
+            headers:{
+                'QGer': 'I am a QGer'
+            },
             methods: 'POST',
             success:(result)=>{
                 resolve(result);
@@ -166,6 +172,9 @@ function getClasInfo(){
         let listPromise = new Promise(resolve=>{
             $.ajax({
                 url: domain + '/test/groupby',
+                headers:{
+                    'QGer': 'I am a QGer'
+                },
                 data:{group : groupname},
                 methods: 'POST',
                 success:(result)=>{
@@ -326,9 +335,9 @@ function toPage(){
         let maxpage = pages[pages.length-1].innerHTML;
         thepage.onkeypress = function(event){
             if(thepage.value>0 && thepage.value<=maxpage &&event.keyCode == 13){
-                appearNowPage(thepage.value);
+                appearPage(thepage.value);
             }else{
-                alert('请输入正确页码');
+                appearPage(pages.length-1);
             }
         }
     },4000)

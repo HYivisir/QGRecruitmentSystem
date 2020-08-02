@@ -56,6 +56,9 @@ window.onload = function () {
     let pages = document.getElementById("search-pages");
     $.ajax({
         method: "POST",
+        headers:{
+            'QGer': 'I am a QGer'
+        },
         url: domain + "/test/list",
         success: function (result) {
             let obj = JSON.parse(result);
@@ -354,6 +357,9 @@ window.onload = function () {
             $.ajax({
                 method: "POST",
                 url: domain + "/test/list",
+                headers:{
+                    'QGer': 'I am a QGer'
+                },
                 success: function (result) {
                     let obj = JSON.parse(result);
                     let res = JSON.parse(obj.data);
@@ -452,8 +458,8 @@ window.onload = function () {
             thepage.onkeypress = function (event) {
                 if (thepage.value > 0 && thepage.value <= maxpage && event.keyCode == 13) {
                     appearNowPage(thepage.value);
-                } else {
-                    alert('请输入正确页码');
+                }else{
+                    appearPage(pages.length-1);
                 }
             }
         }, 4000)
