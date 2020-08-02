@@ -56,7 +56,7 @@ window.onload = function () {
     let pages = document.getElementById("search-pages");
     $.ajax({
         method: "POST",
-        headers:{
+        headers: {
             'QGer': 'I am a QGer'
         },
         url: domain + "/test/list",
@@ -87,15 +87,7 @@ window.onload = function () {
             }
             pages.innerHTML = pageInner;
 
-            /* 当前页面显示 */
-            appearNowPage(1);
-
-            /* 添加事件 */
-            addDele();//删除按钮
-            addChange();//修改按钮
-            addPageChange();//页面切换
-            selectAllByPage();//当前页面全选
-            clickTrClicked();//点击tr选中
+            addAllFunc()
         },
         error: function (msg) {
             let obj = JSON.parse(msg);
@@ -281,7 +273,8 @@ window.onload = function () {
     }
 
     /* 搜索框 */
-    document.getElementById("search-input").onclick = function () {
+    let si = document.getElementById("search-input");
+    si.onclick = function () {
         let txt = document.getElementById("opt-input").value;
         $ajax({
             method: "POST",
@@ -316,15 +309,7 @@ window.onload = function () {
                 }
                 pages.innerHTML = pageInner;
 
-                /* 当前页面显示 */
-                appearNowPage(1);
-
-                /* 添加事件 */
-                addDele();
-                addChange();
-                addPageChange();
-                selectAllByPage();
-                clickTrClicked();//点击tr选中
+                addAllFunc()
 
                 /* 隐藏批量操作的按钮 */
                 document.getElementById("opt-change-score").classList.add("hide");
@@ -336,6 +321,12 @@ window.onload = function () {
             }
         });
     }
+    /* 点击回车搜索 */
+    document.getElementById("opt-input").onkeypress = function (event) {
+        if (event.keyCode == 13) {
+            si.click();
+        }
+    }
 
     /* 获取轮次id */
     function getTypeId(str) {
@@ -346,71 +337,65 @@ window.onload = function () {
 
     let searchTandG = document.getElementById("search-TandG");
     /* 按组别和轮次搜索 */
-    function searchByTypeAndGroup() {
-        searchTandG.onclick = function () {
-            /* 获取选项框信息 */
-            let tbody = document.getElementById("tbody");
-            let tName = document.getElementById("search-type");
-            tName = tName.options[tName.selectedIndex].innerHTML;
-            let gName = document.getElementById("search-group");
-            gName = gName.options[gName.selectedIndex].innerHTML;
+    searchTandG.onclick = function () {
+        /* 获取选项框信息 */
+        let tbody = document.getElementById("tbody");
+        let tName = document.getElementById("search-type");
+        tName = tName.options[tName.selectedIndex].innerHTML;
+        let gName = document.getElementById("search-group");
+        gName = gName.options[gName.selectedIndex].innerHTML;
 
-            $.ajax({
-                method: "POST",
-                url: domain + "/test/list",
-                headers:{
-                    'QGer': 'I am a QGer'
-                },
-                success: function (result) {
-                    let obj = JSON.parse(result);
-                    let res = JSON.parse(obj.data);
+        $.ajax({
+            method: "POST",
+            url: domain + "/test/list",
+            headers: {
+                'QGer': 'I am a QGer'
+            },
+            success: function (result) {
+                let obj = JSON.parse(result);
+                let res = JSON.parse(obj.data);
 
-                    let newTr = ``;
-                    let count = 0;
-                    for (let i in res) {
-                        /* 判断 */
-                        if (tName == res[i].type && gName == res[i].group) {
-                            count++;
-                            newTr += returnTrString(res[i].name,
-                                res[i].studentNum,
-                                res[i].group,
-                                res[i].evaluation,
-                                res[i].type,
-                                res[i].score,
-                                res[i].isPassed);
-                        }
+                let newTr = ``;
+                let count = 0;
+                for (let i in res) {
+                    /* 判断 */
+                    if (tName == res[i].type && gName == res[i].group) {
+                        count++;
+                        newTr += returnTrString(res[i].name,
+                            res[i].studentNum,
+                            res[i].group,
+                            res[i].evaluation,
+                            res[i].type,
+                            res[i].score,
+                            res[i].isPassed);
                     }
-                    newTr = newTr.replace(/null/g, "");
-                    tbody.innerHTML = newTr;
-                    nowType = tName;
-                    changeAllTypeInSec();
+                }
+                newTr = newTr.replace(/null/g, "");
+                tbody.innerHTML = newTr;
+                nowType = tName;
+                changeAllTypeInSec();
 
-                    /* 回写页码 */
-                    let pageInner = ``;
-                    for (let i = 1; i <= Math.ceil(count / 15); i++) {
-                        pageInner += `
+                /* 回写页码 */
+                let pageInner = ``;
+                for (let i = 1; i <= Math.ceil(count / 15); i++) {
+                    pageInner += `
                 <li class="opt-page-tab">${i}</li>
                 `;
-                    }
-                    pages.innerHTML = pageInner;
-
-                    /* 添加点击事件 */
-                    addDele();
-                    addChange();
-                    clickTrClicked();//点击tr选中
-
-                    /* 显示批量操作的按钮 */
-                    document.getElementById("opt-change-score").classList.remove("hide");
-                    document.getElementById("opt-change-pass").classList.remove("hide");
-                },
-                error: function (msg) {
-                    let obj = JSON.parse(msg);
-                    alert(obj.status);
                 }
-            });
-        }
+                pages.innerHTML = pageInner;
+
+                addAllFunc()
+
+                /* 显示批量操作的按钮 */
+                document.getElementById("opt-change-score").classList.remove("hide");
+                document.getElementById("opt-change-pass").classList.remove("hide");
+            },
+            error: function (msg) {
+                let obj = JSON.parse(msg);
+                alert(obj.status);
+            }
+        });
     }
-    searchByTypeAndGroup()
 
     /* 当前页面全选 */
     function selectAllByPage() {
@@ -456,17 +441,20 @@ window.onload = function () {
         let thepage = document.getElementById('opt-topage');
         setTimeout(function () {
             let pages = document.getElementsByClassName('opt-page-tab');
-            let maxpage = pages[pages.length - 1].innerHTML;
+            let maxpage = pages.length;
             thepage.onkeypress = function (event) {
-                if (thepage.value > 0 && thepage.value <= maxpage && event.keyCode == 13) {
-                    appearNowPage(thepage.value);
-                }else{
-                    appearPage(pages.length-1);
+                if (event.keyCode == 13) {
+                    let num = parseInt(thepage.value)
+                    if (num > 0 && num <= maxpage) {
+                        appearNowPage(num);
+                    } else {
+                        appearNowPage(maxpage);
+                    }
                 }
+
             }
         }, 4000)
     }
-    toPage();
 
     /* 获取所有的选中框对应的人的学号，返回xxx-xxx字符串 */
     function getSelect() {
@@ -514,5 +502,19 @@ window.onload = function () {
                                         </td>
                                     </tr>
                                 `
+    }
+
+    /* 添加事件 */
+    function addAllFunc() {
+        /* 当前页面显示 */
+        appearNowPage(1);
+
+        /* 添加事件 */
+        addDele();//删除按钮
+        addChange();//修改按钮
+        addPageChange();//页面切换
+        selectAllByPage();//当前页面全选
+        clickTrClicked();//点击tr选中
+        toPage();//页面跳转
     }
 }
