@@ -127,7 +127,7 @@
                             <div class="opt-form-item"><a>性别：          <a class="opt-form-detail"></a> </a></div>
                             <div class="opt-form-item"><a>宿舍：          <a class="opt-form-detail"></a> </a></div>
                             <div class="opt-form-item"><a>英语(1)成绩：   <a class="opt-form-detail"></a> </a></div>
-                            <div class="opt-form-item"><a>应征部门：      <a class="opt-form-detail"></a> </a></div>
+                            <div class="opt-form-item"><a>组别：      <a class="opt-form-detail"></a> </a></div>
                             <div class="opt-form-item"><a>上学期期末排名：<a class="opt-form-detail"></a> </a></div>
                             <div class="opt-form-item"><a>大一上绩点：    <a class="opt-form-detail"></a> </a></div>
                             <div class="opt-form-item"><a>年级：          <a class="opt-form-detail"></a></a></div>
@@ -169,7 +169,7 @@
                             </div>
                             <div class="opt-form-item"><a>宿舍：</a><input type="text" maxlength="12" placeholder="如：西三110" class="opt-form-adds"></div>
                             <div class="opt-form-item"><a>英语(1)成绩：</a><input type="number" min="0" max="100" placeholder="0-100" class="opt-form-adds"></div>
-                            <div class="opt-form-item"><a>应征部门：</a>
+                            <div class="opt-form-item"><a>组别：</a>
                                 <select id="form-apartment" class="opt-form-adds">
                                     <option value="1">前端组</option>
                                     <option value="2">后台组</option>
@@ -180,7 +180,7 @@
                                     <option value="7">移动组</option>
                                 </select>
                             </div>
-                            <div class="opt-form-item"><a>上学期期末排名：</a><input type="number" placeholder="请输入数字" class="opt-form-adds"></div>
+                            <div class="opt-form-item"><a>上学期期末排名：</a><input type="number" placeholder="请输入数字" min="1" max="20000" class="opt-form-adds"></div>
                             <div class="opt-form-item"><a>大一上绩点：</a><input type="number" min="0" max="5.0" step="0.1" placeholder="0-5.0" class="opt-form-adds"></div>
                             <div class="opt-form-item"><a>年级：</a>
                                 <select class="opt-form-adds">
@@ -234,7 +234,7 @@
                             </div>
                             <div class="opt-form-item"><a>宿舍：</a><input type="text"  maxlength="12" placeholder="如：西三110" class="opt-form-edit"></div>
                             <div class="opt-form-item"><a>英语(1)成绩：</a><input type="number" min="0" max="100" placeholder="0-100"  class="opt-form-edit"></div>
-                            <div class="opt-form-item"><a>应征部门：</a>
+                            <div class="opt-form-item"><a>组别：</a>
                                 <select  class="opt-form-edit">
                                     <option value="1">前端组</option>
                                     <option value="2">后台组</option>
@@ -245,7 +245,7 @@
                                     <option value="7">移动组</option>
                                 </select>
                             </div>
-                            <div class="opt-form-item"><a>上学期期末排名：</a><input  type="number" placeholder="请输入数字" class="opt-form-edit"></div>
+                            <div class="opt-form-item"><a>上学期期末排名：</a><input  type="number" placeholder="请输入数字" min="1" max="20000" class="opt-form-edit"></div>
                             <div class="opt-form-item"><a>大一上绩点：</a><input  type="number" min="0" max="5.0" step="0.1" placeholder="0-5.0" class="opt-form-edit"></div>
                             <div class="opt-form-item"><a>年级：</a>
                                 <select class="opt-form-edit">
@@ -287,6 +287,22 @@
             </div>
         </div>
     </div>
+
+    <section class="secti hide" id="alert-info">
+        <div class="dele">
+            <div class="sec-de close-btn">
+                <svg viewBox="0 0 16 13">
+                    <g transform="translate(1.000000, 0.000000)" fill="white">
+                        <path
+                            d="M10.164,11.063 C9.982,11.063 9.845,10.991 9.776,10.922 L8.009,9.157 L6.314,10.852 C6.248,10.918 6.095,10.998 5.891,10.998 C5.738,10.998 5.507,10.952 5.288,10.733 C5.067,10.513 5.018,10.295 5.017,10.153 C5.013,9.965 5.086,9.823 5.157,9.753 L6.881,8.028 L5.201,6.35 C5.049,6.197 4.922,5.723 5.321,5.325 C5.546,5.1 5.767,5.053 5.914,5.053 C6.097,5.053 6.234,5.125 6.301,5.194 L8.009,6.9 L9.705,5.204 C9.773,5.137 9.925,5.058 10.129,5.058 C10.283,5.058 10.514,5.104 10.733,5.324 C11.111,5.703 11.035,6.134 10.864,6.304 L9.138,8.03 L10.875,9.766 C10.942,9.834 11.021,9.986 11.021,10.19 C11.021,10.344 10.976,10.573 10.756,10.792 C10.531,11.016 10.311,11.063 10.164,11.063 L10.164,11.063 L10.164,11.063 Z">
+                        </path>
+                    </g>
+                </svg>
+            </div>
+            <p>基本信息不能为空! (小框)</p>
+            <input type="submit" value="确 定" class="de-sub close-btn">
+        </div>
+    </section>
 </body>
 
 </html>

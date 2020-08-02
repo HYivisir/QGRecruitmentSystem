@@ -167,7 +167,7 @@ function delCookie(name) {
     setCookie(name, null, -1);
 }
 
-
+// 是否登录
 function isLogined(){
     let user = localStorage.getItem('user');
     let pwd = localStorage.getItem('token');
@@ -198,4 +198,12 @@ function isLogined(){
             }
         }
     })
+}
+
+
+// 退出登录
+function exit(){
+    localStorage.removeItem('username');
+    localStorage.removeItem('token');
+    location.assign('../index.html');
 }
