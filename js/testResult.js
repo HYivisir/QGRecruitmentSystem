@@ -95,7 +95,7 @@ window.onload = function () {
             addChange();//修改按钮
             addPageChange();//页面切换
             selectAllByPage();//当前页面全选
-
+            clickTrClicked();//点击tr选中
         },
         error: function (msg) {
             let obj = JSON.parse(msg);
@@ -164,7 +164,8 @@ window.onload = function () {
     function addDele() {
         let btn = document.querySelectorAll(".tr-de");
         for (let i in btn) {
-            btn[i].onclick = function () {
+            btn[i].onclick = function (event) {
+                event.stopPropagation();
                 if (confirm("是否确定删除该结果")) {
                     let td = this.parentElement.parentElement.getElementsByTagName("td");
                     let id = getTypeId(td[5].innerHTML);
@@ -191,13 +192,13 @@ window.onload = function () {
         }
     }
 
-
     /* 点击修改后数据回写，不进行页面刷新 */
     /* 添加修改 */
     function addChange() {
         let btn = document.querySelectorAll(".tr-change");
         for (let i in btn) {
-            btn[i].onclick = function () {
+            btn[i].onclick = function (event) {
+                event.stopPropagation();
                 let noti = document.getElementById("section-change");
                 noti.classList.remove("hide");
                 /* 获取页面数据 */
@@ -319,11 +320,11 @@ window.onload = function () {
                 appearNowPage(1);
 
                 /* 添加事件 */
-                /* 添加点击事件 */
                 addDele();
                 addChange();
                 addPageChange();
                 selectAllByPage();
+                clickTrClicked();//点击tr选中
 
                 /* 隐藏批量操作的按钮 */
                 document.getElementById("opt-change-score").classList.add("hide");
@@ -396,6 +397,7 @@ window.onload = function () {
                     /* 添加点击事件 */
                     addDele();
                     addChange();
+                    clickTrClicked();//点击tr选中
 
                     /* 显示批量操作的按钮 */
                     document.getElementById("opt-change-score").classList.remove("hide");
