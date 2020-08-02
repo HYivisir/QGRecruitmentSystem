@@ -1,5 +1,3 @@
-/* 提交修改或删除模板的时候刷新页面 */
-
 window.onload = function () {
 
     catchLi();
@@ -15,7 +13,7 @@ window.onload = function () {
     /* 数据回写 */
     $.ajax({
         method: "POST",
-        headers:{
+        headers: {
             'QGer': 'I am a QGer'
         },
         url: domain + "/model/list",
@@ -25,7 +23,7 @@ window.onload = function () {
 
             let newNoti = "";
             for (let i in noti) {
-                /* 修复最后一个输入空格而出现的bug */
+                /* 修复最后输入回车和空格而出现的bug */
                 let zz = /(<div>)$/;
                 if (zz.test(noti[i].content))
                     noti[i].content = noti[i].content.substring(0, noti[i].content.length - 5);
@@ -57,7 +55,7 @@ window.onload = function () {
                     </div>
                 `;
             }
-            /* 插入页面 */
+            /* 新增框 */
             newNoti += `
                     <div id="noti-add">
                         <svg t="1596026190951" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -91,7 +89,7 @@ window.onload = function () {
     /* 事件委托 */
     notiMain.onclick = function (ev) {
         var ev = ev || window.event;
-        var target = ev.target || ev.srcElement;// target表示在事件冒泡中触发事件的源元素，在IE中是srcElement  
+        var target = ev.target || ev.srcElement;
 
         /* 修改模板 */
         if (target.nodeName.toLowerCase() == "svg") {
@@ -105,6 +103,7 @@ window.onload = function () {
                 addTitle.value = tit;
                 addSec.classList.remove("hide");
 
+                /* 三秒内提交一次 */
                 let isClick = true;
                 sendNoti.onclick = function () {
                     if (isClick) {
@@ -112,7 +111,6 @@ window.onload = function () {
                         /* 放入input提交 */
                         let txt = document.getElementById("sec-txt");
                         txt.value = addText.innerHTML;
-                        //事件
                         $ajax({
                             method: "post",
                             url: domain + "/model/update",
@@ -132,36 +130,32 @@ window.onload = function () {
                                 alert(obj.message);
                             }
                         });
-                        /* 定时器 */
                         setTimeout(() => {
                             isClick = true;
                         }, 3000);
                     }
                 }
-
             }
         }
     }
 
-    /* 增加模板点击事件 */
+    /* 新增模板 */
     function addMubanClick() {
-        /* 新增模板 */
         document.getElementById("noti-add").onclick = function () {
             /* 打开的同时清除数据 */
             addSec.classList.remove("hide");
             addSec.querySelector(".noti-sec-main").innerHTML = "";
             addSec.querySelector(".noti-input").setAttribute("value", "");
 
-            /* 点击发送就ajax */
+            /* 三秒内提交一次 */
             let isClick = true;
             sendNoti.onclick = function () {
                 if (isClick) {
                     isClick = false;
-                    /* 放入input提交 */
+                    /* 放入input后提交 */
                     let tit = addSec.querySelector(".noti-input").value;
                     let txt = document.getElementById("sec-txt");
                     txt.value = addText.innerHTML;
-                    //console.log(txt.value);
                     $ajax({
                         method: "post",
                         url: domain + "/model/save",
@@ -179,7 +173,6 @@ window.onload = function () {
                             alert(obj.message);
                         }
                     });
-                    /* 定时器 */
                     setTimeout(() => {
                         isClick = true;
                     }, 3000);
@@ -187,8 +180,7 @@ window.onload = function () {
             }
         }
 
-
-        /* 关闭add的section */
+        /* 关闭section */
         addClose.onclick = function () {
             addSec.classList.add("hide");
         }
@@ -197,9 +189,9 @@ window.onload = function () {
 
     /* 添加删除事件 */
     function addDeleteClick() {
-        /* 确认删除 */
         let isDe = document.getElementById("noti-isde");
         let isDelete = document.querySelectorAll(".noti-de");
+        /* 是否确认删除 */
         for (let i in isDelete) {
             isDelete[i].onclick = function () {
                 isDe.classList.remove("hide");
