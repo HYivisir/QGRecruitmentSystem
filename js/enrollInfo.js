@@ -1,5 +1,6 @@
 window.onload = function(){
-    // isLogined();
+    // 检验是否登录
+    isLogined();
     tagTab();
     // 录入新的学生信息
     addStu();
@@ -67,8 +68,8 @@ function tagTab(){
             optTabs[2].classList.remove('hide');
             optTabs[3].classList.add('hide');
             optPanes[0].classList.add('hide');
-            optPanes[1].classList.remove('hide');
-            optPanes[2].classList.add('hide');
+            optPanes[1].classList.add('hide');
+            optPanes[2].classList.remove('hide');
             optPanes[3].classList.add('hide');
         }
         optTabs[3].onclick = function(){

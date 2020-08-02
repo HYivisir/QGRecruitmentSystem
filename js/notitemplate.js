@@ -1,5 +1,5 @@
 window.onload = function () {
-
+    isLogined();
     catchLi();
 
     /* 获取需要多次使用的id */

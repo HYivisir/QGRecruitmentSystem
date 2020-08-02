@@ -1,5 +1,5 @@
 window.onload = function () {
-
+    isLogined();
     catchLi();
 
     /* 当前页面页码 */
