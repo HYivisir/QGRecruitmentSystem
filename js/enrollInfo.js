@@ -1,4 +1,5 @@
 window.onload = function(){
+    // isLogined();
     tagTab();
     // 录入新的学生信息
     addStu();
@@ -108,6 +109,13 @@ function getStuList(){
             methods: 'POST',
             success:(result)=>{
                 resolve(result);
+            },
+            error: (xhr,status,thrown)=>{
+                if(xhr.status == 404){
+                    location.assign('../error/404.html');
+                }else{
+                    location.assign('../error/500.html');
+                }
             }
         })
     });
@@ -177,6 +185,13 @@ function addStu(){
                 contentType: 'application/json',
                 success: (result)=>{
                     resolve(result);
+                },
+                error: (xhr,status,thrown)=>{
+                    if(xhr.status == 404){
+                        location.assign('../error/404.html');
+                    }else{
+                        location.assign('../error/500.html');
+                    }
                 }
             })
         });
@@ -208,6 +223,13 @@ function toDetail(stunum){
             methods: 'POST',
             success: function(result){
                 resolve(result);
+            },
+            error: (xhr,status,thrown)=>{
+                if(xhr.status == 404){
+                    location.assign('../error/404.html');
+                }else{
+                    location.assign('../error/500.html');
+                }
             }
         })
     });
@@ -279,6 +301,13 @@ function toEdit(stunum){
             methods: 'POST',
             success: function(result){
                 resolve(result);
+            },
+            error: (xhr,status,thrown)=>{
+                if(xhr.status == 404){
+                    location.assign('../error/404.html');
+                }else{
+                    location.assign('../error/500.html');
+                }
             }
         })
     });
@@ -397,6 +426,13 @@ function editStu(){
                 contentType: 'application/json',
                 success: (result)=>{
                     resolve(result);
+                },
+                error: (xhr,status,thrown)=>{
+                    if(xhr.status == 404){
+                        location.assign('../error/404.html');
+                    }else{
+                        location.assign('../error/500.html');
+                    }
                 }
             })
         });
@@ -432,6 +468,13 @@ function delStu(stuNum){
             }else{
                 alert('删除失败，请刷新后重试！');
             }
+        },
+        error: (xhr,status,thrown)=>{
+            if(xhr.status == 404){
+                location.assign('../error/404.html');
+            }else{
+                location.assign('../error/500.html');
+            }
         }
     })
 }
@@ -457,6 +500,13 @@ function searchStu(){
                     methods: 'POST',
                     success: function(result){
                         resolve(result);    
+                    },
+                    error: (xhr,status,thrown)=>{
+                        if(xhr.status == 404){
+                            location.assign('../error/404.html');
+                        }else{
+                            location.assign('../error/500.html');
+                        }
                     }
                 })
             });
@@ -488,6 +538,13 @@ function classifyGroup(){
                 data:{condition : group},
                 success:function(result){
                     resolve(result);
+                },
+                error: (xhr,status,thrown)=>{
+                    if(xhr.status == 404){
+                        location.assign('../error/404.html');
+                    }else{
+                        location.assign('../error/500.html');
+                    }
                 }
             })
         });
@@ -557,17 +614,20 @@ function AddToList(result){
             tdInfo.classList.add('pointer');
             tdDel.classList.add('pointer');
             tdDel.classList.add('pointer');
-            tdInfo.onclick = function(){
+            tdInfo.onclick = function(event){
+                event.stopPropagation();
                 //获取详细信息
                 toDetail(this.getAttribute('stunum'));
             };
 
-            tdEdit.onclick = function(){
+            tdEdit.onclick = function(event){
+                event.stopPropagation();
                 // 前往修改页面
                 toEdit(this.getAttribute('stunum'));
             }
 
-            tdDel.onclick = function(){
+            tdDel.onclick = function(event){
+                event.stopPropagation();
                 if(confirm("确定删除该学生吗？")){
                     delStu(this.getAttribute('stunum'));
                 }
@@ -598,6 +658,7 @@ function AddToList(result){
 
         // 全选事件
         selectAllByPage();
+        clickTrClicked();
         
     }else{
         alert('无查询结果！');
@@ -698,11 +759,11 @@ function selectAllByPage() {
 
     selectAll.onclick = function () {
         if (!this.checked) {
-            for (let i = (nowPage - 1) * 14; i < choose.length && i < (nowPage - 1) * 14 + 14; i++) {
+            for (let i = (nowPage - 1) * 15; i < choose.length && i < (nowPage - 1) * 15 + 15; i++) {
                 choose[i].checked = false;
             }
         } else {
-            for (let i = (nowPage - 1) * 14; i < choose.length && i < (nowPage - 1) * 14 + 14; i++) {
+            for (let i = (nowPage - 1) * 15; i < choose.length && i < (nowPage - 1) * 15 + 15; i++) {
                 choose[i].checked = true;
             }
         }

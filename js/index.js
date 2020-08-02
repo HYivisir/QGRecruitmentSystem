@@ -67,9 +67,6 @@ window.onload = function () {
                 },
                 success: result=>{
                     resolve(result);
-                },
-                error: error=>{
-                    resolve(error);
                 }
             })
         });
@@ -81,6 +78,7 @@ window.onload = function () {
                     setCookie('username' ,oUser.value,7);
                     setCookie('password' ,result.message,7);
                 }
+                localStorage.setItem('user',oUser.value);
                 localStorage.setItem('token',result.message);
                 location.assign('pages/enrollInfo.html')
             
