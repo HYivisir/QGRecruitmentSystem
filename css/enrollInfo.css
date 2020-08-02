@@ -1,6 +1,4 @@
-
-
-#detail-info,#add-info{
+#detail-info, #add-info {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -9,39 +7,47 @@
     background-color: #fff;
 }
 
-#detail-info p,#add-info p{
+#detail-info p, #add-info p {
     font-size: 24px;
     font-weight: 600;
 }
 
-.opt-form{
+td {
+    cursor: default !important;
+}
+
+td svg {
+    cursor: pointer;
+}
+
+.opt-form {
     margin-left: 150px;
     align-self: flex-start;
     width: 65%;
 }
 
-.opt-form-base{
+.opt-form-base {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
 }
 
-.opt-form-item{
+.opt-form-item {
     margin: 5px 10px;
     flex: 0 0 30%;
     display: flex;
     justify-content: space-between;
 }
 
-.opt-form-item a{
+.opt-form-item a {
     color: #000;
 }
 
-.opt-form-item a:hover{
+.opt-form-item a:hover {
     text-decoration: none;
 }
 
-.opt-form-item input,.opt-form-item textarea,.opt-form-item select{
+.opt-form-item input, .opt-form-item textarea, .opt-form-item select {
     width: 125px;
     border: 1px rgb(165, 123, 212) solid;
     border-radius: 5px;
@@ -49,11 +55,11 @@
     resize: none;
 }
 
-.opt-form-other input{
+.opt-form-other input {
     width: 60%;
 }
 
-.opt-form-mid{
+.opt-form-mid {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -61,36 +67,36 @@
     justify-content: space-between;
 }
 
-.opt-form-mid-item{
+.opt-form-mid-item {
     flex: 1;
     display: flex;
     flex-direction: column;
     width: 150%;
 }
 
-.opt-form-mid-item textarea{
+.opt-form-mid-item textarea {
     width: 100%;
     height: 100px;
 }
 
-.opt-form-btm-item{
+.opt-form-btm-item {
     display: flex;
     flex-direction: column;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.opt-form-btm-item textarea{
+.opt-form-btm-item textarea {
     width: 100%;
     height: 100px;
 }
 
-.opt-form-footer{
+.opt-form-footer {
     display: flex;
     justify-content: center;
 }
 
-.opt-form-sumit{
+.opt-form-sumit {
     width: 80px;
     height: 30px;
     border: 1px rgb(165, 123, 212) solid;
@@ -101,7 +107,6 @@
     color: #fff;
 }
 
-.opt-form-sumit:hover{
+.opt-form-sumit:hover {
     background-color: rgb(135, 68, 212);
 }
-
