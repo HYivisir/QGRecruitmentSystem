@@ -155,17 +155,17 @@
                     <p>个人信息</p>
                     <div class="opt-form">
                         <div class="opt-form-base">
-                            <div class="opt-form-item"><a>姓名：</a><input type="text" placeholder="请输入汉字" class="opt-form-adds"></div>
-                            <div class="opt-form-item"><a>年龄：</a><input type="text" class="opt-form-adds"></div>
-                            <div class="opt-form-item"><a>C实验成绩：</a><input type="text" class="opt-form-adds"></div>
+                            <div class="opt-form-item"><a>姓名：</a><input type="text" placeholder="请输入汉字姓名" class="opt-form-adds"></div>
+                            <div class="opt-form-item"><a>年龄：</a><input type="number" placeholder="15-25" min="15" max="25" class="opt-form-adds"></div>
+                            <div class="opt-form-item"><a>C实验成绩：</a><input type="number" min="0" max="100" placeholder="0-100" class="opt-form-adds"></div>
                             <div class="opt-form-item"><a>性别：</a>
                                 <select class="opt-form-adds">
                                     <option value="男">男</option>
                                     <option value="女">女</option>
                                 </select>
                             </div>
-                            <div class="opt-form-item"><a>宿舍：</a><input type="text" class="opt-form-adds"></div>
-                            <div class="opt-form-item"><a>英语(1)成绩：</a><input type="text" class="opt-form-adds"></div>
+                            <div class="opt-form-item"><a>宿舍：</a><input type="text" maxlength="12" placeholder="如：西三110" class="opt-form-adds"></div>
+                            <div class="opt-form-item"><a>英语(1)成绩：</a><input type="number" min="0" max="100" placeholder="0-100" class="opt-form-adds"></div>
                             <div class="opt-form-item"><a>应征部门：</a>
                                 <select id="form-apartment" class="opt-form-adds">
                                     <option value="1">前端组</option>
@@ -177,39 +177,39 @@
                                     <option value="7">移动组</option>
                                 </select>
                             </div>
-                            <div class="opt-form-item"><a>上学期期末排名：</a><input type="text" class="opt-form-adds"></div>
-                            <div class="opt-form-item"><a>大一上绩点：</a><input type="text" class="opt-form-adds"></div>
+                            <div class="opt-form-item"><a>上学期期末排名：</a><input type="number" placeholder="请输入数字" class="opt-form-adds"></div>
+                            <div class="opt-form-item"><a>大一上绩点：</a><input type="number" min="0" max="5.0" step="0.1" placeholder="0-5.0" class="opt-form-adds"></div>
                             <div class="opt-form-item"><a>年级：</a>
                                 <select class="opt-form-adds">
                                     <option value="1">大一</option>
                                     <option value="2">大二</option>
                                 </select>
                             </div>
-                            <div class="opt-form-item"><a>班级职务：</a><input type="text" class="opt-form-adds"></div>
-                            <div class="opt-form-item"><a>邮箱：</a><input type="text" class="opt-form-adds"></div>
-                            <div class="opt-form-item"><a>专业班级：</a><input type="text" class="opt-form-adds"></div>
+                            <div class="opt-form-item"><a>班级职务：</a><input type="text" placeholder="请输入班级职务" class="opt-form-adds"></div>
+                            <div class="opt-form-item"><a>邮箱：</a><input type="email" placeholder="请输入电子邮箱" class="opt-form-adds"></div>
+                            <div class="opt-form-item"><a>专业班级：</a><input type="text" placeholder="完整专业+x班" class="opt-form-adds"></div>
                             <div class="opt-form-item"><a>是否挂科：</a>
                                 <select class="opt-form-adds">
                                     <option value="否">否</option>
                                     <option value="是">是</option>
                                 </select>
                             </div>
-                            <div class="opt-form-item"><a>手机：</a><input type="text" class="opt-form-adds"></div>
-                            <div class="opt-form-item"><a>学号：</a><input type="text" class="opt-form-adds"></div>
-                            <div class="opt-form-item"><a>C理论成绩：</a><input type="text" class="opt-form-adds"></div>
-                            <div class="opt-form-item"><a>QQ：</a><input type="text" class="opt-form-adds"></div>
+                            <div class="opt-form-item"><a>手机：</a><input type="tel" placeholder="请输入11位手机号" maxlength="11" class="opt-form-adds"></div>
+                            <div class="opt-form-item"><a>学号：</a><input type="tel" placeholder="请输入10位学号" maxlength="10" class="opt-form-adds"></div>
+                            <div class="opt-form-item"><a>C理论成绩：</a><input type="number" min="0" max="100" placeholder="0-100" class="opt-form-adds"></div>
+                            <div class="opt-form-item"><a>QQ：</a><input type="tel" placeholder="请输入QQ号" class="opt-form-adds"></div>
                         </div>
-                        <div class="opt-form-item opt-form-other"><a>参加其他学生科技社团普通社团情况说明：</a><input type="text" class="opt-form-adds"></div>
-                        <div class="opt-form-item opt-form-other"><a>是否组队报名，填写同组同学姓名(限3人)：</a><input type="text" class="opt-form-adds"></div>
+                        <div class="opt-form-item opt-form-other"><a>参加其他学生科技社团普通社团情况说明：</a><input type="text" maxlength="50" class="opt-form-adds"></div>
+                        <div class="opt-form-item opt-form-other"><a>是否组队报名，填写同组同学姓名(限3人)：</a><input type="text" maxlength="50" class="opt-form-adds"></div>
                         <div class="opt-form-mid">
-                            <div class="opt-form-item opt-form-mid-item"><a>爱好：</a><textarea type="text" class="opt-form-adds"></textarea></div>
-                            <div class="opt-form-item opt-form-mid-item"><a>座右铭：</a><textarea type="text" class="opt-form-adds"></textarea></div>
+                            <div class="opt-form-item opt-form-mid-item"><a>爱好：</a><textarea type="text" maxlength="100" class="opt-form-adds"></textarea></div>
+                            <div class="opt-form-item opt-form-mid-item"><a>座右铭：</a><textarea type="text" maxlength="100" class="opt-form-adds"></textarea></div>
                         </div>
                         <div class="opt-form-btm">
-                            <div class="opt-form-item opt-form-btm-item"><a>奖惩情况和实践经历(社会实践或者计算机相关技术学习掌握情况)</a><textarea type="text" class="opt-form-adds"></textarea></div>
-                            <div class="opt-form-item opt-form-btm-item"><a>自我评价</a><textarea type="text" class="opt-form-adds"></textarea></div>
-                            <div class="opt-form-item opt-form-btm-item"><a>简述能体现你四个方面的一件事(1)善于协作(2)刻苦努力(3)甘于奉献(4)持之以恒</a><textarea type="text" class="opt-form-adds"></textarea></div>
-                            <div class="opt-form-item opt-form-btm-item"><a>请说一下大学四年的个人规划以及为什么希望加入QG工作室</a><textarea type="text" class="opt-form-adds"></textarea></div>
+                            <div class="opt-form-item opt-form-btm-item"><a>奖惩情况和实践经历(社会实践或者计算机相关技术学习掌握情况)</a><textarea type="text" maxlength="500" class="opt-form-adds"></textarea></div>
+                            <div class="opt-form-item opt-form-btm-item"><a>自我评价</a><textarea type="text" maxlength="500" class="opt-form-adds"></textarea></div>
+                            <div class="opt-form-item opt-form-btm-item"><a>简述能体现你四个方面的一件事(1)善于协作(2)刻苦努力(3)甘于奉献(4)持之以恒</a><textarea type="text" maxlength="500" class="opt-form-adds"></textarea></div>
+                            <div class="opt-form-item opt-form-btm-item"><a>请说一下大学四年的个人规划以及为什么希望加入QG工作室</a><textarea type="text" maxlength="500" class="opt-form-adds"></textarea></div>
                         </div>
                         <div class="opt-form-footer">
                             <input type="button" value="提 交" class="opt-form-sumit" id="opt-add-submit">
@@ -220,17 +220,17 @@
                     <p>个人信息</p>
                     <div class="opt-form">
                         <div class="opt-form-base">
-                            <div class="opt-form-item"><a>姓名：</a><input type="text" class="opt-form-edit"></div>
-                            <div class="opt-form-item"><a>年龄：</a><input type="text" class="opt-form-edit"></div>
-                            <div class="opt-form-item"><a>C实验成绩：</a><input type="text" class="opt-form-edit"></div>
+                            <div class="opt-form-item"><a>姓名：</a><input type="text" placeholder="请输入汉字姓名" class="opt-form-edit"></div>
+                            <div class="opt-form-item"><a>年龄：</a><input type="number" placeholder="15-25" min="15" max="25"  class="opt-form-edit"></div>
+                            <div class="opt-form-item"><a>C实验成绩：</a><input type="number" min="0" max="100" placeholder="0-100"  class="opt-form-edit"></div>
                             <div class="opt-form-item"><a>性别：</a>
                                 <select class="opt-form-edit">
                                     <option value="男">男</option>
                                     <option value="女">女</option>
                                 </select>
                             </div>
-                            <div class="opt-form-item"><a>宿舍：</a><input type="text" class="opt-form-edit"></div>
-                            <div class="opt-form-item"><a>英语(1)成绩：</a><input type="text" class="opt-form-edit"></div>
+                            <div class="opt-form-item"><a>宿舍：</a><input type="text"  maxlength="12" placeholder="如：西三110" class="opt-form-edit"></div>
+                            <div class="opt-form-item"><a>英语(1)成绩：</a><input type="number" min="0" max="100" placeholder="0-100"  class="opt-form-edit"></div>
                             <div class="opt-form-item"><a>应征部门：</a>
                                 <select  class="opt-form-edit">
                                     <option value="1">前端组</option>
@@ -242,39 +242,39 @@
                                     <option value="7">移动组</option>
                                 </select>
                             </div>
-                            <div class="opt-form-item"><a>上学期期末排名：</a><input type="text" class="opt-form-edit"></div>
-                            <div class="opt-form-item"><a>大一上绩点：</a><input type="text" class="opt-form-edit"></div>
+                            <div class="opt-form-item"><a>上学期期末排名：</a><input  type="number" placeholder="请输入数字" class="opt-form-edit"></div>
+                            <div class="opt-form-item"><a>大一上绩点：</a><input  type="number" min="0" max="5.0" step="0.1" placeholder="0-5.0" class="opt-form-edit"></div>
                             <div class="opt-form-item"><a>年级：</a>
                                 <select class="opt-form-edit">
                                     <option value="1">大一</option>
                                     <option value="2">大二</option>
                                 </select>
                             </div>
-                            <div class="opt-form-item"><a>班级职务：</a><input type="text" class="opt-form-edit"></div>
-                            <div class="opt-form-item"><a>邮箱：</a><input type="text" class="opt-form-edit"></div>
-                            <div class="opt-form-item"><a>专业班级：</a><input type="text" class="opt-form-edit"></div>
+                            <div class="opt-form-item"><a>班级职务：</a><input type="text"  placeholder="请输入班级职务" class="opt-form-edit"></div>
+                            <div class="opt-form-item"><a>邮箱：</a><input  type="email" placeholder="请输入电子邮箱" class="opt-form-edit"></div>
+                            <div class="opt-form-item"><a>专业班级：</a><input type="text" placeholder="完整专业+x班" class="opt-form-edit"></div>
                             <div class="opt-form-item"><a>是否挂科：</a>
                                 <select class="opt-form-edit">
                                     <option value="否">否</option>
                                     <option value="是">是</option>
                                 </select>
                             </div>
-                            <div class="opt-form-item"><a>手机：</a><input type="text" class="opt-form-edit"></div>
-                            <div class="opt-form-item"><a>学号：</a><input type="text" class="opt-form-edit"></div>
-                            <div class="opt-form-item"><a>C理论成绩：</a><input type="text" class="opt-form-edit"></div>
-                            <div class="opt-form-item"><a>QQ：</a><input type="text" class="opt-form-edit"></div>
+                            <div class="opt-form-item"><a>手机：</a><input type="tel" placeholder="请输入11位手机号" maxlength="11" class="opt-form-edit"></div>
+                            <div class="opt-form-item"><a>学号：</a><input  type="tel" placeholder="请输入10位学号" maxlength="10" class="opt-form-edit"></div>
+                            <div class="opt-form-item"><a>C理论成绩：</a><input type="number" min="0" max="100" placeholder="0-100"  class="opt-form-edit"></div>
+                            <div class="opt-form-item"><a>QQ：</a><input type="tel" placeholder="请输入QQ号"  class="opt-form-edit"></div>
                         </div>
-                        <div class="opt-form-item opt-form-other"><a>参加其他学生科技社团普通社团情况说明：</a><input type="text" class="opt-form-edit"></div>
-                        <div class="opt-form-item opt-form-other"><a>是否组队报名，填写同组同学姓名(限3人)：</a><input type="text" class="opt-form-edit"></div>
+                        <div class="opt-form-item opt-form-other"><a>参加其他学生科技社团普通社团情况说明：</a><input type="text"  maxlength="50" class="opt-form-edit"></div>
+                        <div class="opt-form-item opt-form-other"><a>是否组队报名，填写同组同学姓名(限3人)：</a><input type="text"  maxlength="50" class="opt-form-edit"></div>
                         <div class="opt-form-mid">
-                            <div class="opt-form-item opt-form-mid-item"><a>爱好：</a><textarea type="text" class="opt-form-edit"></textarea></div>
-                            <div class="opt-form-item opt-form-mid-item"><a>座右铭：</a><textarea type="text" class="opt-form-edit"></textarea></div>
+                            <div class="opt-form-item opt-form-mid-item"><a>爱好：</a><textarea type="text" maxlength="100" class="opt-form-edit"></textarea></div>
+                            <div class="opt-form-item opt-form-mid-item"><a>座右铭：</a><textarea type="text" maxlength="100" class="opt-form-edit"></textarea></div>
                         </div>
                         <div class="opt-form-btm">
-                            <div class="opt-form-item opt-form-btm-item"><a>奖惩情况和实践经历(社会实践或者计算机相关技术学习掌握情况)</a><textarea type="text" class="opt-form-edit"></textarea></div>
-                            <div class="opt-form-item opt-form-btm-item"><a>自我评价</a><textarea type="text" class="opt-form-edit"></textarea></div>
-                            <div class="opt-form-item opt-form-btm-item"><a>简述能体现你四个方面的一件事(1)善于协作(2)刻苦努力(3)甘于奉献(4)持之以恒</a><textarea type="text" class="opt-form-edit"></textarea></div>
-                            <div class="opt-form-item opt-form-btm-item"><a>请说一下大学四年的个人规划以及为什么希望加入QG工作室</a><textarea type="text" class="opt-form-edit"></textarea></div>
+                            <div class="opt-form-item opt-form-btm-item"><a>奖惩情况和实践经历(社会实践或者计算机相关技术学习掌握情况)</a><textarea type="text"  maxlength="500"  class="opt-form-edit"></textarea></div>
+                            <div class="opt-form-item opt-form-btm-item"><a>自我评价</a><textarea type="text"  maxlength="500"  class="opt-form-edit"></textarea></div>
+                            <div class="opt-form-item opt-form-btm-item"><a>简述能体现你四个方面的一件事(1)善于协作(2)刻苦努力(3)甘于奉献(4)持之以恒</a><textarea type="text"  maxlength="500"  class="opt-form-edit"></textarea></div>
+                            <div class="opt-form-item opt-form-btm-item"><a>请说一下大学四年的个人规划以及为什么希望加入QG工作室</a><textarea type="text"  maxlength="500"  class="opt-form-edit"></textarea></div>
                         </div>
                         <div class="opt-form-footer">
                             <input type="button" value="修 改" class="opt-form-sumit" id="opt-edit-submit">
