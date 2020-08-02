@@ -13,6 +13,8 @@ window.onload = function(){
     // 批量导出
     outputStu()
     catchLi();
+
+    var editflag = 0;
 }
 // 标签切换
 function tab(target) {
@@ -97,9 +99,11 @@ function getStuList(){
     let listPromise = new Promise(resolve=>{
         $.ajax({
             url: domain + '/stu/list',
+            // xhrFields: {
+            //     withCredentials: true // 发送Ajax时，Request header中会带上 Cookie 信息。
+            // },
             headers:{
                 'QGer': 'I am a QGer',
-                // 'Cookies' : document.cookie
             },
             methods: 'POST',
             success:(result)=>{
@@ -118,7 +122,22 @@ function addStu(){
     var submitBtn = document.getElementById('opt-add-submit');
     submitBtn.onclick = function(){
         let addItems = document.getElementsByClassName('opt-form-adds');
+        // 校验表单
+        let agepass = checkRange(addItems[1],15,25),
+            theorypass = checkRange(addItems[16],0,100),
+            experimentpass = checkRange(addItems[2],0,100),
+            englishpass = checkRange(addItems[5],0,100),
+            pointpass = checkRange(addItems[8],0,5.0),
+            emailpass = checkEmail(addItems[11]);
 
+        if(agepass && theorypass && experimentpass && englishpass && pointpass && emailpass)
+        {   
+            //成功
+        }else{
+            window.scrollTo(0,0)
+            return;
+        }
+        
         let addData = {
             "name" : addItems[0].value,
             "gender" : addItems[3].value,
@@ -324,7 +343,21 @@ function editStu(){
     var editBtn = document.getElementById('opt-edit-submit');
     editBtn.onclick = function(){
         let addItems = document.getElementsByClassName('opt-form-edit');
+        // 校验表单
+        let agepass = checkRange(addItems[1],15,25),
+            theorypass = checkRange(addItems[16],0,100),
+            experimentpass = checkRange(addItems[2],0,100),
+            englishpass = checkRange(addItems[5],0,100),
+            pointpass = checkRange(addItems[8],0,5.0),
+            emailpass = checkEmail(addItems[11]);
 
+        if(agepass && theorypass && experimentpass && englishpass && pointpass && emailpass)
+        {   
+            //成功
+        }else{
+            window.scrollTo(0,0)
+            return;
+        }
         let addData = {
             "name" : addItems[0].value,
             "gender" : addItems[3].value,
@@ -639,19 +672,22 @@ function addPageChange() {
 
 
 // 页面跳转
-function toPage(){
-    let thepage = document.getElementById('opt-topage');
-    setTimeout(function(){
-        let pages = document.getElementsByClassName('opt-page-tab');
-        let maxpage = pages[pages.length-1].innerHTML;
-        thepage.onkeypress = function(event){
-            if(thepage.value>0 && thepage.value<=maxpage &&event.keyCode == 13){
-                appearNowPage(thepage.value);
-            }else{
-                appearPage(pages.length-1);
-            }
-        }
-    },4000)
+function toPage() {
+       let thepage = document.getElementById('opt-topage');
+       setTimeout(function () {
+           let pages = document.getElementsByClassName('opt-page-tab');
+           let maxpage = pages.length;
+           thepage.onkeypress = function (event) {
+               if (event.keyCode == 13) {
+                   let num = parseInt(thepage.value)
+                   if (num > 0 && num <= maxpage) {
+                       appearPage(num);
+                   } else {
+                       appearPage(pages.length);
+                   }
+               }
+           }
+       }, 4000)
 }
 
 
@@ -697,4 +733,26 @@ function getSelect() {
         }
     }
     return str.substring(0, str.length - 1);
+}
+
+// 校验范围
+function checkRange(course,min,max){
+    if(course.value > max || course.value < min){
+        course.style.color = 'red'
+        return false;
+    }else{
+        course.style.color = 'black';
+        return true;
+    }
+}
+
+// 校验邮箱
+function checkEmail(email){
+    if(!/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email.value)){
+        email.style.color = 'red';
+        return false;
+    }else{
+        email.style.color = 'black';
+        return true;
+    }
 }

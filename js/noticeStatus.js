@@ -328,17 +328,20 @@ function addPageChange() {
 
 
 // 页面跳转
-function toPage(){
-    let thepage = document.getElementById('opt-topage');
-    setTimeout(function(){
-        let pages = document.getElementsByClassName('opt-page-tab');
-        let maxpage = pages[pages.length-1].innerHTML;
-        thepage.onkeypress = function(event){
-            if(thepage.value>0 && thepage.value<=maxpage &&event.keyCode == 13){
-                appearPage(thepage.value);
-            }else{
-                appearPage(pages.length-1);
-            }
-        }
-    },4000)
+function toPage() {
+       let thepage = document.getElementById('opt-topage');
+       setTimeout(function () {
+           let pages = document.getElementsByClassName('opt-page-tab');
+           let maxpage = pages.length;
+           thepage.onkeypress = function (event) {
+               if (event.keyCode == 13) {
+                   let num = parseInt(thepage.value)
+                   if (num > 0 && num <= maxpage) {
+                       appearPage(num);
+                   } else {
+                       appearPage(pages.length);
+                   }
+               }
+           }
+       }, 4000)
 }
