@@ -362,7 +362,15 @@ window.onload = function () {
                 let count = 0;
                 for (let i in res) {
                     /* 判断 */
-                    if (tName == res[i].type && gName == res[i].group) {
+                    if (gName == "全部" && tName == res[i].type) {
+                        newTr += returnTrString(res[i].name,
+                            res[i].studentNum,
+                            res[i].group,
+                            res[i].evaluation,
+                            res[i].type,
+                            res[i].score,
+                            res[i].isPassed);
+                    } else if (tName == res[i].type && gName == res[i].group) {
                         count++;
                         newTr += returnTrString(res[i].name,
                             res[i].studentNum,
@@ -525,7 +533,7 @@ window.onload = function () {
         toPage();//页面跳转
     }
 
-    /* 通知按组别搜索之后再显示，与批量操作一样 */
+
     /* 模板回写 */
     function addTemplate() {
         $.ajax({
@@ -541,28 +549,18 @@ window.onload = function () {
                 let tempTitle = ``;
                 let tempText = ``;
                 for (let i in noti) {
-                    /* 修复最后输入回车和空格而出现的bug */
-                    if (noti[i].content.split("<div>").length > noti[i].content.split("</div>").length) {
-                        noti[i].content += "</div>"
-                    } else if (noti[i].content.split("<div>").length < noti[i].content.split("</div>").length) {
-                        noti[i].content = noti[i].content.substring(0, noti[i].content.length - 5);
-                    }
-
                     tempTitle = tempTitle + `
                         <option value="${noti[i].id}">${noti[i].title}</option>
                     `;
-
                     tempText = tempText + `
                     <textarea class="hide" cols="40" rows="10" disabled="disabled">${noti[i].content}</textarea>
-
                     `;
-
                 }
                 /* 插入 */
-                //notiMain.innerHTML += newNoti;
                 document.getElementById("send-appear-txt").innerHTML = tempText;
                 document.getElementById("send-message-title").innerHTML = tempTitle;
 
+                addTemplateClick();
             },
             error: (xhr, status, thrown) => {
                 if (xhr.status == 404) {
@@ -573,5 +571,23 @@ window.onload = function () {
             }
         })
     }
-    addTemplate()
+    addTemplate();
+
+    /* 发送通知点击事件 */
+    function addTemplateClick() {
+        let options = msgSection.getElementsByTagName("option");
+        let textareas = msgSection.getElementsByTagName("textarea");
+        textareas[0].classList.remove("hide");
+
+        document.getElementById("send-message-title").onchange = function () {
+            var i = this.selectedIndex;
+            addHideInTextareas(textareas);
+            textareas[i].classList.remove("hide");
+        }
+    }
+    function addHideInTextareas(arr) {
+        for (let i = 0; i < arr.length; i++) {
+            arr[i].classList.add("hide");
+        }
+    }
 }
