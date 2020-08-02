@@ -21,12 +21,31 @@ window.onload = function () {
             let obj = JSON.parse(result);
             let noti = JSON.parse(obj.data);
 
-            let newNoti = "";
+            let newNoti = `
+                    <div class="noti-div">
+                        <div class="noti-main">
+                            <div>#请在需要填写的地方使用#</div>
+                            <br>
+                            <div>占位符：</div>
+                            <div>名字：#name#</div>
+                            <div>地点：#address#</div>
+                            <div>时间：#time#</div>
+                            <br>
+                            <div>#较长信息可以滚动查看#</div>
+                        </div>
+                        <div class="noti-name">模板使用注意事项</div>
+                    </div>
+            `;
             for (let i in noti) {
                 /* 修复最后输入回车和空格而出现的bug */
-                let zz = /(<div>)$/;
-                if (zz.test(noti[i].content))
+                if (noti[i].content.split("<div>").length > noti[i].content.split("</div>").length) {
+                    noti[i].content += "</div>"
+                } else if (noti[i].content.split("<div>").length < noti[i].content.split("</div>").length) {
                     noti[i].content = noti[i].content.substring(0, noti[i].content.length - 5);
+                }
+
+                console.log(noti[i].content);
+
                 newNoti = newNoti + `
                     <div class="noti-div">
                         <div class="hide id-here">${noti[i].id}</div> 
@@ -111,17 +130,17 @@ window.onload = function () {
                 sendNoti.onclick = function () {
                     if (isClick) {
                         isClick = false;
-                        /* 放入input提交 */
-                        let txt = document.getElementById("sec-txt");
-                        txt.value = addText.innerHTML;
+                        /* 将空格换成字符串 */
+                        addText.innerHTML = addText.innerHTML.replace(/&nbsp;/g, " ");
+
                         $ajax({
                             method: "post",
                             url: domain + "/model/update",
                             data: {
                                 "id": id,
                                 "title": addTitle.value,
-                                //"content": addText.innerText
-                                "content": txt.value
+                                "content": addText.innerHTML
+                                //"content": txt.value
                             },
                             success: function (result) {
                                 let obj = JSON.parse(result);
@@ -154,16 +173,15 @@ window.onload = function () {
             sendNoti.onclick = function () {
                 if (isClick) {
                     isClick = false;
-                    /* 放入input后提交 */
                     let tit = addSec.querySelector(".noti-input").value;
-                    let txt = document.getElementById("sec-txt");
-                    txt.value = addText.innerHTML;
+                    /* 将空格换成字符串 */
+                    addText.innerHTML = addText.innerHTML.replace(/&nbsp;/g, " ");
                     $ajax({
                         method: "post",
                         url: domain + "/model/save",
                         data: {
                             "title": tit,
-                            "content": txt.value
+                            "content": addText.innerHTML
                         },
                         success: function (result) {
                             let obj = JSON.parse(result);
