@@ -187,7 +187,6 @@ window.onload = function () {
         }
     }
 
-
     /* 添加删除事件 */
     function addDeleteClick() {
         let isDe = document.getElementById("noti-isde");
@@ -223,6 +222,5 @@ window.onload = function () {
             isDe.classList.add("hide");
         }
     }
-
 }
 
