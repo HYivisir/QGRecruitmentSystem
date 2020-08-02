@@ -151,14 +151,16 @@ function addStu() {
             englishpass = checkRange(addItems[5],0,100),
             pointpass = checkRange(addItems[8],0,5.0),
             emailpass = checkEmail(addItems[11]),
-            rankpass = checkRange(addItems[7],1,20000);
+            rankpass = checkRange(addItems[7],1,20000),
+            phonepass = checkLength(addItems[14],11),
+            stunumpass = checkLength(addItems[15],10);
 
         for(let i=0;i<18;i++){
             if(!isNull(addItems[i])){
                 return false;
             }
         }    
-        if(agepass && theorypass && experimentpass && englishpass && pointpass && emailpass && rankpass)
+        if(agepass && theorypass && experimentpass && englishpass && pointpass && emailpass && rankpass && phonepass && stunumpass)
         {   
             //成功
         } else {
@@ -399,14 +401,16 @@ function editStu() {
             englishpass = checkRange(addItems[5],0,100),
             pointpass = checkRange(addItems[8],0,5.0),
             emailpass = checkEmail(addItems[11]),
-            rankpass = checkRange(addItems[7],1,20000);
+            rankpass = checkRange(addItems[7],1,20000),
+            phonepass = checkLength(addItems[14],11),
+            stunumpass = checkLength(addItems[15],10);
         for(let i=0;i<18;i++){
             if(!isNull(addItems[i])){
                 return false;
             }
         }    
         
-        if(agepass && theorypass && experimentpass && englishpass && pointpass && emailpass && rankpass)
+        if(agepass && theorypass && experimentpass && englishpass && pointpass && emailpass && rankpass && phonepass && stunumpass)
         {   
             //成功
         } else {
@@ -855,4 +859,16 @@ function isNull(obj){
         return false;
     }
     return true;
+}
+
+
+// 校验学号和电话号码长度
+function checkLength(obj,maxLength){
+    if (obj.value.length < maxLength) {
+        obj.style.color = 'red'
+        return false;
+    } else {
+        obj.style.color = 'black';
+        return true;
+    }
 }
