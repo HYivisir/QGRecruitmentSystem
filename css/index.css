@@ -118,3 +118,74 @@ svg {
     background-color: rgb(163, 123, 233);
     cursor: pointer;
 }
+
+
+.dele {
+    position: relative;
+    width: 380px;
+    height: 180px;
+    padding-top: 30px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 0.7px 10px rgba(129, 129, 129, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.secti {
+    width: 100%;
+    height: 100%;
+    padding: 40px 0;
+    align-items: center;
+    z-index: 1000 !important;
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.sec-de {
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-color: rgba(164, 123, 212, .8);
+}
+
+.sec-de svg {
+    margin-left: -2px;
+    width: 30px;
+}
+
+.sec-de:hover {
+    background-color: rgb(164, 123, 212);
+}
+
+.de-sub {
+    height: 48px;
+    width: 140px;
+    margin: 20px;
+    margin-bottom: -5px;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(163, 123, 233, .8);
+    color: white;
+    font-size: 16px;
+}
+
+.de-sub:hover {
+    background-color: rgb(163, 123, 233);
+}
+
+.hide {
+    display: none;
+}
