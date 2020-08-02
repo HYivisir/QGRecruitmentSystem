@@ -40,7 +40,6 @@ window.onload = function () {
     var sections = document.getElementsByClassName('secti');
     var closeBtn = document.getElementsByClassName('sec-de');
     var submitBtn = document.getElementsByClassName('de-sub');
-
     for (var i = 0; i < sections.length; i++) {
         let index = i;
         submitBtn[index].onclick = function () {
@@ -89,10 +88,10 @@ window.onload = function () {
 
             addAllFunc()
         },
-        error: (xhr,status,thrown)=>{
-            if(xhr.status == 404){
+        error: (xhr, status, thrown) => {
+            if (xhr.status == 404) {
                 location.assign('../error/404.html');
-            }else{
+            } else {
                 location.assign('../error/500.html');
             }
         }
@@ -123,6 +122,8 @@ window.onload = function () {
                 location.assign('../error/404.html');
             }
         });
+
+        this.disabled = true;
     }
 
     /* 批量通过 */
@@ -151,6 +152,8 @@ window.onload = function () {
                 location.assign('../error/404.html');
             }
         });
+
+        this.disabled = true;
     }
 
     /* 添加删除 */
@@ -179,6 +182,7 @@ window.onload = function () {
                             location.assign('../error/404.html');
                         }
                     })
+                    this.disabled = true;
                 }
             }
         }
@@ -242,6 +246,7 @@ window.onload = function () {
                             location.assign('../error/404.html');
                         }
                     })
+                    this.disabled = true;
                 }
             }
         }
@@ -317,6 +322,7 @@ window.onload = function () {
                 location.assign('../error/404.html');
             }
         });
+        this.disabled = true;
     }
     /* 点击回车搜索 */
     document.getElementById("opt-input").onkeypress = function (event) {
@@ -332,8 +338,8 @@ window.onload = function () {
         if (str == "笔试") return 3;
     }
 
-    let searchTandG = document.getElementById("search-TandG");
     /* 按组别和轮次搜索 */
+    let searchTandG = document.getElementById("search-TandG");
     searchTandG.onclick = function () {
         /* 获取选项框信息 */
         let tbody = document.getElementById("tbody");
@@ -387,14 +393,15 @@ window.onload = function () {
                 document.getElementById("opt-change-score").classList.remove("hide");
                 document.getElementById("opt-change-pass").classList.remove("hide");
             },
-            error: (xhr,status,thrown)=>{
-                if(xhr.status == 404){
+            error: (xhr, status, thrown) => {
+                if (xhr.status == 404) {
                     location.assign('../error/404.html');
-                }else{
+                } else {
                     location.assign('../error/500.html');
                 }
             }
         });
+        this.disabled = true;
     }
 
     /* 当前页面全选 */
@@ -517,4 +524,54 @@ window.onload = function () {
         clickTrClicked();//点击tr选中
         toPage();//页面跳转
     }
+
+    /* 通知按组别搜索之后再显示，与批量操作一样 */
+    /* 模板回写 */
+    function addTemplate() {
+        $.ajax({
+            method: "POST",
+            headers: {
+                'QGer': 'I am a QGer'
+            },
+            url: domain + "/model/list",
+            success: function (result) {
+                let obj = JSON.parse(result);
+                let noti = JSON.parse(obj.data);
+
+                let tempTitle = ``;
+                let tempText = ``;
+                for (let i in noti) {
+                    /* 修复最后输入回车和空格而出现的bug */
+                    if (noti[i].content.split("<div>").length > noti[i].content.split("</div>").length) {
+                        noti[i].content += "</div>"
+                    } else if (noti[i].content.split("<div>").length < noti[i].content.split("</div>").length) {
+                        noti[i].content = noti[i].content.substring(0, noti[i].content.length - 5);
+                    }
+
+                    tempTitle = tempTitle + `
+                        <option value="${noti[i].id}">${noti[i].title}</option>
+                    `;
+
+                    tempText = tempText + `
+                    <textarea class="hide" cols="40" rows="10" disabled="disabled">${noti[i].content}</textarea>
+
+                    `;
+
+                }
+                /* 插入 */
+                //notiMain.innerHTML += newNoti;
+                document.getElementById("send-appear-txt").innerHTML = tempText;
+                document.getElementById("send-message-title").innerHTML = tempTitle;
+
+            },
+            error: (xhr, status, thrown) => {
+                if (xhr.status == 404) {
+                    location.assign('../error/404.html');
+                } else {
+                    location.assign('../error/500.html');
+                }
+            }
+        })
+    }
+    addTemplate()
 }
