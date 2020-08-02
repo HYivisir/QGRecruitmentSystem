@@ -119,8 +119,10 @@ window.onload = function () {
             },
             success: function (result) {
                 let obj = JSON.parse(result);
-                if (obj.status)
+                if (obj.status) {
+                    scoreSection.classList.add("hide");
                     searchTandG.click();
+                }
             },
             error: function (msg) {
                 let obj = JSON.parse(msg);
@@ -146,8 +148,10 @@ window.onload = function () {
             },
             success: function (result) {
                 let obj = JSON.parse(result);
-                if (obj.status)
+                if (obj.status) {
+                    passSection.classList.add("hide");
                     searchTandG.click();
+                }
             },
             error: function (msg) {
                 let obj = JSON.parse(msg);
@@ -187,23 +191,29 @@ window.onload = function () {
         }
     }
 
+
+    /* 点击修改后数据回写，不进行页面刷新 */
     /* 添加修改 */
     function addChange() {
         let btn = document.querySelectorAll(".tr-change");
         for (let i in btn) {
             btn[i].onclick = function () {
-                let noti = document.getElementById("section-change")
+                let noti = document.getElementById("section-change");
                 noti.classList.remove("hide");
                 /* 获取页面数据 */
                 let td = this.parentElement.parentElement.getElementsByTagName("td");
+                let id = getTypeId(td[5].innerHTML);
 
                 /* 数据回写 */
+                document.querySelectorAll(".passScr")[2].getElementsByTagName("option")[0].innerHTML = td[5].innerHTML;
                 let input = noti.getElementsByTagName("input");//姓名、成绩、提交
                 let select = noti.getElementsByTagName("select");//类型、状态
                 let myTextarea = noti.getElementsByTagName("textarea")[0];//评价
                 input[0].value = td[1].innerHTML;
                 input[1].value = td[6].innerHTML;
                 myTextarea.value = td[4].innerHTML;
+
+                select[1].options[0].selected = true;
                 for (let j = 0; j < select[1].options.length; j++) {
                     if (td[7].innerHTML == select[1].options[j].value) {
                         select[1].options[j].selected = true;
@@ -211,23 +221,32 @@ window.onload = function () {
                 }
 
                 input[2].onclick = function () {
-                    noti.classList.add("hide");
+                    let isPassed = select[1].options[select[1].selectedIndex];
                     $ajax({
                         method: "post",
                         url: domain + "/test/update",
                         data: {
                             "studentNum": td[2].innerHTML,
-                            "typeId": getTypeId(td[5].innerHTML),
+                            "typeId": id,
                             "score": input[1].value,
-                            "isPassed": select[1].options[select[1].selectedIndex].value,
+                            "isPassed": isPassed.value,
                             "evaluation": myTextarea.value
                         },
                         success: function (result) {
                             let obj = JSON.parse(result);
-                            if (obj.status)
-                                searchTandG.click();
+                            if (obj.status) {
+                                noti.classList.add("hide");
+                                /* 评价、成绩、状态回写 */
+                                td[4].innerHTML = myTextarea.value;
+                                td[6].innerHTML = input[1].value;
+                                if (isPassed.value == 'null')
+                                    td[7].innerHTML = "";
+                                else
+                                    td[7].innerHTML = isPassed.value;
+                            }
                         },
                         error: function (msg) {
+                            console.log(msg);
                             let obj = JSON.parse(msg);
                             alert(obj.message);
                         }
@@ -300,7 +319,9 @@ window.onload = function () {
                 appearNowPage(1);
 
                 /* 添加事件 */
+                /* 添加点击事件 */
                 addDele();
+                addChange();
                 addPageChange();
                 selectAllByPage();
 
@@ -421,7 +442,8 @@ window.onload = function () {
         }
         /* 修改当前页面的页码颜色 */
         let pageLi = pages.getElementsByTagName("li");
-        pageLi[nowPage - 1].classList.remove("page-chose");
+        if (pageLi[nowPage - 1].classList)
+            pageLi[nowPage - 1].classList.remove("page-chose");
         pageLi[page - 1].classList.add("page-chose");
         /* 修改当前页面 */
         nowPage = page;
@@ -430,17 +452,17 @@ window.onload = function () {
     // 页面跳转
     function toPage() {
         let thepage = document.getElementById('opt-topage');
-        setTimeout(function(){
+        setTimeout(function () {
             let pages = document.getElementsByClassName('opt-page-tab');
-            let maxpage = pages[pages.length-1].innerHTML;
-            thepage.onkeypress = function(event){
-                if(thepage.value>0 && thepage.value<=maxpage &&event.keyCode == 13){
+            let maxpage = pages[pages.length - 1].innerHTML;
+            thepage.onkeypress = function (event) {
+                if (thepage.value > 0 && thepage.value <= maxpage && event.keyCode == 13) {
                     appearNowPage(thepage.value);
                 }else{
                     appearPage(pages.length-1);
                 }
             }
-        },4000)
+        }, 4000)
     }
     toPage();
 
