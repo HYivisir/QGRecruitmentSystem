@@ -75,3 +75,7 @@
 .notice-change {
     height: 370px;
 }
+
+.choose {
+    cursor: default !important;
+}

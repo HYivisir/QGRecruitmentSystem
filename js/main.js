@@ -145,3 +145,16 @@ function selectAllByPage(page, one) {
     }
 }
 
+/* 点击tr选中 */
+function clickTrClicked() {
+    let tr = document.getElementsByTagName("tr");
+    let cho = document.getElementsByClassName("choose");
+    for (let i = 1; i < tr.length; i++) {
+        tr[i].onclick = function () {
+            cho[i - 1].checked = (cho[i - 1].checked ? false : true);
+        }
+        cho[i - 1].onclick = function () {
+            cho[i - 1].checked = (cho[i - 1].checked ? false : true);
+        }
+    }
+}
