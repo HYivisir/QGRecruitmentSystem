@@ -1,7 +1,7 @@
 /* 提交修改或删除模板的时候刷新页面 */
 
 window.onload = function () {
-
+    isLogined();
     catchLi();
 
     /* 获取需要多次使用的id */

@@ -1,10 +1,9 @@
 window.onload = function () {
-    
+    isLogined();
     getAllNoti();
     getClasInfo();
     toPage();
     catchLi();
-
 
     // 修改状态
     let submit = document.getElementById('sec-submit');
