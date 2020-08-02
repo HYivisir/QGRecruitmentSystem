@@ -1,4 +1,4 @@
-window.onload = function(){
+window.onload = function () {
     // 检验是否登录
     isLogined();
     tagTab();
@@ -38,206 +38,205 @@ function tab(target) {
 
 
 // 标签页切换
-function tagTab(){
+function tagTab() {
 
-        var optTabs = document.getElementsByClassName('opt-tabs');
-        var optPanes = document.getElementsByClassName('opt-pane');
-        optTabs[0].onclick = function(){
-            tab(this);
-            optTabs[1].classList.add('hide');
-            optTabs[2].classList.add('hide');
-            optTabs[3].classList.add('hide');
-            optPanes[0].classList.remove('hide');
-            optPanes[1].classList.add('hide');
-            optPanes[2].classList.add('hide');
-            optPanes[3].classList.add('hide');
-        }
-        optTabs[1].onclick = function(){
-            tab(this);
-            optTabs[1].classList.remove('hide');
-            optTabs[2].classList.add('hide');
-            optTabs[3].classList.add('hide');
-            optPanes[0].classList.add('hide');
-            optPanes[1].classList.remove('hide');
-            optPanes[2].classList.add('hide');
-            optPanes[3].classList.add('hide');
-        }
-        optTabs[2].onclick = function(){
-            tab(this);
-            optTabs[1].classList.add('hide');
-            optTabs[2].classList.remove('hide');
-            optTabs[3].classList.add('hide');
-            optPanes[0].classList.add('hide');
-            optPanes[1].classList.add('hide');
-            optPanes[2].classList.remove('hide');
-            optPanes[3].classList.add('hide');
-        }
-        optTabs[3].onclick = function(){
-            tab(this);
-            optTabs[1].classList.add('hide');
-            optTabs[2].classList.add('hide');
-            optTabs[3].classList.remove('hide');
-            optPanes[0].classList.add('hide');
-            optPanes[1].classList.add('hide');
-            optPanes[2].classList.add('hide');
-            optPanes[3].classList.remove('hide');
-        }
-   
-        let addStuBtn = document.getElementById('opt-add-stu');
-        addStuBtn.onclick = function(){
-            tab(optTabs[2]);
-            optPanes[0].classList.add('hide');
-            optPanes[1].classList.add('hide');
-            optPanes[2].classList.remove('hide');
-            optPanes[3].classList.add('hide');
-            optTabs[1].classList.add('hide');
-            optTabs[2].classList.remove('hide');
-            optTabs[3].classList.add('hide');
-        }
+    var optTabs = document.getElementsByClassName('opt-tabs');
+    var optPanes = document.getElementsByClassName('opt-pane');
+    optTabs[0].onclick = function () {
+        tab(this);
+        optTabs[1].classList.add('hide');
+        optTabs[2].classList.add('hide');
+        optTabs[3].classList.add('hide');
+        optPanes[0].classList.remove('hide');
+        optPanes[1].classList.add('hide');
+        optPanes[2].classList.add('hide');
+        optPanes[3].classList.add('hide');
+    }
+    optTabs[1].onclick = function () {
+        tab(this);
+        optTabs[1].classList.remove('hide');
+        optTabs[2].classList.add('hide');
+        optTabs[3].classList.add('hide');
+        optPanes[0].classList.add('hide');
+        optPanes[1].classList.remove('hide');
+        optPanes[2].classList.add('hide');
+        optPanes[3].classList.add('hide');
+    }
+    optTabs[2].onclick = function () {
+        tab(this);
+        optTabs[1].classList.add('hide');
+        optTabs[2].classList.remove('hide');
+        optTabs[3].classList.add('hide');
+        optPanes[0].classList.add('hide');
+        optPanes[1].classList.add('hide');
+        optPanes[2].classList.remove('hide');
+        optPanes[3].classList.add('hide');
+    }
+    optTabs[3].onclick = function () {
+        tab(this);
+        optTabs[1].classList.add('hide');
+        optTabs[2].classList.add('hide');
+        optTabs[3].classList.remove('hide');
+        optPanes[0].classList.add('hide');
+        optPanes[1].classList.add('hide');
+        optPanes[2].classList.add('hide');
+        optPanes[3].classList.remove('hide');
+    }
+
+    let addStuBtn = document.getElementById('opt-add-stu');
+    addStuBtn.onclick = function () {
+        tab(optTabs[2]);
+        optPanes[0].classList.add('hide');
+        optPanes[1].classList.add('hide');
+        optPanes[2].classList.remove('hide');
+        optPanes[3].classList.add('hide');
+        optTabs[1].classList.add('hide');
+        optTabs[2].classList.remove('hide');
+        optTabs[3].classList.add('hide');
+    }
 }
 
 //请求学生列表
-function getStuList(){
-    let listPromise = new Promise(resolve=>{
+function getStuList() {
+    let listPromise = new Promise(resolve => {
         $.ajax({
             url: domain + '/stu/list',
             // xhrFields: {
             //     withCredentials: true // 发送Ajax时，Request header中会带上 Cookie 信息。
             // },
-            headers:{
+            headers: {
                 'QGer': 'I am a QGer',
             },
             methods: 'POST',
-            success:(result)=>{
+            success: (result) => {
                 resolve(result);
             },
-            error: (xhr,status,thrown)=>{
-                if(xhr.status == 404){
+            error: (xhr, status, thrown) => {
+                if (xhr.status == 404) {
                     location.assign('../error/404.html');
-                }else{
+                } else {
                     location.assign('../error/500.html');
                 }
             }
         })
     });
-    listPromise.then(result=>{
+    listPromise.then(result => {
         AddToList(result);
     });
 }
 
 
 //新增学生信息
-function addStu(){
+function addStu() {
     var submitBtn = document.getElementById('opt-add-submit');
-    submitBtn.onclick = function(){
+    submitBtn.onclick = function () {
         let addItems = document.getElementsByClassName('opt-form-adds');
         // 校验表单
-        let agepass = checkRange(addItems[1],15,25),
-            theorypass = checkRange(addItems[16],0,100),
-            experimentpass = checkRange(addItems[2],0,100),
-            englishpass = checkRange(addItems[5],0,100),
-            pointpass = checkRange(addItems[8],0,5.0),
+        let agepass = checkRange(addItems[1], 15, 25),
+            theorypass = checkRange(addItems[16], 0, 100),
+            experimentpass = checkRange(addItems[2], 0, 100),
+            englishpass = checkRange(addItems[5], 0, 100),
+            pointpass = checkRange(addItems[8], 0, 5.0),
             emailpass = checkEmail(addItems[11]);
 
-        if(agepass && theorypass && experimentpass && englishpass && pointpass && emailpass)
-        {   
+        if (agepass && theorypass && experimentpass && englishpass && pointpass && emailpass) {
             //成功
-        }else{
-            window.scrollTo(0,0)
+        } else {
+            window.scrollTo(0, 0)
             return;
         }
-        
+
         let addData = {
-            "name" : addItems[0].value,
-            "gender" : addItems[3].value,
-            "age" : addItems[1].value,
-            "dormitory" : addItems[4].value,
-            "classRank" : addItems[7].value,
-            "grade" : addItems[9].value,
-            "majorClass" : addItems[12].value,
-            "duty" : addItems[10].value,
-            "isFailed" : addItems[13].value,
-            "Ctheory" : addItems[16].value,
-            "Cexperiment" : addItems[2].value,
-            "english" : addItems[5].value,
-            "gradePoint" : addItems[8].value,
-            "explanation" : addItems[18].value,
-            "email" : addItems[11].value,
-            "phoneNum" : addItems[14].value,
+            "name": addItems[0].value,
+            "gender": addItems[3].value,
+            "age": addItems[1].value,
+            "dormitory": addItems[4].value,
+            "classRank": addItems[7].value,
+            "grade": addItems[9].value,
+            "majorClass": addItems[12].value,
+            "duty": addItems[10].value,
+            "isFailed": addItems[13].value,
+            "Ctheory": addItems[16].value,
+            "Cexperiment": addItems[2].value,
+            "english": addItems[5].value,
+            "gradePoint": addItems[8].value,
+            "explanation": addItems[18].value,
+            "email": addItems[11].value,
+            "phoneNum": addItems[14].value,
             "qq": addItems[17].value,
-            "experience" : addItems[22].value,
-            "selfEvaluation" : addItems[23].value,
-            "exampleThing" : addItems[24].value,
-            "reasonForQg" : addItems[25].value,
-            "groupId" : addItems[6].value,
+            "experience": addItems[22].value,
+            "selfEvaluation": addItems[23].value,
+            "exampleThing": addItems[24].value,
+            "reasonForQg": addItems[25].value,
+            "groupId": addItems[6].value,
             "isTeam": addItems[19].value,
-            "studentNum" : addItems[15].value,
-            "hobby" : addItems[20].value,
-            "motto" : addItems[21].value
+            "studentNum": addItems[15].value,
+            "hobby": addItems[20].value,
+            "motto": addItems[21].value
         }
-        let promise = new Promise(resolve=>{
+        let promise = new Promise(resolve => {
             $.ajax({
                 url: domain + '/stu/save',
                 data: addData,
-                headers:{
+                headers: {
                     'QGer': 'I am a QGer'
                 },
                 methods: 'POST',
                 contentType: 'application/json',
-                success: (result)=>{
+                success: (result) => {
                     resolve(result);
                 },
-                error: (xhr,status,thrown)=>{
-                    if(xhr.status == 404){
+                error: (xhr, status, thrown) => {
+                    if (xhr.status == 404) {
                         location.assign('../error/404.html');
-                    }else{
+                    } else {
                         location.assign('../error/500.html');
                     }
                 }
             })
         });
 
-        promise.then(result=>{
+        promise.then(result => {
             result = JSON.parse(result);
-            if(result.status == true){
+            if (result.status == true) {
                 // alert(result.message);
                 location.reload(false)
-            }else{
+            } else {
                 alert(result.message + "请确定无漏填的值再重试！");
             }
         });
 
         this.disabled = true;
-        
+
     }
 }
 
 // 请求详细信息
-function toDetail(stunum){
-    let detailPromise = new Promise(resolve=>{
+function toDetail(stunum) {
+    let detailPromise = new Promise(resolve => {
         $.ajax({
             url: domain + '/stu/select',
-            data: {studentNum : stunum},
-            headers:{
+            data: { studentNum: stunum },
+            headers: {
                 'QGer': 'I am a QGer'
             },
             methods: 'POST',
-            success: function(result){
+            success: function (result) {
                 resolve(result);
             },
-            error: (xhr,status,thrown)=>{
-                if(xhr.status == 404){
+            error: (xhr, status, thrown) => {
+                if (xhr.status == 404) {
                     location.assign('../error/404.html');
-                }else{
+                } else {
                     location.assign('../error/500.html');
                 }
             }
         })
     });
 
-    detailPromise.then(result=>{
+    detailPromise.then(result => {
         result = JSON.parse(result)
-        if(result.status == true){
+        if (result.status == true) {
             // 跳转到详细页面
             var optTabs = document.getElementsByClassName('opt-tabs');
             var optPanes = document.getElementsByClassName('opt-pane');
@@ -280,42 +279,42 @@ function toDetail(stunum){
             details[24].value = stuobj.exampleThing;
             details[25].value = stuobj.reasonForQg;
 
-        }else{
+        } else {
             alert('请求详细信息失败！')
         }
     })
 
-    
+
 }
 
 // 跳转修改信息页面
-function toEdit(stunum){
+function toEdit(stunum) {
 
     // 回写数据
-    let detailPromise = new Promise(resolve=>{
+    let detailPromise = new Promise(resolve => {
         $.ajax({
             url: domain + '/stu/select',
-            data: {studentNum : stunum},
-            headers:{
+            data: { studentNum: stunum },
+            headers: {
                 'QGer': 'I am a QGer'
             },
             methods: 'POST',
-            success: function(result){
+            success: function (result) {
                 resolve(result);
             },
-            error: (xhr,status,thrown)=>{
-                if(xhr.status == 404){
+            error: (xhr, status, thrown) => {
+                if (xhr.status == 404) {
                     location.assign('../error/404.html');
-                }else{
+                } else {
                     location.assign('../error/500.html');
                 }
             }
         })
     });
 
-    detailPromise.then(result=>{
+    detailPromise.then(result => {
         result = JSON.parse(result)
-        if(result.status == true){
+        if (result.status == true) {
             // 跳转到修改页面
             var optTabs = document.getElementsByClassName('opt-tabs');
             var optPanes = document.getElementsByClassName('opt-pane');
@@ -358,7 +357,7 @@ function toEdit(stunum){
             details[24].value = stuobj.exampleThing;
             details[25].value = stuobj.reasonForQg;
 
-        }else{
+        } else {
             alert('请求详细信息失败！')
         }
     })
@@ -369,111 +368,110 @@ function toEdit(stunum){
 }
 
 // 修改信息
-function editStu(){
+function editStu() {
     var editBtn = document.getElementById('opt-edit-submit');
-    editBtn.onclick = function(){
+    editBtn.onclick = function () {
         let addItems = document.getElementsByClassName('opt-form-edit');
         // 校验表单
-        let agepass = checkRange(addItems[1],15,25),
-            theorypass = checkRange(addItems[16],0,100),
-            experimentpass = checkRange(addItems[2],0,100),
-            englishpass = checkRange(addItems[5],0,100),
-            pointpass = checkRange(addItems[8],0,5.0),
+        let agepass = checkRange(addItems[1], 15, 25),
+            theorypass = checkRange(addItems[16], 0, 100),
+            experimentpass = checkRange(addItems[2], 0, 100),
+            englishpass = checkRange(addItems[5], 0, 100),
+            pointpass = checkRange(addItems[8], 0, 5.0),
             emailpass = checkEmail(addItems[11]);
 
-        if(agepass && theorypass && experimentpass && englishpass && pointpass && emailpass)
-        {   
+        if (agepass && theorypass && experimentpass && englishpass && pointpass && emailpass) {
             //成功
-        }else{
-            window.scrollTo(0,0)
+        } else {
+            window.scrollTo(0, 0)
             return;
         }
         let addData = {
-            "name" : addItems[0].value,
-            "gender" : addItems[3].value,
-            "age" : addItems[1].value,
-            "dormitory" : addItems[4].value,
-            "classRank" : addItems[7].value,
-            "grade" : addItems[9].value,
-            "majorClass" : addItems[12].value,
-            "duty" : addItems[10].value,
-            "isFailed" : addItems[13].value,
-            "Ctheory" : addItems[16].value,
-            "Cexperiment" : addItems[2].value,
-            "english" : addItems[5].value,
-            "gradePoint" : addItems[8].value,
-            "explanation" : addItems[18].value,
-            "email" : addItems[11].value,
-            "phoneNum" : addItems[14].value,
+            "name": addItems[0].value,
+            "gender": addItems[3].value,
+            "age": addItems[1].value,
+            "dormitory": addItems[4].value,
+            "classRank": addItems[7].value,
+            "grade": addItems[9].value,
+            "majorClass": addItems[12].value,
+            "duty": addItems[10].value,
+            "isFailed": addItems[13].value,
+            "Ctheory": addItems[16].value,
+            "Cexperiment": addItems[2].value,
+            "english": addItems[5].value,
+            "gradePoint": addItems[8].value,
+            "explanation": addItems[18].value,
+            "email": addItems[11].value,
+            "phoneNum": addItems[14].value,
             "qq": addItems[17].value,
-            "experience" : addItems[22].value,
-            "selfEvaluation" : addItems[23].value,
-            "exampleThing" : addItems[24].value,
-            "reasonForQg" : addItems[25].value,
-            "groupId" : addItems[6].value,
+            "experience": addItems[22].value,
+            "selfEvaluation": addItems[23].value,
+            "exampleThing": addItems[24].value,
+            "reasonForQg": addItems[25].value,
+            "groupId": addItems[6].value,
             "isTeam": addItems[19].value,
-            "studentNum" : addItems[15].value,
-            "hobby" : addItems[20].value,
-            "motto" : addItems[21].value
+            "studentNum": addItems[15].value,
+            "hobby": addItems[20].value,
+            "motto": addItems[21].value
         }
-        let promise = new Promise(resolve=>{
+        let promise = new Promise(resolve => {
             $.ajax({
                 url: domain + '/stu/update',
                 data: addData,
-                headers:{
+                headers: {
                     'QGer': 'I am a QGer'
                 },
                 methods: 'POST',
                 contentType: 'application/json',
-                success: (result)=>{
+                success: (result) => {
                     resolve(result);
                 },
-                error: (xhr,status,thrown)=>{
-                    if(xhr.status == 404){
+                error: (xhr, status, thrown) => {
+                    if (xhr.status == 404) {
                         location.assign('../error/404.html');
-                    }else{
+                    } else {
                         location.assign('../error/500.html');
                     }
                 }
             })
         });
 
-        promise.then(result=>{
+        promise.then(result => {
             result = JSON.parse(result);
-            if(result.status == true){
+            if (result.status == true) {
                 // alert(result.message);
                 location.reload(false)
-            }else{
+            } else {
                 alert(result.message + "请确定无漏填的值再重试！");
             }
         });
 
         this.disabled = true;
-        
+
     }
 }
 
 // 根据学号删除学生
-function delStu(stuNum){
+function delStu(stuNum) {
     $.ajax({
         url: domain + '/stu/remove',
         methods: 'POST',
-        headers:{
+        headers: {
             'QGer': 'I am a QGer'
         },
-        data: {studentNum : stuNum},
-        success: function(res){
+        data: { studentNum: stuNum },
+        success: function (res) {
             res = JSON.parse(res);
-            if(res.status == true){
+            if (res.status == true) {
                 location.reload();
-            }else{
+            } else {
                 alert('删除失败，请刷新后重试！');
             }
         },
-        error: (xhr,status,thrown)=>{
-            if(xhr.status == 404){
+        error: (xhr, status, thrown) => {
+            if (xhr.status == 404) {
                 location.assign('../error/404.html');
-            }else{
+            } else {
                 location.assign('../error/500.html');
             }
         }
@@ -481,38 +479,38 @@ function delStu(stuNum){
 }
 
 //搜索学生
-function searchStu(){
+function searchStu() {
     let searchBtn = document.getElementById('opt-s-btn');
-    searchBtn.onclick = function(){
+    searchBtn.onclick = function () {
         let searchInput = document.getElementById('opt-input');
         let stus = document.getElementsByClassName('opt-table-tr');
         let optTable = document.getElementById('opt-table-info')
-        while(stus.length != 0){
+        while (stus.length != 0) {
             optTable.removeChild(stus[0]);
         }
 
-        if(searchInput.value == '' || searchInput.value == null){
+        if (searchInput.value == '' || searchInput.value == null) {
             getStuList();
-        }else{
-            let getPromise = new Promise(resolve=>{
+        } else {
+            let getPromise = new Promise(resolve => {
                 $.ajax({
                     url: domain + '/stu/condition',
-                    data: {condition : searchInput.value},
+                    data: { condition: searchInput.value },
                     methods: 'POST',
-                    success: function(result){
-                        resolve(result);    
+                    success: function (result) {
+                        resolve(result);
                     },
-                    error: (xhr,status,thrown)=>{
-                        if(xhr.status == 404){
+                    error: (xhr, status, thrown) => {
+                        if (xhr.status == 404) {
                             location.assign('../error/404.html');
-                        }else{
+                        } else {
                             location.assign('../error/500.html');
                         }
                     }
                 })
             });
 
-            getPromise.then(result=>{
+            getPromise.then(result => {
                 AddToList(result);
             })
         }
@@ -520,37 +518,37 @@ function searchStu(){
 }
 
 //筛选组别
-function classifyGroup(){
+function classifyGroup() {
     let csfBtn = document.getElementById('opt-select-group');
-    csfBtn.onchange = function(){
+    csfBtn.onchange = function () {
         let stus = document.getElementsByClassName('opt-table-tr');
         let optTable = document.getElementById('opt-table-info')
-        while(stus.length != 0){
+        while (stus.length != 0) {
             optTable.removeChild(stus[0]);
         }
         let group = csfBtn.value;
-        let groupPromise = new Promise(resolve=>{
+        let groupPromise = new Promise(resolve => {
             $.ajax({
                 url: domain + '/stu/condition',
                 methods: 'POST',
-                headers:{
+                headers: {
                     'QGer': 'I am a QGer'
                 },
-                data:{condition : group},
-                success:function(result){
+                data: { condition: group },
+                success: function (result) {
                     resolve(result);
                 },
-                error: (xhr,status,thrown)=>{
-                    if(xhr.status == 404){
+                error: (xhr, status, thrown) => {
+                    if (xhr.status == 404) {
                         location.assign('../error/404.html');
-                    }else{
+                    } else {
                         location.assign('../error/500.html');
                     }
                 }
             })
         });
 
-        groupPromise.then(result=>{
+        groupPromise.then(result => {
             AddToList(result);
         })
     }
@@ -558,36 +556,36 @@ function classifyGroup(){
 
 
 // 将获取的学生添加至列表
-function AddToList(result){
+function AddToList(result) {
     result = JSON.parse(result);
     // console.log(res);
-    if(result.status){
+    if (result.status) {
         let Tfragment = document.createDocumentFragment();
         let table = document.getElementById('opt-table-info');
         let stuArr = str2Arr(result.data);
-        for(let i=0;i<stuArr.length;i++){
+        for (let i = 0; i < stuArr.length; i++) {
             let fragment = document.createDocumentFragment();
             let tr = document.createElement('tr');
             let tdInput = document.createElement('td');
             let check = document.createElement('input');
             check.type = 'checkbox';
             check.classList.add('choose');
-            let tdName  = document.createElement('td'),
+            let tdName = document.createElement('td'),
                 tdClass = document.createElement('td'),
-                tdNum   = document.createElement('td'),
+                tdNum = document.createElement('td'),
                 tdGroup = document.createElement('td'),
                 tdPhone = document.createElement('td'),
-                tdQQ    = document.createElement('td'),
-                tdInfo  = document.createElement('td'),
-                tdEdit  = document.createElement('td'),
-                tdDel   = document.createElement('td');
-            tdName .innerText = JSON.parse(stuArr[i]).name;
+                tdQQ = document.createElement('td'),
+                tdInfo = document.createElement('td'),
+                tdEdit = document.createElement('td'),
+                tdDel = document.createElement('td');
+            tdName.innerText = JSON.parse(stuArr[i]).name;
             tdClass.innerText = JSON.parse(stuArr[i]).majorClass;
-            tdNum  .innerText = JSON.parse(stuArr[i]).studentNum;
+            tdNum.innerText = JSON.parse(stuArr[i]).studentNum;
             tdGroup.innerText = JSON.parse(stuArr[i]).group;
             tdPhone.innerText = JSON.parse(stuArr[i]).phoneNum;
-            tdQQ   .innerText = JSON.parse(stuArr[i]).qq;
-            tdInfo .innerHTML = `
+            tdQQ.innerText = JSON.parse(stuArr[i]).qq;
+            tdInfo.innerHTML = `
             <div class="detail-svg">
                 <svg t="1596162887434" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2093">
                     <path d="M734.7 862H289.3c-49.6 0-90-40.4-90-90V252c0-49.6 40.4-90 90-90h445.4c49.6 0 90 40.4 90 90v520c0 49.6-40.4 90-90 90zM289.3 222c-16.5 0-30 13.5-30 30v520c0 16.5 13.5 30 30 30h445.4c16.5 0 30-13.5 30-30V252c0-16.5-13.5-30-30-30H289.3z" p-id="2094"></path>
@@ -595,13 +593,13 @@ function AddToList(result){
                 </svg>
             </div>
             `;
-            tdEdit .innerHTML = `
+            tdEdit.innerHTML = `
             <div class="detail-svg">
             <svg t="1596265341305" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5295" width="16" height="16"><path d="M457.117144 914.291885m22.307317 0l522.210626 0q22.307317 0 22.307316 22.307317l0 65.093481q0 22.307317-22.307316 22.307317l-522.210626 0q-22.307317 0-22.307317-22.307317l0-65.093481q0-22.307317 22.307317-22.307317Z" p-id="5296"></path><path d="M639.964002 712.063261m22.307317 0l339.363768 0q22.307317 0 22.307316 22.307316l0 65.093482q0 22.307317-22.307316 22.307316l-339.363768 0q-22.307317 0-22.307317-22.307316l0-65.093482q0-22.307317 22.307317-22.307316Z" p-id="5297"></path><path d="M0 872.419955V987.430628a36.569372 36.569372 0 0 0 36.569372 36.569372h114.827826a73.138743 73.138743 0 0 0 51.562814-21.941623l535.92414-535.92414a73.138743 73.138743 0 0 0 0-103.491321l-77.527068-77.527068a73.138743 73.138743 0 0 0-103.491321 0L21.941623 821.039988A73.138743 73.138743 0 0 0 0 872.419955zM925.022253 21.450679l77.527068 77.527068a73.138743 73.138743 0 0 1 0 103.491321l-79.355536 79.355537a73.138743 73.138743 0 0 1-103.308475 0l-77.709915-77.709915a73.138743 73.138743 0 0 1 0-103.308475l79.355537-79.355536a73.138743 73.138743 0 0 1 103.491321 0z" p-id="5298"></path></svg>
             </div>
             `;
 
-            tdDel  .innerHTML = `
+            tdDel.innerHTML = `
             <div class="detail-svg">
                 <svg t="1596164421670" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3143"><path d="M416 384c-19.2 0-32 12.8-32 32v320c0 19.2 12.8 32 32 32s32-12.8 32-32v-320c0-19.2-12.8-32-32-32z" p-id="3144"></path><path d="M928 192h-224v-32c0-54.4-41.6-96-96-96h-192c-54.4 0-96 41.6-96 96v32h-224c-19.2 0-32 12.8-32 32s12.8 32 32 32h64v608c0 54.4 41.6 96 96 96h512c54.4 0 96-41.6 96-96v-608h64c19.2 0 32-12.8 32-32s-12.8-32-32-32z m-544-32c0-19.2 12.8-32 32-32h192c19.2 0 32 12.8 32 32v32h-256v-32z m416 704c0 19.2-12.8 32-32 32h-512c-19.2 0-32-12.8-32-32v-608h576v608z" p-id="3145"></path><path d="M608 384c-19.2 0-32 12.8-32 32v320c0 19.2 12.8 32 32 32s32-12.8 32-32v-320c0-19.2-12.8-32-32-32z" p-id="3146"></path></svg>
             </div>
@@ -609,27 +607,27 @@ function AddToList(result){
             tdNum.classList.add('ch-num')
 
             // 把学号保存在属性里
-            tdInfo.setAttribute('stunum',JSON.parse(stuArr[i]).studentNum);
-            tdEdit.setAttribute('stunum',JSON.parse(stuArr[i]).studentNum);
-            tdDel.setAttribute('stunum',JSON.parse(stuArr[i]).studentNum);
+            tdInfo.setAttribute('stunum', JSON.parse(stuArr[i]).studentNum);
+            tdEdit.setAttribute('stunum', JSON.parse(stuArr[i]).studentNum);
+            tdDel.setAttribute('stunum', JSON.parse(stuArr[i]).studentNum);
             tdInfo.classList.add('pointer');
             tdDel.classList.add('pointer');
             tdDel.classList.add('pointer');
-            tdInfo.onclick = function(event){
+            tdInfo.onclick = function (event) {
                 event.stopPropagation();
                 //获取详细信息
                 toDetail(this.getAttribute('stunum'));
             };
 
-            tdEdit.onclick = function(event){
+            tdEdit.onclick = function (event) {
                 event.stopPropagation();
                 // 前往修改页面
                 toEdit(this.getAttribute('stunum'));
             }
 
-            tdDel.onclick = function(event){
+            tdDel.onclick = function (event) {
                 event.stopPropagation();
-                if(confirm("确定删除该学生吗？")){
+                if (confirm("确定删除该学生吗？")) {
                     delStu(this.getAttribute('stunum'));
                 }
             }
@@ -646,7 +644,7 @@ function AddToList(result){
             fragment.appendChild(tdEdit);
             fragment.appendChild(tdDel);
 
-        
+
             tr.appendChild(fragment);
             tr.classList.add('opt-table-tr');
             Tfragment.appendChild(tr);
@@ -660,13 +658,13 @@ function AddToList(result){
         // 全选事件
         selectAllByPage();
         clickTrClicked();
-        
-    }else{
+
+    } else {
         alert('无查询结果！');
         getStuList();
     }
 
-    
+
 }
 
 
@@ -675,13 +673,13 @@ function AddToList(result){
 var nowPage = 1;
 
 // 分页显示
-function diviPage(stuArr){
+function diviPage(stuArr) {
     // 页数
-    let totalPage = Math.ceil(stuArr.length/15);
+    let totalPage = Math.ceil(stuArr.length / 15);
     // 往ul中添加页码
     let ul = document.getElementById('opt-page-ul');
     let pages = '';
-    for(let i=1;i<=totalPage;i++){
+    for (let i = 1; i <= totalPage; i++) {
         pages += `<li class="opt-page-tab pointer" >${i}</li>`;
     }
     ul.innerHTML = pages;
@@ -689,10 +687,11 @@ function diviPage(stuArr){
 }
 
 // 根据页码显示
-function appearPage(page){
+function appearPage(page) {
     let tbody = document.getElementById("opt-table-info");
     let pages = document.getElementById("opt-page-ul");
     let myTr = tbody.getElementsByTagName("tr");
+    document.querySelector('.select-all').checked = false;
     for (let i in myTr) {
         if (i >= (page - 1) * 15 && i < myTr.length && i < (page - 1) * 15 + 15) {
             myTr[i].classList.remove("hide");
@@ -703,7 +702,8 @@ function appearPage(page){
     }
     /* 修改当前页面的页码颜色 */
     let pageLi = pages.getElementsByTagName("li");
-    pageLi[nowPage - 1].classList.remove("page-chose");
+    if (pageLi[nowPage - 1].classList)
+        pageLi[nowPage - 1].classList.remove("page-chose");
     pageLi[page - 1].classList.add("page-chose");
     /* 修改当前页面 */
     nowPage = page;
@@ -734,22 +734,22 @@ function addPageChange() {
 
 
 // 页面跳转
-function toPage() {
-       let thepage = document.getElementById('opt-topage');
-       setTimeout(function () {
-           let pages = document.getElementsByClassName('opt-page-tab');
-           let maxpage = pages.length;
-           thepage.onkeypress = function (event) {
-               if (event.keyCode == 13) {
-                   let num = parseInt(thepage.value)
-                   if (num > 0 && num <= maxpage) {
-                       appearPage(num);
-                   } else {
-                       appearPage(pages.length);
-                   }
-               }
-           }
-       }, 4000)
+function toPage() {
+    let thepage = document.getElementById('opt-topage');
+    setTimeout(function () {
+        let pages = document.getElementsByClassName('opt-page-tab');
+        let maxpage = pages.length;
+        thepage.onkeypress = function (event) {
+            if (event.keyCode == 13) {
+                let num = parseInt(thepage.value)
+                if (num > 0 && num <= maxpage) {
+                    appearPage(num);
+                } else {
+                    appearPage(pages.length);
+                }
+            }
+        }
+    }, 4000)
 }
 
 
@@ -772,15 +772,15 @@ function selectAllByPage() {
 }
 
 // 导出学生信息
-function outputStu(){
+function outputStu() {
     let outBtn = document.getElementById('opt-output');
-    outBtn.onclick = function(){
-        if(getSelect()){
-            window.open(domain + '/stu/export?studentNumSerial=' +  getSelect() );
-        }else{
+    outBtn.onclick = function () {
+        if (getSelect()) {
+            window.open(domain + '/stu/export?studentNumSerial=' + getSelect());
+        } else {
             alert('请选择需要导出的学生');
         }
-       
+
     }
 }
 
@@ -798,22 +798,22 @@ function getSelect() {
 }
 
 // 校验范围
-function checkRange(course,min,max){
-    if(course.value > max || course.value < min){
+function checkRange(course, min, max) {
+    if (course.value > max || course.value < min) {
         course.style.color = 'red'
         return false;
-    }else{
+    } else {
         course.style.color = 'black';
         return true;
     }
 }
 
 // 校验邮箱
-function checkEmail(email){
-    if(!/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email.value)){
+function checkEmail(email) {
+    if (!/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email.value)) {
         email.style.color = 'red';
         return false;
-    }else{
+    } else {
         email.style.color = 'black';
         return true;
     }
