@@ -1,6 +1,10 @@
 window.onload = function () {
     isLogined();
     catchLi();
+    // 退出功能
+    document.getElementById('header-exit').onclick = function(){
+        exit();
+    }
 
     /* 当前页面页码 */
     let nowPage = 1;

@@ -16,7 +16,20 @@ window.onload = function(){
     outputStu()
     catchLi();
 
-    var editflag = 0;
+    // 退出功能
+    document.getElementById('header-exit').onclick = function(){
+        exit();
+    }
+
+    // 弹窗
+    let pane = document.getElementById('alert-info');
+    let closeBtn = document.getElementsByClassName('close-btn');
+    closeBtn[0].onclick = function(){
+        pane.classList.add('hide');
+    }
+    closeBtn[1].onclick = function(){
+        pane.classList.add('hide');
+    }
 }
 // 标签切换
 function tab(target) {
@@ -137,9 +150,15 @@ function addStu(){
             experimentpass = checkRange(addItems[2],0,100),
             englishpass = checkRange(addItems[5],0,100),
             pointpass = checkRange(addItems[8],0,5.0),
-            emailpass = checkEmail(addItems[11]);
+            emailpass = checkEmail(addItems[11]),
+            rankpass = checkRange(addItems[7],1,20000);
 
-        if(agepass && theorypass && experimentpass && englishpass && pointpass && emailpass)
+        for(let i=0;i<18;i++){
+            if(!isNull(addItems[i])){
+                return false;
+            }
+        }    
+        if(agepass && theorypass && experimentpass && englishpass && pointpass && emailpass && rankpass)
         {   
             //成功
         }else{
@@ -337,7 +356,7 @@ function toEdit(stunum){
             details[3].value = stuobj.gender;
             details[4].value = stuobj.dormitory;
             details[5].value = stuobj.english;
-            details[6].value = stuobj.group;
+            details[6].value = stuobj.groupId;
             details[7].value = stuobj.classRank;
             details[8].value = stuobj.gradePoint;
             details[9].value = stuobj.grade;
@@ -379,9 +398,15 @@ function editStu(){
             experimentpass = checkRange(addItems[2],0,100),
             englishpass = checkRange(addItems[5],0,100),
             pointpass = checkRange(addItems[8],0,5.0),
-            emailpass = checkEmail(addItems[11]);
-
-        if(agepass && theorypass && experimentpass && englishpass && pointpass && emailpass)
+            emailpass = checkEmail(addItems[11]),
+            rankpass = checkRange(addItems[7],1,20000);
+        for(let i=0;i<18;i++){
+            if(!isNull(addItems[i])){
+                return false;
+            }
+        }    
+        
+        if(agepass && theorypass && experimentpass && englishpass && pointpass && emailpass && rankpass)
         {   
             //成功
         }else{
@@ -817,4 +842,15 @@ function checkEmail(email){
         email.style.color = 'black';
         return true;
     }
+}
+
+
+// 校验必填字段
+function isNull(obj){
+    if(obj.value == '' || obj.value == null || obj.value == undefined){
+        let pane = document.getElementById('alert-info');
+        pane.classList.remove('hide');
+        return false;
+    }
+    return true;
 }

@@ -77,10 +77,13 @@ window.onload = function () {
                 if(oRem.checked){
                     setCookie('username' ,oUser.value,7);
                     setCookie('password' ,result.message,7);
+                }else{
+                    setCookie('username' ,oUser.value,1);
+                    setCookie('password' ,result.message,1);
                 }
                 localStorage.setItem('user',oUser.value);
                 localStorage.setItem('token',result.message);
-                location.assign('pages/enrollInfo.html')
+                location.assign('pages/statistic.html')
             
             }else{
                 delePane.classList.remove('hide');

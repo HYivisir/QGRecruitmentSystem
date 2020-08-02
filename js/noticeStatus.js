@@ -4,6 +4,10 @@ window.onload = function () {
     getClasInfo();
     toPage();
     catchLi();
+    // 退出功能
+    document.getElementById('header-exit').onclick = function(){
+        exit();
+    }
 
     // 修改状态
     let submit = document.getElementById('sec-submit');

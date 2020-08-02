@@ -7,7 +7,7 @@
     background-color: #fff;
 }
 
-#detail-info p, #add-info p {
+#detail-info p, #add-info p,#edit-info p {
     font-size: 24px;
     font-weight: 600;
 }

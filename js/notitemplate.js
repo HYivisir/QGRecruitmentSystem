@@ -1,6 +1,10 @@
 window.onload = function () {
     isLogined();
     catchLi();
+    // 退出功能
+    document.getElementById('header-exit').onclick = function(){
+        exit();
+    }
 
     /* 获取需要多次使用的id */
     let addSec = document.getElementById("noti-sec");
