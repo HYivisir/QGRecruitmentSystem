@@ -19,7 +19,7 @@
     <!-- 顶部 -->
     <div id="header">
         <div id="header-sign">
-            <img id="header-logo" src="../images/QG.png"/>
+            <img id="header-logo" src="../images/QG.png" />
             <h3>QG工作室招新平台</h3>
         </div>
         <div id="header-opt">
@@ -31,7 +31,9 @@
         <div id="side-nav">
             <ul>
                 <li class="side-tabs">
-                    <a href="./statistic.html"><h4>数据统计</h4></a>
+                    <a href="./statistic.html">
+                        <h4>数据统计</h4>
+                    </a>
                 </li>
                 <li class="side-tabs">
                     <a href="./enrollInfo.html">
@@ -124,12 +126,15 @@
                             <p href="">上一页</p>
                         </div>
                         <ul id="search-pages">
-                            
+
                         </ul>
                         <div class="opt-footer-nxt">
                             <p href="">下一页</p>
                         </div>
-                        <div class="opt-switch"><p>跳转第</p><input type="text" id="opt-topage"><p>页</p></div>
+                        <div class="opt-switch">
+                            <p>跳转第</p><input type="text" id="opt-topage">
+                            <p>页</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -197,11 +202,11 @@
                 </svg>
             </div>
             <div class="sec-pane">
-                <div class="sec-pane-item">
-                    <textarea name="" id="" cols="40" rows="10"></textarea>
+                <div class="sec-pane-item" id="send-appear-txt">
+                    <textarea class="" cols="40" rows="10" disabled="disabled"></textarea>
                 </div>
                 <div class="sec-pane-item">
-                    <select name="" id="">
+                    <select name="" id="send-message-title">
                         <option value="1">模板1</option>
                         <option value="2">模板2</option>
                     </select>

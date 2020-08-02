@@ -80,3 +80,7 @@
 .choose {
     cursor: default !important;
 }
+
+#send-message-title {
+    width: 200px;
+}

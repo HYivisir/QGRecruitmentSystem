@@ -11,7 +11,7 @@ window.onload = function () {
     let addClose = document.getElementById("noti-add-close");
     let sendNoti = document.getElementById("noti-sub");
     let notiMain = document.getElementById("enroll-info");
-    let addText = addSec.querySelector(".noti-sec-main");
+    let addText = addSec.getElementsByTagName("textarea")[0];
     let addTitle = addSec.querySelector(".noti-input");
 
     /* 数据回写 */
@@ -28,9 +28,10 @@ window.onload = function () {
             let newNoti = `
                     <div class="noti-div">
                         <div class="noti-main">
-                            <div>#请在需要填写的地方使用#</div>
+                            <div>#模板名一定要备注组别#</div>
                             <br>
-                            <div>占位符：</div>
+                            <div>#请在需要填写的地方使用#</div>
+                            <div>   占位符：</div>
                             <div>名字：#name#</div>
                             <div>地点：#address#</div>
                             <div>时间：#time#</div>
@@ -41,15 +42,6 @@ window.onload = function () {
                     </div>
             `;
             for (let i in noti) {
-                /* 修复最后输入回车和空格而出现的bug */
-                if (noti[i].content.split("<div>").length > noti[i].content.split("</div>").length) {
-                    noti[i].content += "</div>"
-                } else if (noti[i].content.split("<div>").length < noti[i].content.split("</div>").length) {
-                    noti[i].content = noti[i].content.substring(0, noti[i].content.length - 5);
-                }
-
-                console.log(noti[i].content);
-
                 newNoti = newNoti + `
                     <div class="noti-div">
                         <div class="hide id-here">${noti[i].id}</div> 
@@ -63,7 +55,7 @@ window.onload = function () {
                             </svg>
                         </div>
                         <div class="noti-main">
-                            ${noti[i].content}
+                            <textarea disabled="disabled">${noti[i].content}</textarea>
                         </div>
                         <div class="noti-name">${noti[i].title}</div>
                         <div class="noti-change">
@@ -78,7 +70,7 @@ window.onload = function () {
                     </div>
                 `;
             }
-            /* 新增框 */
+            //新增框
             newNoti += `
                     <div id="noti-add">
                         <svg t="1596026190951" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -98,7 +90,7 @@ window.onload = function () {
             `;
             notiMain.innerHTML += newNoti;
 
-            /* 增加点击事件 */
+            //增加点击事件
             addMubanClick();
             addDeleteClick();
         },
@@ -123,7 +115,7 @@ window.onload = function () {
                 let myNoti = target.parentElement.parentElement
                 let id = myNoti.querySelector(".id-here").innerHTML;
                 /* 回写内容 */
-                let text = myNoti.querySelector(".noti-main").innerHTML;
+                let text = myNoti.getElementsByTagName("textarea")[0].innerHTML;
                 addText.innerHTML = text;
                 let tit = myNoti.querySelector(".noti-name").innerHTML;
                 addTitle.value = tit;
@@ -134,17 +126,13 @@ window.onload = function () {
                 sendNoti.onclick = function () {
                     if (isClick) {
                         isClick = false;
-                        /* 将空格换成字符串 */
-                        addText.innerHTML = addText.innerHTML.replace(/&nbsp;/g, " ");
-
                         $ajax({
                             method: "post",
                             url: domain + "/model/update",
                             data: {
                                 "id": id,
                                 "title": addTitle.value,
-                                "content": addText.innerHTML
-                                //"content": txt.value
+                                "content": addText.value
                             },
                             success: function (result) {
                                 let obj = JSON.parse(result);
@@ -169,7 +157,7 @@ window.onload = function () {
         document.getElementById("noti-add").onclick = function () {
             /* 打开的同时清除数据 */
             addSec.classList.remove("hide");
-            addSec.querySelector(".noti-sec-main").innerHTML = "";
+            addSec.getElementsByTagName("textarea")[0].innerHTML = "";
             addSec.querySelector(".noti-input").setAttribute("value", "");
 
             /* 三秒内提交一次 */
@@ -177,15 +165,12 @@ window.onload = function () {
             sendNoti.onclick = function () {
                 if (isClick) {
                     isClick = false;
-                    let tit = addSec.querySelector(".noti-input").value;
-                    /* 将空格换成字符串 */
-                    addText.innerHTML = addText.innerHTML.replace(/&nbsp;/g, " ");
                     $ajax({
                         method: "post",
                         url: domain + "/model/save",
                         data: {
-                            "title": tit,
-                            "content": addText.innerHTML
+                            "title": addTitle.value,
+                            "content": addText.value
                         },
                         success: function (result) {
                             let obj = JSON.parse(result);
