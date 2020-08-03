@@ -196,3 +196,12 @@ svg {
 .hide {
     display: none;
 }
+
+#rem-me{
+    cursor: pointer;
+    user-select: none;
+}
+
+#rem-me:hover{
+    color: rgb(163, 123, 233);
+}
