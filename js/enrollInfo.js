@@ -114,9 +114,9 @@ function getStuList() {
     let listPromise = new Promise(resolve => {
         $.ajax({
             url: domain + '/stu/list',
-            // xhrFields: {
-            //     withCredentials: true // 发送Ajax时，Request header中会带上 Cookie 信息。
-            // },
+            xhrFields: {
+                withCredentials: true // 发送Ajax时，Request header中会带上 Cookie 信息。
+            },
             headers: {
                 'QGer': 'I am a QGer',
             },
@@ -200,6 +200,9 @@ function addStu() {
             $.ajax({
                 url: domain + '/stu/save',
                 data: addData,
+                xhrFields: {
+                    withCredentials: true
+                },
                 headers: {
                     'QGer': 'I am a QGer'
                 },
@@ -239,6 +242,9 @@ function toDetail(stunum) {
         $.ajax({
             url: domain + '/stu/select',
             data: { studentNum: stunum },
+            xhrFields: {
+                withCredentials: true
+            },
             headers: {
                 'QGer': 'I am a QGer'
             },
@@ -317,6 +323,9 @@ function toEdit(stunum) {
         $.ajax({
             url: domain + '/stu/select',
             data: { studentNum: stunum },
+            xhrFields: {
+                withCredentials: true
+            },
             headers: {
                 'QGer': 'I am a QGer'
             },
@@ -449,6 +458,9 @@ function editStu() {
             $.ajax({
                 url: domain + '/stu/update',
                 data: addData,
+                xhrFields: {
+                    withCredentials: true
+                },
                 headers: {
                     'QGer': 'I am a QGer'
                 },
@@ -487,6 +499,9 @@ function delStu(stuNum) {
     $.ajax({
         url: domain + '/stu/remove',
         methods: 'POST',
+        xhrFields: {
+            withCredentials: true
+        },
         headers: {
             'QGer': 'I am a QGer'
         },
@@ -527,6 +542,9 @@ function searchStu() {
                 $.ajax({
                     url: domain + '/stu/condition',
                     data: { condition: searchInput.value },
+                    xhrFields: {
+                        withCredentials: true
+                    },
                     methods: 'POST',
                     success: function (result) {
                         resolve(result);
@@ -562,6 +580,9 @@ function classifyGroup() {
             $.ajax({
                 url: domain + '/stu/condition',
                 methods: 'POST',
+                xhrFields: {
+                    withCredentials: true
+                },
                 headers: {
                     'QGer': 'I am a QGer'
                 },

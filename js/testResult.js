@@ -59,6 +59,9 @@ window.onload = function () {
     let pages = document.getElementById("search-pages");
     $.ajax({
         method: "POST",
+        xhrFields: {
+            withCredentials: true
+        },
         headers: {
             'QGer': 'I am a QGer'
         },
@@ -350,6 +353,9 @@ window.onload = function () {
         $.ajax({
             method: "POST",
             url: domain + "/test/list",
+            xhrFields: {
+                withCredentials: true
+            },
             headers: {
                 'QGer': 'I am a QGer'
             },
@@ -537,6 +543,9 @@ window.onload = function () {
     function addTemplate() {
         $.ajax({
             method: "POST",
+            xhrFields: {
+                withCredentials: true
+            },
             headers: {
                 'QGer': 'I am a QGer'
             },
