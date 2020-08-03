@@ -1,7 +1,7 @@
 // 这是框架的主要事件，可共用
 
 // 域名
-var domain = "http://39.98.41.126:30008";
+var domain = "http://175.24.120.68/recruit";
 
 function catchLi(){
     let oli = document.getElementsByClassName('side-tabs');

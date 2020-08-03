@@ -1,4 +1,4 @@
-var domain = "http://39.98.41.126:30008";
+var domain = "http://175.24.120.68/recruit";
 
 // 获取cookie
 function getCookie(name) {
