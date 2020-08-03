@@ -58,6 +58,9 @@ window.onload = function () {
             $.ajax({
                 url: domain + '/login',
                 methods: 'POST',
+                xhrFields: {
+                    withCredentials: true
+                },
                 headers:{
                     'QGer': 'I am a QGer'
                 },

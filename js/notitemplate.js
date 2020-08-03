@@ -17,6 +17,9 @@ window.onload = function () {
     /* 数据回写 */
     $.ajax({
         method: "POST",
+        xhrFields: {
+            withCredentials: true
+        },
         headers: {
             'QGer': 'I am a QGer'
         },

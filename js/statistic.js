@@ -11,6 +11,9 @@ window.onload = function(){
         $.ajax({
             url: domain + '/graphic',
             methods: 'POST',
+            xhrFields: {
+                withCredentials: true
+            },
             headers:{
                 'QGer': 'I am a QGer'
             },

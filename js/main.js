@@ -39,7 +39,7 @@ function $ajax({ method = "get", url, data, success, error }) {
     } catch (error) {
         xhr = new ActiveXObject("Microsoft.XMLHTTP");
     }
-
+    xhr.withCredentials = true;
     if (data) {
         data = querystring(data);
     }
@@ -178,6 +178,9 @@ function isLogined(){
         data:{
             username : user,
             password : pwd
+        },
+        xhrFields: {
+            withCredentials: true
         },
         headers:{
             'QGer': 'I am a QGer'
