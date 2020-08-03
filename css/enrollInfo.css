@@ -110,3 +110,11 @@ td svg {
 .opt-form-sumit:hover {
     background-color: rgb(135, 68, 212);
 }
+
+.alert-input{
+    width: 125px;
+    border: 1px red solid !important;
+    border-radius: 5px;
+    outline: none;
+    resize: none;
+}

@@ -158,7 +158,10 @@ function addStu() {
             rankpass = checkRange(addItems[7],0,20000),
             phonepass = checkLength(addItems[14],11),
             stunumpass = checkLength(addItems[15],10);
-
+        for(var i=0;i<18;i++){
+            isNull(addItems[i])
+        }
+            
         for(let i=0;i<18;i++){
             if(!isNull(addItems[i])){
                 return false;
@@ -417,11 +420,16 @@ function editStu() {
             rankpass = checkRange(addItems[7],0,20000),
             phonepass = checkLength(addItems[14],11),
             stunumpass = checkLength(addItems[15],10);
+        for(var i=0;i<18;i++){
+            isNull(addItems[i])
+        }
+        
         for(let i=0;i<18;i++){
             if(!isNull(addItems[i])){
                 return false;
             }
         }    
+
         
         if(agepass && theorypass && experimentpass && englishpass && pointpass && emailpass && rankpass && phonepass && stunumpass)
         {   
@@ -879,10 +887,12 @@ function checkEmail(email) {
 // 校验必填字段
 function isNull(obj){
     if(obj.value == '' || obj.value == null || obj.value == undefined){
+        obj.classList.add('alert-input');
         let pane = document.getElementById('alert-info');
         pane.classList.remove('hide');
         return false;
     }
+    obj.classList.remove('alert-input');
     return true;
 }
 
@@ -900,31 +910,48 @@ function checkLength(obj,maxLength){
 
 // 选框过滤
 function checkBlur(obj){
-    obj[1].onblur = function(){
+    obj[1].addEventListener('blur',function(){
         checkRange(obj[1],15,25)
-    };
-    obj[16].onblur = function(){
+    });
+    obj[16].addEventListener('blur',function(){
         checkRange(obj[16],0,100)
-    };
-    obj[2].onblur = function(){
+    });
+    obj[2].addEventListener('blur',function(){
         checkRange(obj[2],0,100)
-    };
-    obj[5].onblur = function(){
+    });
+    obj[5].addEventListener('blur',function(){
         checkRange(obj[5],0,100)
-    };
-    obj[8].onblur = function(){
+    });
+    obj[8].addEventListener('blur',function(){
         checkRange(obj[8],0,5.0)
-    };
-    obj[11].onblur = function(){
+    });
+    obj[11].addEventListener('blur',function(){
         checkEmail(obj[11])
-    };
-    obj[7].onblur = function(){
+    });
+    obj[7].addEventListener('blur',function(){
         checkRange(obj[7],0,20000)
-    };
-    obj[14].onblur = function(){
+    });
+    obj[14].addEventListener('blur',function(){
         checkLength(obj[14],11)
-    };
-    obj[15].onblur = function(){
+    });
+    obj[15].addEventListener('blur',function(){
         checkLength(obj[15],10);
-    };
+    });
+
+    for(var i=0;i<18;i++){
+        obj[i].addEventListener('blur',(ev)=>{
+            isNullWithout(ev.target);
+        })
+    }
+
+}
+
+// 无提示的检测
+function isNullWithout(obj){
+    if(obj.value == '' || obj.value == null || obj.value == undefined){
+        obj.classList.add('alert-input');
+        return false;
+    }
+    obj.classList.remove('alert-input');
+    return true;
 }
