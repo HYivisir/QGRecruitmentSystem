@@ -15,7 +15,11 @@ window.onload = function () {
     // 批量导出
     outputStu()
     catchLi();
-
+    // 表单验证
+    let addItems = document.getElementsByClassName('opt-form-adds');
+    checkBlur(addItems);
+    let editItems = document.getElementsByClassName('opt-form-edit');
+    checkBlur(editItems);
     // 退出功能
     document.getElementById('header-exit').onclick = function(){
         exit();
@@ -892,4 +896,35 @@ function checkLength(obj,maxLength){
         obj.style.color = 'black';
         return true;
     }
+}
+
+// 选框过滤
+function checkBlur(obj){
+    obj[1].onblur = function(){
+        checkRange(obj[1],15,25)
+    };
+    obj[16].onblur = function(){
+        checkRange(obj[16],0,100)
+    };
+    obj[2].onblur = function(){
+        checkRange(obj[2],0,100)
+    };
+    obj[5].onblur = function(){
+        checkRange(obj[5],0,100)
+    };
+    obj[8].onblur = function(){
+        checkRange(obj[8],0,5.0)
+    };
+    obj[11].onblur = function(){
+        checkEmail(obj[11])
+    };
+    obj[7].onblur = function(){
+        checkRange(obj[7],1,20000)
+    };
+    obj[14].onblur = function(){
+        checkLength(obj[14],11)
+    };
+    obj[15].onblur = function(){
+        checkLength(obj[15],10);
+    };
 }

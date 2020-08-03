@@ -169,9 +169,8 @@ function delCookie(name) {
 
 // 是否登录
 function isLogined(){
-    let user = localStorage.getItem('user');
-    let pwd = localStorage.getItem('token');
-
+    let user = getCookie('username');
+    let pwd = getCookie('password')
     $.ajax({
         url: domain + '/login',
         methods: 'POST',
@@ -206,7 +205,5 @@ function isLogined(){
 
 // 退出登录
 function exit(){
-    localStorage.removeItem('username');
-    localStorage.removeItem('token');
     location.assign('../index.html');
 }

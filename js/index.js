@@ -28,6 +28,7 @@ window.onload = function () {
     let oUser = document.getElementById('username');
     let oPwd = document.getElementById('password');
     let oRem = document.getElementById('rem');
+    let oRemme = document.getElementById('rem-me');
     let oSumit = document.getElementById('log-in');
     let closebtn = document.getElementsByClassName('close-btn');
     let delePane = document.getElementById('dele-pane');
@@ -38,6 +39,9 @@ window.onload = function () {
         }
     }
 
+    oRemme.onclick = function(){
+        oRem.checked = !oRem.checked;
+    }
     if (getCookie('username') && getCookie('password')) {
         oUser.value = getCookie('username');
         oPwd.value = getCookie('password');
@@ -84,8 +88,6 @@ window.onload = function () {
                     setCookie('username' ,oUser.value,1);
                     setCookie('password' ,result.message,1);
                 }
-                localStorage.setItem('user',oUser.value);
-                localStorage.setItem('token',result.message);
                 location.assign('pages/statistic.html')
             
             }else{
