@@ -449,7 +449,7 @@ window.onload = function () {
         }
         /* 修改当前页面的页码颜色 */
         let pageLi = pages.getElementsByTagName("li");
-        if (pageLi[nowPage - 1].classList)
+        if (pageLi[nowPage - 1])
             pageLi[nowPage - 1].classList.remove("page-chose");
         pageLi[page - 1].classList.add("page-chose");
         /* 修改当前页面 */
