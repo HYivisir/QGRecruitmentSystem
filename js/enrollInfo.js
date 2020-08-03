@@ -155,7 +155,7 @@ function addStu() {
             englishpass = checkRange(addItems[5],0,100),
             pointpass = checkRange(addItems[8],0,5.0),
             emailpass = checkEmail(addItems[11]),
-            rankpass = checkRange(addItems[7],1,20000),
+            rankpass = checkRange(addItems[7],0,20000),
             phonepass = checkLength(addItems[14],11),
             stunumpass = checkLength(addItems[15],10);
 
@@ -414,7 +414,7 @@ function editStu() {
             englishpass = checkRange(addItems[5],0,100),
             pointpass = checkRange(addItems[8],0,5.0),
             emailpass = checkEmail(addItems[11]),
-            rankpass = checkRange(addItems[7],1,20000),
+            rankpass = checkRange(addItems[7],0,20000),
             phonepass = checkLength(addItems[14],11),
             stunumpass = checkLength(addItems[15],10);
         for(let i=0;i<18;i++){
@@ -919,7 +919,7 @@ function checkBlur(obj){
         checkEmail(obj[11])
     };
     obj[7].onblur = function(){
-        checkRange(obj[7],1,20000)
+        checkRange(obj[7],0,20000)
     };
     obj[14].onblur = function(){
         checkLength(obj[14],11)
