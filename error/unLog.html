@@ -6,8 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>未登录</title>
     <link rel="shortcut icon" href="../images/QG.png" type="image/x-icon">
-    <link rel="stylesheet" href="../css/error.css">
-    <script src="../error/js/unLog.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .error-div {
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            position: fixed;
+            display: flex;
+            margin-top: -5%;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .main-svg {
+            height: 250px;
+        }
+
+        .error-svg {
+            margin: 24px 0;
+            height: 32px;
+        }
+
+        p {
+            padding: 8px;
+            font-size: 28px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            setTimeout(()=>{
+                location.assign('../index.html');
+            },5000);
+        
+            let timer = document.getElementById('time');
+            let sign = 4;
+            setInterval(function (){
+                timer.innerHTML = sign;
+                if(sign>0){
+                    sign--;
+                }else{
+                    sign = 0;
+                }      
+            },1000);
+        }
+    </script>
 </head>
 
 <body>
@@ -24,7 +71,7 @@
         </svg>
         <p>您还未登录 ~</p>
         <p>请登录后访问！</p>
-        <p>即将自动跳转......<span id="time">5</span></p>
+        <p>即将自动跳转......<span id="time"  style="color: rgb(91,8,195)">5</span></p>
     </div>
 </body>
 
