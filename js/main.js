@@ -206,4 +206,6 @@ function isLogined(){
 // 退出登录
 function exit(){
     location.assign('../index.html');
+    delCookie('username');
+    delCookie('password');
 }
