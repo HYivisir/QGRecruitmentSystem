@@ -1,12 +1,19 @@
 window.onload = function(){
     isLogined();
     catchLi();
+    // 退出功能
+    document.getElementById('header-exit').onclick = function(){
+        exit();
+    }
     // 生成图表
 
     let promise = new Promise(resolve=>{
         $.ajax({
             url: domain + '/graphic',
             methods: 'POST',
+            xhrFields: {
+                withCredentials: true
+            },
             headers:{
                 'QGer': 'I am a QGer'
             },

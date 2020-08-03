@@ -4,6 +4,10 @@ window.onload = function () {
     getClasInfo();
     toPage();
     catchLi();
+    // 退出功能
+    document.getElementById('header-exit').onclick = function(){
+        exit();
+    }
 
     // 修改状态
     let submit = document.getElementById('sec-submit');
@@ -30,6 +34,9 @@ window.onload = function () {
         console.log(data)
         $.ajax({
             url: domain + '/test/batchUpdatePs',
+            xhrFields: {
+                withCredentials: true
+            },
             headers:{
                 'QGer': 'I am a QGer'
             },
@@ -63,6 +70,9 @@ function getAllNoti(){
     let listPromise = new Promise(resolve=>{
         $.ajax({
             url: domain + '/test/list',
+            xhrFields: {
+                withCredentials: true
+            },
             headers:{
                 'QGer': 'I am a QGer'
             },
@@ -185,6 +195,9 @@ function getClasInfo(){
         let listPromise = new Promise(resolve=>{
             $.ajax({
                 url: domain + '/test/groupby',
+                xhrFields: {
+                    withCredentials: true
+                },
                 headers:{
                     'QGer': 'I am a QGer'
                 },

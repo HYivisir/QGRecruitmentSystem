@@ -1,4 +1,4 @@
-var domain = "http://39.98.41.126:30008";
+var domain = "http://175.24.120.68/recruit";
 
 // 获取cookie
 function getCookie(name) {
@@ -58,6 +58,9 @@ window.onload = function () {
             $.ajax({
                 url: domain + '/login',
                 methods: 'POST',
+                xhrFields: {
+                    withCredentials: true
+                },
                 headers:{
                     'QGer': 'I am a QGer'
                 },
@@ -77,10 +80,13 @@ window.onload = function () {
                 if(oRem.checked){
                     setCookie('username' ,oUser.value,7);
                     setCookie('password' ,result.message,7);
+                }else{
+                    setCookie('username' ,oUser.value,1);
+                    setCookie('password' ,result.message,1);
                 }
                 localStorage.setItem('user',oUser.value);
                 localStorage.setItem('token',result.message);
-                location.assign('pages/enrollInfo.html')
+                location.assign('pages/statistic.html')
             
             }else{
                 delePane.classList.remove('hide');

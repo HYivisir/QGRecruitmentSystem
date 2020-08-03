@@ -1,7 +1,7 @@
 // 这是框架的主要事件，可共用
 
 // 域名
-var domain = "http://175.24.120.68/recruit/";
+var domain = "http://175.24.120.68/recruit";
 
 function catchLi(){
     let oli = document.getElementsByClassName('side-tabs');
@@ -39,7 +39,7 @@ function $ajax({ method = "get", url, data, success, error }) {
     } catch (error) {
         xhr = new ActiveXObject("Microsoft.XMLHTTP");
     }
-
+    xhr.withCredentials = true;
     if (data) {
         data = querystring(data);
     }
@@ -167,7 +167,7 @@ function delCookie(name) {
     setCookie(name, null, -1);
 }
 
-
+// 是否登录
 function isLogined(){
     let user = localStorage.getItem('user');
     let pwd = localStorage.getItem('token');
@@ -178,6 +178,9 @@ function isLogined(){
         data:{
             username : user,
             password : pwd
+        },
+        xhrFields: {
+            withCredentials: true
         },
         headers:{
             'QGer': 'I am a QGer'
@@ -198,4 +201,12 @@ function isLogined(){
             }
         }
     })
+}
+
+
+// 退出登录
+function exit(){
+    localStorage.removeItem('username');
+    localStorage.removeItem('token');
+    location.assign('../index.html');
 }

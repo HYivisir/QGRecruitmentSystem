@@ -16,7 +16,20 @@ window.onload = function () {
     outputStu()
     catchLi();
 
-    var editflag = 0;
+    // 退出功能
+    document.getElementById('header-exit').onclick = function(){
+        exit();
+    }
+
+    // 弹窗
+    let pane = document.getElementById('alert-info');
+    let closeBtn = document.getElementsByClassName('close-btn');
+    closeBtn[0].onclick = function(){
+        pane.classList.add('hide');
+    }
+    closeBtn[1].onclick = function(){
+        pane.classList.add('hide');
+    }
 }
 // 标签切换
 function tab(target) {
@@ -101,9 +114,9 @@ function getStuList() {
     let listPromise = new Promise(resolve => {
         $.ajax({
             url: domain + '/stu/list',
-            // xhrFields: {
-            //     withCredentials: true // 发送Ajax时，Request header中会带上 Cookie 信息。
-            // },
+            xhrFields: {
+                withCredentials: true // 发送Ajax时，Request header中会带上 Cookie 信息。
+            },
             headers: {
                 'QGer': 'I am a QGer',
             },
@@ -132,14 +145,23 @@ function addStu() {
     submitBtn.onclick = function () {
         let addItems = document.getElementsByClassName('opt-form-adds');
         // 校验表单
-        let agepass = checkRange(addItems[1], 15, 25),
-            theorypass = checkRange(addItems[16], 0, 100),
-            experimentpass = checkRange(addItems[2], 0, 100),
-            englishpass = checkRange(addItems[5], 0, 100),
-            pointpass = checkRange(addItems[8], 0, 5.0),
-            emailpass = checkEmail(addItems[11]);
+        let agepass = checkRange(addItems[1],15,25),
+            theorypass = checkRange(addItems[16],0,100),
+            experimentpass = checkRange(addItems[2],0,100),
+            englishpass = checkRange(addItems[5],0,100),
+            pointpass = checkRange(addItems[8],0,5.0),
+            emailpass = checkEmail(addItems[11]),
+            rankpass = checkRange(addItems[7],1,20000),
+            phonepass = checkLength(addItems[14],11),
+            stunumpass = checkLength(addItems[15],10);
 
-        if (agepass && theorypass && experimentpass && englishpass && pointpass && emailpass) {
+        for(let i=0;i<18;i++){
+            if(!isNull(addItems[i])){
+                return false;
+            }
+        }    
+        if(agepass && theorypass && experimentpass && englishpass && pointpass && emailpass && rankpass && phonepass && stunumpass)
+        {   
             //成功
         } else {
             window.scrollTo(0, 0)
@@ -178,6 +200,9 @@ function addStu() {
             $.ajax({
                 url: domain + '/stu/save',
                 data: addData,
+                xhrFields: {
+                    withCredentials: true
+                },
                 headers: {
                     'QGer': 'I am a QGer'
                 },
@@ -217,6 +242,9 @@ function toDetail(stunum) {
         $.ajax({
             url: domain + '/stu/select',
             data: { studentNum: stunum },
+            xhrFields: {
+                withCredentials: true
+            },
             headers: {
                 'QGer': 'I am a QGer'
             },
@@ -295,6 +323,9 @@ function toEdit(stunum) {
         $.ajax({
             url: domain + '/stu/select',
             data: { studentNum: stunum },
+            xhrFields: {
+                withCredentials: true
+            },
             headers: {
                 'QGer': 'I am a QGer'
             },
@@ -336,7 +367,7 @@ function toEdit(stunum) {
             details[3].value = stuobj.gender;
             details[4].value = stuobj.dormitory;
             details[5].value = stuobj.english;
-            details[6].value = stuobj.group;
+            details[6].value = stuobj.groupId;
             details[7].value = stuobj.classRank;
             details[8].value = stuobj.gradePoint;
             details[9].value = stuobj.grade;
@@ -373,14 +404,23 @@ function editStu() {
     editBtn.onclick = function () {
         let addItems = document.getElementsByClassName('opt-form-edit');
         // 校验表单
-        let agepass = checkRange(addItems[1], 15, 25),
-            theorypass = checkRange(addItems[16], 0, 100),
-            experimentpass = checkRange(addItems[2], 0, 100),
-            englishpass = checkRange(addItems[5], 0, 100),
-            pointpass = checkRange(addItems[8], 0, 5.0),
-            emailpass = checkEmail(addItems[11]);
-
-        if (agepass && theorypass && experimentpass && englishpass && pointpass && emailpass) {
+        let agepass = checkRange(addItems[1],15,25),
+            theorypass = checkRange(addItems[16],0,100),
+            experimentpass = checkRange(addItems[2],0,100),
+            englishpass = checkRange(addItems[5],0,100),
+            pointpass = checkRange(addItems[8],0,5.0),
+            emailpass = checkEmail(addItems[11]),
+            rankpass = checkRange(addItems[7],1,20000),
+            phonepass = checkLength(addItems[14],11),
+            stunumpass = checkLength(addItems[15],10);
+        for(let i=0;i<18;i++){
+            if(!isNull(addItems[i])){
+                return false;
+            }
+        }    
+        
+        if(agepass && theorypass && experimentpass && englishpass && pointpass && emailpass && rankpass && phonepass && stunumpass)
+        {   
             //成功
         } else {
             window.scrollTo(0, 0)
@@ -418,6 +458,9 @@ function editStu() {
             $.ajax({
                 url: domain + '/stu/update',
                 data: addData,
+                xhrFields: {
+                    withCredentials: true
+                },
                 headers: {
                     'QGer': 'I am a QGer'
                 },
@@ -456,6 +499,9 @@ function delStu(stuNum) {
     $.ajax({
         url: domain + '/stu/remove',
         methods: 'POST',
+        xhrFields: {
+            withCredentials: true
+        },
         headers: {
             'QGer': 'I am a QGer'
         },
@@ -496,6 +542,9 @@ function searchStu() {
                 $.ajax({
                     url: domain + '/stu/condition',
                     data: { condition: searchInput.value },
+                    xhrFields: {
+                        withCredentials: true
+                    },
                     methods: 'POST',
                     success: function (result) {
                         resolve(result);
@@ -531,6 +580,9 @@ function classifyGroup() {
             $.ajax({
                 url: domain + '/stu/condition',
                 methods: 'POST',
+                xhrFields: {
+                    withCredentials: true
+                },
                 headers: {
                     'QGer': 'I am a QGer'
                 },
@@ -815,6 +867,29 @@ function checkEmail(email) {
         return false;
     } else {
         email.style.color = 'black';
+        return true;
+    }
+}
+
+
+// 校验必填字段
+function isNull(obj){
+    if(obj.value == '' || obj.value == null || obj.value == undefined){
+        let pane = document.getElementById('alert-info');
+        pane.classList.remove('hide');
+        return false;
+    }
+    return true;
+}
+
+
+// 校验学号和电话号码长度
+function checkLength(obj,maxLength){
+    if (obj.value.length < maxLength) {
+        obj.style.color = 'red'
+        return false;
+    } else {
+        obj.style.color = 'black';
         return true;
     }
 }
