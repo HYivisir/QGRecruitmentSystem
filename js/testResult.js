@@ -127,7 +127,6 @@ window.onload = function () {
             }
         });
 
-        this.disabled = true;
     }
 
     /* 批量通过 */
@@ -157,7 +156,6 @@ window.onload = function () {
             }
         });
 
-        this.disabled = true;
     }
 
     /* 添加删除 */
@@ -186,7 +184,6 @@ window.onload = function () {
                             location.assign('../error/404.html');
                         }
                     })
-                    this.disabled = true;
                 }
             }
         }
@@ -250,7 +247,6 @@ window.onload = function () {
                             location.assign('../error/404.html');
                         }
                     })
-                    this.disabled = true;
                 }
             }
         }
@@ -326,7 +322,6 @@ window.onload = function () {
                 location.assign('../error/404.html');
             }
         });
-        this.disabled = true;
     }
     /* 点击回车搜索 */
     document.getElementById("opt-input").onkeypress = function (event) {
@@ -367,6 +362,7 @@ window.onload = function () {
                 for (let i in res) {
                     /* 判断 */
                     if (gName == "全部" && tName == res[i].type) {
+                        count++;
                         newTr += returnTrString(res[i].name,
                             res[i].studentNum,
                             res[i].group,
@@ -413,7 +409,6 @@ window.onload = function () {
                 }
             }
         });
-        this.disabled = true;
     }
 
     /* 当前页面全选 */
