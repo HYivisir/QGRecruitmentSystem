@@ -2,7 +2,7 @@ window.onload = function () {
     isLogined();
     catchLi();
     // 退出功能
-    document.getElementById('header-exit').onclick = function(){
+    document.getElementById('header-exit').onclick = function () {
         exit();
     }
 
@@ -97,10 +97,10 @@ window.onload = function () {
             addMubanClick();
             addDeleteClick();
         },
-        error: (xhr,status,thrown)=>{
-            if(xhr.status == 404){
+        error: (xhr, status, thrown) => {
+            if (xhr.status == 404) {
                 location.assign('../error/404.html');
-            }else{
+            } else {
                 location.assign('../error/500.html');
             }
         }
@@ -161,7 +161,7 @@ window.onload = function () {
             /* 打开的同时清除数据 */
             addSec.classList.remove("hide");
             addSec.getElementsByTagName("textarea")[0].innerHTML = "";
-            addSec.querySelector(".noti-input").setAttribute("value", "");
+            addSec.querySelector(".noti-input").value = "";
 
             /* 三秒内提交一次 */
             let isClick = true;
